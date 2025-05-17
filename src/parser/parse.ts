@@ -8,11 +8,6 @@ export function parse(input: string): Node[] {
     return input[pos++]
   }
 
-  function skipWhitespace() {
-    while (/\s/.test(peek()))
-      next()
-  }
-
   function parseArray(): Node[] {
     const items: Node[] = []
     next() // skip '['
@@ -90,6 +85,11 @@ export function parse(input: string): Node[] {
 
   function peek(): string {
     return input[pos]
+  }
+
+  function skipWhitespace() {
+    while (/\s/.test(peek()))
+      next()
   }
 
   while (pos < input.length) {
