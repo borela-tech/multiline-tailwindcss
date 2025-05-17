@@ -30,8 +30,6 @@ function generateCodeForNode(node: Node) {
 }
 
 export function generateCodeForNodes(nodes: Node[]) {
-  let result = ''
-  for (const node of nodes)
-    result += generateCodeForNode(node) + '\n'
-  return result
+  return nodes.map(node => generateCodeForNode(node))
+    .join('\n')
 }
