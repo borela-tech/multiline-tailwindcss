@@ -18,9 +18,7 @@ export function extractCandidatesFromTaggedStrings(code: string) {
     TaggedTemplateExpression(path) {
       const {
         tag,
-        quasi: {
-          quasis,
-        },
+        quasi: {quasis},
       } = path.node
 
       if (!t.isIdentifier(tag))
@@ -40,16 +38,13 @@ export function extractCandidatesFromTaggedStrings(code: string) {
 
       candidatesFound.push(...filtered)
 
+      const replacement = t.templateElement({
+        raw: squished,
+        cooked: squished,
+      })
+
       path.replaceWith(
-        t.templateLiteral(
-          [
-            t.templateElement({
-              raw: squished,
-              cooked: squished,
-            }),
-          ],
-          [],
-        ),
+        t.templateLiteral([replacement], []),
       )
     },
   })
