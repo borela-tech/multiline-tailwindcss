@@ -2,7 +2,6 @@ import * as t from '@babel/types'
 import {NodePath} from '@babel/traverse'
 import {parse} from '@babel/parser'
 import {transformTailwindClasses} from './transformTailwindClasses'
-import {TaggedTemplateExpression} from '@babel/types';
 
 ////////////////////////////////////////////////////////////////////////////////
 // TODO: Remove this workaround when Babel modules get fixed.
@@ -31,7 +30,7 @@ export function transformTaggedStrings(code: string) {
   })
 
   traverse(ast, {
-    TaggedTemplateExpression(path: NodePath<TaggedTemplateExpression>) {
+    TaggedTemplateExpression(path: NodePath<t.TaggedTemplateExpression>) {
       const {
         tag,
         quasi: {quasis},
@@ -47,16 +46,16 @@ export function transformTaggedStrings(code: string) {
         throw new Error('Tailwind tagged template should have exactly one argument.')
 
       const rawString = quasis[0].value.raw
-      const squished = transformTailwindClasses(rawString)
-      const filtered = squished
+      const transformed = transformTailwindClasses(rawString)
+      const filtered = transformed
         .split('\n')
         .filter(Boolean)
 
       candidatesFound.push(...filtered)
 
       const replacement = t.templateElement({
-        raw: squished,
-        cooked: squished,
+        raw: transformed,
+        cooked: transformed,
       })
 
       path.replaceWith(

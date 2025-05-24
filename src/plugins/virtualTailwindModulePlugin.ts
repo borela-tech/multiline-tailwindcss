@@ -4,6 +4,7 @@ import {SharedState} from './SharedState'
 export function virtualTailwindModulePlugin(state: SharedState): Plugin {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwind:virtual-tailwind-module',
+    enforce: 'pre',
     resolveId(id) {
       const {
         virtualTailwindModule: {

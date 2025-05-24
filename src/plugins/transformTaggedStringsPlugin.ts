@@ -6,6 +6,7 @@ import {updateModule} from '../lib/updateModule'
 export function transformTaggedStringsPlugin(state: SharedState): Plugin {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwind:transform-tagged-strings',
+    enforce: 'pre',
     transform(code, id) {
       if (!/\.[jt]sx?$/.test(id))
         return code
