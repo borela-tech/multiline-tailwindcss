@@ -1,4 +1,4 @@
-import {extractCandidatesFromTaggedStrings} from '../extractCandidatesFromTaggedStrings'
+import {transformTaggedStrings} from '../transformTaggedStrings'
 import {trimLines} from './utils/trimLines'
 
 describe('extractCandidatesFromTaggedStrings()', () => {
@@ -40,7 +40,7 @@ describe('extractCandidatesFromTaggedStrings()', () => {
       },
     }
 
-    const result = extractCandidatesFromTaggedStrings(input)
+    const result = transformTaggedStrings(input)
     expect(result).toEqual(expected)
   })
 })

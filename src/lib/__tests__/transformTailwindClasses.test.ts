@@ -1,4 +1,4 @@
-import {squishMultilineExpressions} from '../squishMultilineExpressions'
+import {transformTailwindClasses} from '../transformTailwindClasses'
 import {trimLines} from './utils/trimLines'
 
 describe('squishMultilineExpressions()', () => {
@@ -26,7 +26,7 @@ describe('squishMultilineExpressions()', () => {
       !border-purple-600
     `
 
-    const result = squishMultilineExpressions(input)
+    const result = transformTailwindClasses(input)
     expect(result).toBe(expected)
   })
 })
