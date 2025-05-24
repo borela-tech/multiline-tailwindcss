@@ -1,11 +1,11 @@
 {
-  "name": "@borela-tech/vite-plugin-multiline-tailwind",
+  "name": "@borela-tech/vite-plugin-multiline-tailwind-css",
   "version": "1.0.0",
   "description": "Allows tailwind classes to be broken into multiple lines.",
   "main": "dist",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/borela-tech/vite-plugin-multiline-tailwind"
+    "url": "git+https://github.com/borela-tech/vite-plugin-multiline-tailwind-css"
   },
   "keywords": [
     "lines",
