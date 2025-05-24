@@ -1,19 +1,19 @@
 import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
-import {transformTaggedStrings} from '../lib/transformTaggedStrings'
+import {transformJsxCssClasses} from '../lib/transformJsxCssClasses'
 import {updateModule} from '../lib/updateModule'
 
-export function transformTaggedStringsPlugin(state: SharedState): Plugin {
+export function transformJsxCssClassesPlugin(state: SharedState): Plugin {
   return {
-    name: '@borela-tech/vite-plugin-multiline-tailwind:transform-tagged-strings',
+    name: '@borela-tech/vite-plugin-multiline-tailwind:transform-jsx-css-classes',
     enforce: 'pre',
     transform(code, id) {
-      if (!/\.[jt]sx?$/.test(id))
+      if (!/\.[jt]sx$/.test(id))
         return code
 
       const {
         candidates: {
-          tagged: candidatesPerId,
+          className: candidatesPerId,
         },
         devServer,
         virtualTailwindModule: {
@@ -27,7 +27,7 @@ export function transformTaggedStringsPlugin(state: SharedState): Plugin {
           code: transformedCode,
           map: transformedCodeMap,
         },
-      } = transformTaggedStrings(code)
+      } = transformJsxCssClasses(code)
 
       candidatesPerId.set(id, candidatesFound)
 

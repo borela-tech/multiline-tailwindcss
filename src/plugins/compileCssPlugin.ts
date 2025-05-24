@@ -11,7 +11,10 @@ export function compileCssPlugin(state: SharedState): Plugin {
     name: '@borela-tech/vite-plugin-multiline-tailwind:compile-css',
     async transform(code, id) {
       const {
-        candidatesPerId,
+        candidates: {
+          className: classNameCandidatesPerId,
+          tagged: taggedCandidatesPerId,
+        },
         projectRoot,
         virtualTailwindModule: {
           resolvedId: virtualTailwindModuleResolvedId,
@@ -33,7 +36,10 @@ export function compileCssPlugin(state: SharedState): Plugin {
 
       const ALL_CANDIDATES: string[] = []
 
-      for (const [, candidates] of candidatesPerId)
+      for (const [, candidates] of classNameCandidatesPerId)
+        ALL_CANDIDATES.push(...candidates)
+
+      for (const [, candidates] of taggedCandidatesPerId)
         ALL_CANDIDATES.push(...candidates)
 
       const GENERATED_CODE = compiler.build(ALL_CANDIDATES)

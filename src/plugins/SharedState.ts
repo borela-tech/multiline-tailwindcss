@@ -4,7 +4,10 @@ type Id = string
 type PotentialTailwindClass = string
 
 export interface SharedState {
-  candidatesPerId: Map<Id, PotentialTailwindClass[]>
+  candidates: {
+    className: Map<Id, PotentialTailwindClass[]>
+    tagged: Map<Id, PotentialTailwindClass[]>
+  },
   devServer?: ViteDevServer,
   projectRoot?: string,
   virtualTailwindModule: {
