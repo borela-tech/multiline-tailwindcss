@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strictNullChecks": true,
     "target": "ESNext",
     "types": [
-      "@types/babel-generator",
-      "@types/babel-traverse",
-      "@types/jest",
+      "@types/babel__generator",
+      "@types/babel__traverse",
+      "@types/jest"
     ],
   },
 }
