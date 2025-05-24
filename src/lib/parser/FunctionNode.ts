@@ -1,8 +1,8 @@
 import {Node} from './Node'
 
 export type FunctionNode = {
-  type: 'Function'
-  name: string
   args: Node[]
+  name: string
   suffix: string
+  type: 'Function'
 }
