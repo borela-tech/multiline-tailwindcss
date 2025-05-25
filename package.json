@@ -23,9 +23,16 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/index.d.mts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/index.d.mts",
+        "./dist/index.d.ts"
+      ]
     }
   },
   "dependencies": {
