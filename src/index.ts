@@ -29,3 +29,11 @@ export function multilineTailwind() {
     compileCssPlugin(state),
   ] as Plugin[]
 }
+
+export {}
+declare global {
+  function tailwind(
+    strings: TemplateStringsArray,
+    ...expressions: unknown[]
+  ): string
+}
