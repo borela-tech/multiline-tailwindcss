@@ -24,7 +24,7 @@ export function updateModule(
     }
 
     devServer.moduleGraph.invalidateModule(module)
-    devServer.reloadModule(module)
+    void devServer.reloadModule(module)
   }, 10)
 
   intervals.set(id, interval)
