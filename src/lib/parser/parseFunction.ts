@@ -8,7 +8,7 @@ import {State} from './State'
 
 export function parseFunction(state: State, name: string): Node {
   const args: Node[] = []
-  next(state) // skip '('
+  next(state) // Skip '('
 
   while (state.pos < state.input.length) {
     skipWhitespace(state)
@@ -22,7 +22,7 @@ export function parseFunction(state: State, name: string): Node {
       next(state)
   }
 
-  next(state) // skip ')'
+  next(state) // Skip ')'
 
   const suffix = parseIdentifier(state)
   return {

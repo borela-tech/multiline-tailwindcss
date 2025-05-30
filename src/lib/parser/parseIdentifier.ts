@@ -6,7 +6,7 @@ export function parseIdentifier(state: State): string {
   let value = ''
 
   while (state.pos < state.input.length) {
-    if (/[\s,()\[\]]/.test(peek(state)))
+    if (/[\s,()[\]]/.test(peek(state)))
       break
     value += next(state)
   }

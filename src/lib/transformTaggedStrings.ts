@@ -1,23 +1,9 @@
 import * as t from '@babel/types'
+import {generate} from './generate'
 import {NodePath} from '@babel/traverse'
 import {parse} from '@babel/parser'
 import {transformTailwindClasses} from './transformTailwindClasses'
-
-////////////////////////////////////////////////////////////////////////////////
-// TODO: Remove this workaround when Babel modules get fixed.
-// https://github.com/babel/babel/discussions/13093
-import generatorModuleOrFunction from '@babel/generator'
-import traverseModuleOrFunction from '@babel/traverse'
-
-let generate = generatorModuleOrFunction
-let traverse = traverseModuleOrFunction
-
-if (typeof generatorModuleOrFunction != 'function')
-  generate = (generatorModuleOrFunction as any).default as typeof generatorModuleOrFunction
-
-if (typeof traverseModuleOrFunction != 'function')
-  traverse = (traverseModuleOrFunction as any).default as typeof traverseModuleOrFunction
-////////////////////////////////////////////////////////////////////////////////
+import {traverse} from './traverse'
 
 export function transformTaggedStrings(code: string) {
   const candidatesFound: string[] = []

@@ -1,6 +1,6 @@
 import {Node} from './Node'
 
-export type ArrayNode = {
+export interface ArrayNode {
   indexItems: Node[]
   name: string
   suffix: string

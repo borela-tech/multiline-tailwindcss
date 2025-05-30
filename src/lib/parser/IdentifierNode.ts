@@ -1,4 +1,4 @@
-export type IdentifierNode = {
+export interface IdentifierNode {
   type: 'Identifier'
   value: string
 }

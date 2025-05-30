@@ -7,6 +7,6 @@ export function getDevServerPlugin(state: SharedState): Plugin {
     enforce: 'pre',
     configureServer(server) {
       state.devServer = server
-    }
+    },
   }
 }

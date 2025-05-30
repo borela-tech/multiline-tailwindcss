@@ -7,7 +7,7 @@ import {State} from './State'
 
 export function parseArrayIndex(state: State): Node[] {
   const items: Node[] = []
-  next(state) // skip '['
+  next(state) // Skip '['
 
   while (state.pos < state.input.length) {
     skipWhitespace(state)
@@ -21,7 +21,6 @@ export function parseArrayIndex(state: State): Node[] {
       next(state)
   }
 
-  next(state) // skip ']'
+  next(state) // Skip ']'
   return items
 }
-

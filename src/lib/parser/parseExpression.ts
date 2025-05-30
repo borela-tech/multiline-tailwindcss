@@ -15,6 +15,6 @@ export function parseExpression(state: State): Node {
 
   return {
     type: 'Identifier',
-    value: identifier
+    value: identifier,
   }
 }

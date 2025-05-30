@@ -1,6 +1,6 @@
 import {Node} from './Node'
 
-export type FunctionNode = {
+export interface FunctionNode {
   args: Node[]
   name: string
   suffix: string

@@ -7,11 +7,11 @@ export interface SharedState {
   candidates: {
     className: Map<Id, PotentialTailwindClass[]>
     tagged: Map<Id, PotentialTailwindClass[]>
-  },
-  devServer?: ViteDevServer,
-  projectRoot?: string,
+  }
+  devServer?: ViteDevServer
+  projectRoot?: string
   virtualTailwindModule: {
-    id: string,
-    resolvedId: string,
-  },
+    id: string
+    resolvedId: string
+  }
 }
