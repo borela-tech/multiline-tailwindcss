@@ -1,9 +1,32 @@
-# Multiline Tailwind Vite Plugin
+<p align="center">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)" 
+      srcset="/assets/logo_dark_theme.svg"
+      width=200
+    >
+    <source
+      media="(prefers-color-scheme: light)" 
+      srcset="/assets/logo_light_theme.svg"
+      width=200
+    >
+    <img
+      alt="multiline tailwind logo" 
+      src="/assets/logo_light_theme.svg"
+      width=200
+    >
+  </picture>
+</p>
 
-*If you like this plugin, give it a star on GitHub and tell about it to your
-friends!*
+<p align="center">
+  If you like this plugin, give it a star on GitHub and tell about it to your
+  friends!
+</p>
 
-A Vite plugin that allows Tailwind CSS classes to be broken into multiple lines.
+<p align="center">
+  A Vite plugin that allows Tailwind CSS classes to be broken into multiple
+  lines.
+</p>
 
 ## Installation
 
@@ -64,6 +87,14 @@ transform the classes into a single line.
     Some content
   </div>
 </div>
+
+// Becomes:
+
+<div className="bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]">
+  <div className="bg-[linear-gradient(to_right,theme(colors.zinc.900/15%)_1px,transparent_1px),linear-gradient(to_top,theme(colors.zinc.900/15%)_1px,transparent_1px)] bg-[size:4px_4px] p-4">
+    Some content
+  </div>
+</div>
 ```
 
 Alternatively, you can use the `tailwind` tag to transform string literals:
@@ -72,7 +103,8 @@ Alternatively, you can use the `tailwind` tag to transform string literals:
 // It is not necessary to import the tailwind tag, it is declared globally and
 // the plugin only uses it to know which string literals to transform. This
 // function is never called at runtime.
-const BODY_CLASS = tailwind`
+
+const BODY_CSS = tailwind`
   bg-[
     linear-gradient(
       to_right,
@@ -81,6 +113,10 @@ const BODY_CLASS = tailwind`
     ),
   ]
 `
+
+// Becomes:
+
+const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
 ```
 
 ## Contributing
@@ -90,5 +126,5 @@ improvements or bug fixes.
 
 ## License
 
-This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE)
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE.md)
 file for details.
