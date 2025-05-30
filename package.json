@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Allows tailwind classes to be broken into multiple lines.",
   "main": "dist",
+  "exports": {
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/borela-tech/vite-plugin-multiline-tailwind-css"
@@ -20,21 +26,6 @@
     "email": "alexandre@borela.tech"
   },
   "license": "Apache-2.0",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/index.d.mts",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
   "dependencies": {
     "@babel/generator": "^7.27.1",
     "@babel/parser": "^7.27.2",
