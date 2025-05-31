@@ -1,6 +1,6 @@
 import {generateCodeForArray} from './generateCodeForArray'
 import {generateCodeForFunction} from './generateCodeForFunction'
-import {Node} from './parser/Node'
+import {Node} from '../parser/Node'
 
 export function generateCodeForNode(node: Node) {
   if (node.type === 'Function')

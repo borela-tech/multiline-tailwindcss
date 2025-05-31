@@ -1,4 +1,4 @@
-import {FunctionNode} from './parser/FunctionNode'
+import {FunctionNode} from '../parser/FunctionNode'
 import {generateCodeForNode} from './generateCodeForNode'
 
 export function generateCodeForFunction(node: FunctionNode) {

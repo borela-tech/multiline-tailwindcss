@@ -1,5 +1,5 @@
 import {generateCodeForNode} from './generateCodeForNode'
-import {ArrayNode} from './parser/ArrayNode'
+import {ArrayNode} from '../parser/ArrayNode'
 
 export function generateCodeForArray(node: ArrayNode) {
   const indexItems = node.indexItems
