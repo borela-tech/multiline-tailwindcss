@@ -2,7 +2,7 @@ scripts:
   build: rm -rf dist && tsup-node
   lint: |
     eslint src \
-      --ext ts,tsx \
+      --ext ts \
       --max-warnings 0 \
       --report-unused-disable-directives
   test: jest
