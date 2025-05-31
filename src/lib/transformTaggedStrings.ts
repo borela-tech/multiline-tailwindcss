@@ -1,9 +1,9 @@
 import * as t from '@babel/types'
-import {generate} from './generate'
+import {generate} from './babel/generate'
 import {NodePath} from '@babel/traverse'
 import {parse} from '@babel/parser'
 import {transformTailwindClasses} from './transformTailwindClasses'
-import {traverse} from './traverse'
+import {traverse} from './babel/traverse'
 
 export function transformTaggedStrings(code: string) {
   const candidatesFound: string[] = []
