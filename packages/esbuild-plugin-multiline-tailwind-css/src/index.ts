@@ -22,8 +22,8 @@ export const multilineTailwindCssPlugin = {
       } = transformTaggedStrings(transformedJsx)
 
       const LOADER = /\.tsx?$/.test(path)
-        ? 'ts'
-        : 'js'
+        ? 'tsx'
+        : 'jsx'
 
       return {
         contents: transformedTaggedStrings,
