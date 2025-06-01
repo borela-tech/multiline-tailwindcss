@@ -1,5 +1,4 @@
 {
-  "name": "@borela-tech/multiline-tailwind-css",
   "workspaces": [
     "packages/vite-plugin-multiline-tailwind-css"
   ],
