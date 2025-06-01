@@ -3,7 +3,7 @@ import {SharedState} from './SharedState'
 import {transformTaggedStrings} from '@/lib/transformTaggedStrings'
 import {updateModule} from './updateModule'
 
-export function transformTaggedStringsPlugin(state: SharedState): Plugin {
+export function transformTaggedStringsPlugin(state: SharedState) {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwind:transform-tagged-strings',
     enforce: 'pre',
@@ -41,5 +41,5 @@ export function transformTaggedStringsPlugin(state: SharedState): Plugin {
         map: transformedCodeMap,
       }
     },
-  }
+  } satisfies Plugin
 }

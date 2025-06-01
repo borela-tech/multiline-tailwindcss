@@ -6,7 +6,7 @@ import {
   toSourceMap,
 } from '@tailwindcss/node'
 
-export function compileCssPlugin(state: SharedState): Plugin {
+export function compileCssPlugin(state: SharedState) {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwind:compile-css',
     async transform(code, id) {
@@ -51,5 +51,5 @@ export function compileCssPlugin(state: SharedState): Plugin {
         map: GENERATED_MAP,
       }
     },
-  }
+  } satisfies Plugin
 }

@@ -3,7 +3,7 @@ import {SharedState} from './SharedState'
 import {transformJsxCssClasses} from '@/lib/transformJsxCssClasses'
 import {updateModule} from './updateModule'
 
-export function transformJsxCssClassesPlugin(state: SharedState): Plugin {
+export function transformJsxCssClassesPlugin(state: SharedState) {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwind:transform-jsx-css-classes',
     enforce: 'pre',
@@ -41,5 +41,5 @@ export function transformJsxCssClassesPlugin(state: SharedState): Plugin {
         map: transformedCodeMap,
       }
     },
-  }
+  } satisfies Plugin
 }

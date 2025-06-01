@@ -1,7 +1,7 @@
 import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
 
-export function virtualTailwindModulePlugin(state: SharedState): Plugin {
+export function virtualTailwindModulePlugin(state: SharedState) {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwind:virtual-tailwind-module',
     enforce: 'pre',
@@ -27,5 +27,5 @@ export function virtualTailwindModulePlugin(state: SharedState): Plugin {
         return
       return '@import "tailwindcss";'
     },
-  }
+  } satisfies Plugin
 }

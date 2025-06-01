@@ -27,7 +27,7 @@ export function multilineTailwind() {
     transformTaggedStringsPlugin(state),
     transformJsxCssClassesPlugin(state),
     compileCssPlugin(state),
-  ] as Plugin[]
+  ] satisfies Plugin[]
 }
 
 export {}
