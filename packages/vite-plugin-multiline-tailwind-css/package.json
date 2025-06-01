@@ -12,7 +12,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/borela-tech/multiline-tailwind-css"
+    "url": "git+https://github.com/borela-tech/multiline-tailwind-css",
+    "directory": "packages/vite-plugin-multiline-tailwind-css"
   },
   "keywords": [
     "lines",
