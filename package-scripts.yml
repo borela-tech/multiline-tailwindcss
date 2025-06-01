@@ -1,6 +1,11 @@
 scripts:
   build: |
+    nps build:esbuild-plugin
     nps build:vite-plugin
+  build:esbuild-plugin: |
+    cd packages/esbuild-plugin-multiline-tailwind-css
+    rm -rf dist
+    tsup-node
   build:vite-plugin: |
     cd packages/vite-plugin-multiline-tailwind-css
     rm -rf dist
