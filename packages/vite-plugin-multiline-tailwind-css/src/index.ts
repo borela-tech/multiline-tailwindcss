@@ -1,6 +1,5 @@
 import {compileCssPlugin} from './compileCssPlugin'
-import {getConfigOptionsPlugin} from './getConfigOptionsPlugin'
-import {getDevServerPlugin} from './getDevServerPlugin'
+import {initialize} from './initialize'
 import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
 import {transformJsxCssClassesPlugin} from './transformJsxCssClassesPlugin'
@@ -21,8 +20,7 @@ export function multilineTailwind() {
     },
   }
   return [
-    getConfigOptionsPlugin(state),
-    getDevServerPlugin(state),
+    initialize(state),
     virtualTailwindModulePlugin(state),
     transformTaggedStringsPlugin(state),
     transformJsxCssClassesPlugin(state),
