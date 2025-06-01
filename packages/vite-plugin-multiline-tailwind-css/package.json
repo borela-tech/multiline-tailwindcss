@@ -28,14 +28,8 @@
     "email": "alexandre@borela.tech"
   },
   "license": "Apache-2.0",
-  "dependencies": {
-    "@babel/generator": "^7.27.1",
-    "@babel/parser": "^7.27.2",
-    "@babel/traverse": "^7.27.1"
-  },
   "devDependencies": {
-    "@types/babel__generator": "^7.27.0",
-    "@types/babel__traverse": "^7.20.7"
+    "vite": "^6.3.5"
   },
   "peerDependencies": {
     "vite": "^6.3.5"
