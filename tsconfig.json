@@ -10,6 +10,7 @@
     "strictNullChecks": true,
     "target": "ESNext",
     "types": [
+      "node",
       "@types/babel__generator",
       "@types/babel__traverse",
       "@types/jest"
