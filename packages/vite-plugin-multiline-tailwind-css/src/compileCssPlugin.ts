@@ -42,8 +42,9 @@ export function compileCssPlugin(state: SharedState): Plugin {
       for (const [, candidates] of taggedCandidatesPerId)
         ALL_CANDIDATES.push(...candidates)
 
+      const MAP = compiler.buildSourceMap()
       const GENERATED_CODE = compiler.build(ALL_CANDIDATES)
-      const GENERATED_MAP = toSourceMap(compiler.buildSourceMap()).raw
+      const GENERATED_MAP = toSourceMap(MAP).raw
 
       return {
         code: GENERATED_CODE,

@@ -1,7 +1,7 @@
 import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
-import {transformTaggedStrings} from '../lib/transformTaggedStrings'
-import {updateModule} from '../lib/updateModule'
+import {transformTaggedStrings} from '@/lib/transformTaggedStrings'
+import {updateModule} from './updateModule'
 
 export function transformTaggedStringsPlugin(state: SharedState): Plugin {
   return {

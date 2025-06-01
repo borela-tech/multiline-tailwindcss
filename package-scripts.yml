@@ -1,7 +1,13 @@
 scripts:
-  build: rm -rf dist && tsup-node
+  build: |
+    nps build:vite-plugin
+  build:vite-plugin: |
+    rm -rf packages/vite-plugin-multiline-tailwind-css/dist
+    cd packages/vite-plugin-multiline-tailwind-css
+    tsup-node
   lint: |
-    eslint src \
+    eslint \
+      packages/vite-plugin-multiline-tailwind-css/src \
       --ext ts \
       --max-warnings 0 \
       --report-unused-disable-directives

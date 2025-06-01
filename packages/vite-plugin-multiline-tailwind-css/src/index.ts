@@ -1,11 +1,11 @@
-import {compileCssPlugin} from './plugins/compileCssPlugin'
-import {getConfigOptionsPlugin} from './plugins/getConfigOptionsPlugin'
-import {getDevServerPlugin} from './plugins/getDevServerPlugin'
+import {compileCssPlugin} from './compileCssPlugin'
+import {getConfigOptionsPlugin} from './getConfigOptionsPlugin'
+import {getDevServerPlugin} from './getDevServerPlugin'
 import {Plugin} from 'vite'
-import {SharedState} from './plugins/SharedState'
-import {transformJsxCssClassesPlugin} from './plugins/transformJsxCssClassesPlugin'
-import {transformTaggedStringsPlugin} from './plugins/transformTaggedStringsPlugin'
-import {virtualTailwindModulePlugin} from './plugins/virtualTailwindModulePlugin'
+import {SharedState} from './SharedState'
+import {transformJsxCssClassesPlugin} from './transformJsxCssClassesPlugin'
+import {transformTaggedStringsPlugin} from './transformTaggedStringsPlugin'
+import {virtualTailwindModulePlugin} from './virtualTailwindModulePlugin'
 
 export function multilineTailwind() {
   const state: SharedState = {

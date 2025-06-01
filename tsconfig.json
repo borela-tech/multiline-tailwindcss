@@ -3,6 +3,9 @@
     "esModuleInterop": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "strictNullChecks": true,
     "target": "ESNext",
     "types": [
@@ -11,4 +14,7 @@
       "@types/jest"
     ],
   },
+  "include": [
+    "lib/**/*",
+  ]
 }

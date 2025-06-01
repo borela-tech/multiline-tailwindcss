@@ -1,7 +1,7 @@
 import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
-import {transformJsxCssClasses} from '../lib/transformJsxCssClasses'
-import {updateModule} from '../lib/updateModule'
+import {transformJsxCssClasses} from '@/lib/transformJsxCssClasses'
+import {updateModule} from './updateModule'
 
 export function transformJsxCssClassesPlugin(state: SharedState): Plugin {
   return {
