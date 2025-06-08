@@ -2,7 +2,7 @@ import {generateCodeForArray} from './generateCodeForArray'
 import {generateCodeForFunction} from './generateCodeForFunction'
 import {Node} from '../parser/Node'
 
-export function generateCodeForNode(node: Node) {
+export function generateCodeForNode(node: Node): string {
   if (node.type === 'Function')
     return generateCodeForFunction(node)
 

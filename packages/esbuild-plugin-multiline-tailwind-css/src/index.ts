@@ -1,8 +1,9 @@
 import * as fs from 'node:fs'
+import {Plugin} from 'esbuild'
 import {transformJsxCssClasses} from '@/lib/transformJsxCssClasses'
 import {transformTaggedStrings} from '@/lib/transformTaggedStrings'
 
-export const multilineTailwindCssPlugin = {
+export const multilineTailwindCssPlugin: Plugin = {
   name: '@borela-tech/esbuild-plugin-multiline-tailwind-css',
   setup(build) {
     build.onLoad({filter: /.[jt]sx?/}, async ({path}) => {
@@ -12,7 +13,7 @@ export const multilineTailwindCssPlugin = {
       const {
         transformedCode: {
           code: transformedJsx,
-        }
+        },
       } = transformJsxCssClasses(rawContents)
 
       const {
