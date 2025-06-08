@@ -1,24 +1,25 @@
 import {join} from 'node:path'
 import {readFileSync} from 'node:fs'
-import {transformTailwindClasses} from '../transformTailwindClasses'
+import {transformJsxCssClasses} from '../transformJsxCssClasses'
 
-describe('squishMultilineExpressions()', () => {
-  it('affects only expressions', () => {
+describe('extractCandidatesFromTaggedStrings()', () => {
+  it('extracts candidates from tagged strings', () => {
     const inputFixturePath = join(
       __dirname,
       '..',
       '__fixtures__',
-      'classes.input.txt',
+      'jsx.input.tsx',
     )
     const outputFixturePath = join(
       __dirname,
       '..',
       '__fixtures__',
-      'classes.output.txt',
+      'jsx.output.tsx',
     )
     const input = readFileSync(inputFixturePath, 'utf8')
     const output = readFileSync(outputFixturePath, 'utf8')
-    const result = transformTailwindClasses(input)
-    expect(result + '\n').toBe(output)
+    const result = transformJsxCssClasses(input)
+    const code = result.transformedCode.code
+    expect(code + '\n').toBe(output)
   })
 })

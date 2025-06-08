@@ -1,46 +1,25 @@
+import {join} from 'node:path'
+import {readFileSync} from 'node:fs'
 import {transformTaggedStrings} from '../transformTaggedStrings'
-import {trimLines} from './utils/trimLines'
 
 describe('extractCandidatesFromTaggedStrings()', () => {
   it('extracts candidates from tagged strings', () => {
-    const input = `
-      const SOME_CSS = tailwind\`
-        absolute
-        !bg-[
-          linear-gradient(
-            to_right,
-            theme(colors.zinc.900/50%),
-            transparent,
-          ),
-          linear-gradient(
-            to_right,
-            theme(colors.purple.600/70%),
-            theme(colors.purple.800/20%)_32px,
-            transparent_50%,
-          ),
-        ]
-        !border-purple-600
-      \`
-    `
-
-    const transformedCode = trimLines`const SOME_CSS = \`absolute
-      !bg-[linear-gradient(to_right,theme(colors.zinc.900/50%),transparent),linear-gradient(to_right,theme(colors.purple.600/70%),theme(colors.purple.800/20%)_32px,transparent_50%)]
-      !border-purple-600\`;
-    `
-
-    const expected = {
-      candidatesFound: [
-        'absolute',
-        '!bg-[linear-gradient(to_right,theme(colors.zinc.900/50%),transparent),linear-gradient(to_right,theme(colors.purple.600/70%),theme(colors.purple.800/20%)_32px,transparent_50%)]',
-        '!border-purple-600',
-      ],
-      transformedCode: {
-        code: transformedCode,
-        map: null,
-      },
-    }
-
+    const inputFixturePath = join(
+      __dirname,
+      '..',
+      '__fixtures__',
+      'taggedStrings.input.ts',
+    )
+    const outputFixturePath = join(
+      __dirname,
+      '..',
+      '__fixtures__',
+      'taggedStrings.output.ts',
+    )
+    const input = readFileSync(inputFixturePath, 'utf8')
+    const output = readFileSync(outputFixturePath, 'utf8')
     const result = transformTaggedStrings(input)
-    expect(result).toEqual(expected)
+    const code = result.transformedCode.code
+    expect(code + '\n').toBe(output)
   })
 })

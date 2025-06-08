@@ -39,13 +39,8 @@ export function transformTaggedStrings(code: string) {
 
       candidatesFound.push(...filtered)
 
-      const replacement = t.templateElement({
-        raw: transformed,
-        cooked: transformed,
-      })
-
       path.replaceWith(
-        t.templateLiteral([replacement], []),
+        t.stringLiteral(transformed),
       )
     },
   })
