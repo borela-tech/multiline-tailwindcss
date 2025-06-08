@@ -1,3 +1,4 @@
+import '@/lib/tailwind'
 import {compileCssPlugin} from './compileCssPlugin'
 import {initialize} from './initialize'
 import {Plugin} from 'vite'
@@ -26,12 +27,4 @@ export function multilineTailwind() {
     transformJsxCssClassesPlugin(state),
     compileCssPlugin(state),
   ] satisfies Plugin[]
-}
-
-export {}
-declare global {
-  function tailwind(
-    strings: TemplateStringsArray,
-    ...expressions: unknown[]
-  ): string
 }
