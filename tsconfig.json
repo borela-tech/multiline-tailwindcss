@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "esModuleInterop": true,
+    "jsx": "react-jsx",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "paths": {
@@ -16,9 +17,6 @@
       "@types/jest",
     ],
   },
-  "exclude": [
-    "lib/__fixtures__/**/*",
-  ],
   "include": [
     "lib/**/*",
   ]

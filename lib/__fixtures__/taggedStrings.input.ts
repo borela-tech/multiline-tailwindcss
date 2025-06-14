@@ -1,3 +1,4 @@
+export {}
 const SOME_CSS = tailwind`
   absolute
   !bg-[

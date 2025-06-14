@@ -1,3 +1,4 @@
+const SOME_CSS = 'absolute';
 export default (
   <div>
     <div className={SOME_CSS}>
