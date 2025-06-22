@@ -35,7 +35,7 @@ export function transformJsxCssClasses(code: string) {
 
       const transformed = transformTailwindClasses(value.value)
       const filtered = transformed
-        .split('\n')
+        .split(' ')
         .filter(Boolean)
 
       candidatesFound.push(...filtered)

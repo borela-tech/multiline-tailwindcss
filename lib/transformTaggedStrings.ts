@@ -34,7 +34,7 @@ export function transformTaggedStrings(code: string) {
       const rawString = quasis[0].value.raw
       const transformed = transformTailwindClasses(rawString)
       const filtered = transformed
-        .split('\n')
+        .split(' ')
         .filter(Boolean)
 
       candidatesFound.push(...filtered)
