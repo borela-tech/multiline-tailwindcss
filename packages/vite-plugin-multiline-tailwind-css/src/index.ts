@@ -5,24 +5,16 @@ import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
 import {transformJsxCssClassesPlugin} from './transformJsxCssClassesPlugin'
 import {transformTaggedStringsPlugin} from './transformTaggedStringsPlugin'
-import {virtualTailwindModulePlugin} from './virtualTailwindModulePlugin'
 
 export function multilineTailwind() {
   const state: SharedState = {
-    candidates: {
+    candidatesFromTransforms: {
       className: new Map(),
       tagged: new Map(),
-    },
-    devServer: undefined,
-    projectRoot: undefined,
-    virtualTailwindModule: {
-      id: 'virtual:tailwind.css',
-      resolvedId: '\0virtual:tailwind.css',
     },
   }
   return [
     initialize(state),
-    virtualTailwindModulePlugin(state),
     transformTaggedStringsPlugin(state),
     transformJsxCssClassesPlugin(state),
     compileCssPlugin(state),
