@@ -1,3 +1,4 @@
+import {join} from 'node:path'
 import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
 
@@ -6,7 +7,17 @@ export function initialize(state: SharedState): Plugin {
     name: '@borela-tech/vite-plugin-multiline-tailwind:initialize',
     enforce: 'pre',
     configResolved(config) {
-      state.projectRoot = config.root
+      if (!config.root)
+        throw new Error('root is not defined')
+
+      state.resolveCss = config.createResolver({
+        ...config.resolve,
+        extensions: ['.css'],
+      })
+      state.resolveJs = config.createResolver(config.resolve)
+      state.rootCssPath = join(config.root, 'src', 'index.css')
+      state.projectRootPath = config.root
+      state.srcDirPath = join(config.root, 'src')
     },
     configureServer(server) {
       state.devServer = server
