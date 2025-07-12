@@ -7,8 +7,8 @@ import {transformTaggedStrings} from '@/lib/transformTaggedStrings'
 const blue = (text: string) => `\x1b[34m${text}\x1b[0m`
 const red = (text: string) => `\x1b[31m${text}\x1b[0m`
 
-const blueLogTag = blue('Multiline Tailwind CSS')
-const redLogTag = red('Multiline Tailwind CSS')
+const blueLogTag = blue('Multiline tailwindcss')
+const redLogTag = red('Multiline tailwindcss')
 
 function log(message: string) {
   console.log(`${blueLogTag} ${message}`)
@@ -19,7 +19,7 @@ function logError(message: string, error: Error) {
 }
 
 export const multilineTailwindCssPlugin: Plugin = {
-  name: '@borela-tech/esbuild-plugin-multiline-tailwind-css',
+  name: '@borela-tech/esbuild-plugin-multiline-tailwindcss',
   setup(build) {
     const collectedCandidates: string[] = []
     const outputDir = build.initialOptions.outdir || 'dist'

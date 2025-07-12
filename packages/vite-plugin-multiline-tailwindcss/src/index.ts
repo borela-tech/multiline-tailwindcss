@@ -6,7 +6,7 @@ import {SharedState} from './SharedState'
 import {transformJsxCssClassesPlugin} from './transformJsxCssClassesPlugin'
 import {transformTaggedStringsPlugin} from './transformTaggedStringsPlugin'
 
-export function multilineTailwind() {
+export function multilineTailwindCss() {
   const state: SharedState = {
     candidatesFromTransforms: {
       className: new Map(),

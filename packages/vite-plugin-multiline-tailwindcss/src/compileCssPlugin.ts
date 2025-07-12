@@ -9,7 +9,7 @@ import {
 
 export function compileCssPlugin(state: SharedState) {
   return {
-    name: '@borela-tech/vite-plugin-multiline-tailwind:compile-css',
+    name: '@borela-tech/vite-plugin-multiline-tailwindcss:compile-css',
     enforce: 'pre',
     async transform(code, id) {
       const {

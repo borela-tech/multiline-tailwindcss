@@ -31,7 +31,7 @@
 ## Installation
 
 ```bash
-npm install -D @borela-tech/vite-plugin-multiline-tailwind-css
+npm install -D @borela-tech/vite-plugin-multiline-tailwindcss
 ```
 
 ## Vite Configuration
@@ -41,7 +41,7 @@ Add the plugin to your Vite configuration:
 ```typescript
 import react from '@vitejs/plugin-react'
 import {defineConfig} from 'vite'
-import {multilineTailwind} from '@borela-tech/vite-plugin-multiline-tailwind'
+import {multilineTailwind} from '@borela-tech/vite-plugin-multiline-tailwindcss'
 
 export default defineConfig({
   plugins: [

@@ -5,7 +5,7 @@ import {updateModule} from './updateModule'
 
 export function transformJsxCssClassesPlugin(state: SharedState) {
   return {
-    name: '@borela-tech/vite-plugin-multiline-tailwind:transform-jsx-css-classes',
+    name: '@borela-tech/vite-plugin-multiline-tailwindcss:transform-jsx-css-classes',
     enforce: 'pre',
     transform(code, id) {
       if (!/\.[jt]sx$/.test(id))

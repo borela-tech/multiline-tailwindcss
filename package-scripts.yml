@@ -3,16 +3,16 @@ scripts:
     nps build:esbuild-plugin
     nps build:vite-plugin
   build:esbuild-plugin: |
-    cd packages/esbuild-plugin-multiline-tailwind-css
+    cd packages/esbuild-plugin-multiline-tailwindcss
     rm -rf dist
     tsup-node
   build:vite-plugin: |
-    cd packages/vite-plugin-multiline-tailwind-css
+    cd packages/vite-plugin-multiline-tailwindcss
     rm -rf dist
     tsup-node
   lint: |
     eslint \
-      packages/vite-plugin-multiline-tailwind-css/src \
+      packages/vite-plugin-multiline-tailwindcss/src \
       --max-warnings 0 \
       --report-unused-disable-directives
   test: jest

@@ -1,9 +1,9 @@
 {
-  "name": "@borela-tech/multiline-tailwind-css-root",
+  "name": "@borela-tech/multiline-tailwindcss-root",
   "private": true,
   "workspaces": [
-    "packages/esbuild-plugin-multiline-tailwind-css",
-    "packages/vite-plugin-multiline-tailwind-css"
+    "packages/esbuild-plugin-multiline-tailwindcss",
+    "packages/vite-plugin-multiline-tailwindcss"
   ],
   "dependencies": {
     "@babel/generator": "^7.27.1",
