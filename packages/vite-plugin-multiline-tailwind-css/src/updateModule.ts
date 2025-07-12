@@ -1,6 +1,6 @@
 import {ViteDevServer} from 'vite'
 
-const intervals = new Map<string, number>()
+const intervals = new Map<string, NodeJS.Timeout>()
 
 export function updateModule(
   devServer: ViteDevServer,
