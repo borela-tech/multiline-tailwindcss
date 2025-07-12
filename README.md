@@ -24,100 +24,24 @@
 </p>
 
 <p align="center">
-  A Vite plugin that allows Tailwind CSS classes to be broken into multiple
-  lines.
+  Plugins that allows tailwindcss classes to be broken into multiple lines.
 </p>
 
-## Installation
+## Vite
 
-```bash
-npm install -D @borela-tech/vite-plugin-multiline-tailwindcss
-```
+[Vite Plugin][vite-plugin] for [Vite][vite] that allows you to break [tailwindcss][tailwindcss]
+classes into multiple lines. 
 
-## Vite Configuration
+## ESBuild
 
-Add the plugin to your Vite configuration:
+[This plugin][esbuild-plugin] is useful for creating packages — like UI libraries
+— that depend on [tailwindcss][tailwindcss]. It generates a `tailwindcss.candidates.json`
+file, which lists all Tailwind classes used in the package. Other projects can
+then import this file to ensure those classes are included when generating the
+final CSS.
 
-```typescript
-import react from '@vitejs/plugin-react'
-import {defineConfig} from 'vite'
-import {multilineTailwind} from '@borela-tech/vite-plugin-multiline-tailwindcss'
-
-export default defineConfig({
-  plugins: [
-    // other plugins...
-    react(),
-    ...multilineTailwind(),
-    // other plugins...
-  ],
-})
-```
-
-### Usage
-
-The plugin will search for the className attribute in your JSX/TSX files and 
-transform the classes into a single line.
-
-```jsx
-<div className="
-  bg-[
-    linear-gradient(
-      to_right,
-      theme(colors.purple.600),
-      theme(colors.purple.900),
-    ),
-  ]
-">
-  <div className="
-    bg-[
-      linear-gradient(
-        to_right,
-        theme(colors.zinc.900/15%)_1px,
-        transparent_1px,
-      ),
-      linear-gradient(
-        to_top,
-        theme(colors.zinc.900/15%)_1px,
-        transparent_1px,
-      ),
-    ]
-    bg-[size:4px_4px]
-    p-4
-  ">
-    Some content
-  </div>
-</div>
-
-// Becomes:
-
-<div className="bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]">
-  <div className="bg-[linear-gradient(to_right,theme(colors.zinc.900/15%)_1px,transparent_1px),linear-gradient(to_top,theme(colors.zinc.900/15%)_1px,transparent_1px)] bg-[size:4px_4px] p-4">
-    Some content
-  </div>
-</div>
-```
-
-Alternatively, you can use the `tailwind` tag to transform string literals:
-
-```js
-// It is not necessary to import the tailwind tag, it is declared globally and
-// the plugin only uses it to know which string literals to transform. This
-// function is never called at runtime.
-
-const BODY_CSS = tailwind`
-  bg-[
-    linear-gradient(
-      to_right,
-      theme(colors.purple.600),
-      theme(colors.purple.900),
-    ),
-  ]
-`
-
-// Becomes:
-
-const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
-```
+Like the Vite plugin, it allows [tailwindcss][tailwindcss] classes to be broken
+into multiple lines. Works with [Tsup][tsup] or any project that uses [esbuild][esbuild].
 
 ## Contributing
 
@@ -128,3 +52,11 @@ improvements or bug fixes.
 
 This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE.md)
 file for details.
+
+[esbuild]: https://esbuild.github.io
+[esbuild-plugin]: ./packages/esbuild-plugin-multiline-tailwindcss
+[tailwindcss]: https://tailwindcss.com
+[tsup]: https://tsup.egoist.dev
+[vite]: https://vite.dev
+[vite-plugin]: ./packages/vite-plugin-multiline-tailwindcss
+
