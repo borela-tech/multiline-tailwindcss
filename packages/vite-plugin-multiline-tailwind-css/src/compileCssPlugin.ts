@@ -1,4 +1,5 @@
 import {Plugin} from 'vite'
+import {Scanner} from '@tailwindcss/oxide'
 import {SharedState} from './SharedState'
 
 import {
@@ -9,32 +10,47 @@ import {
 export function compileCssPlugin(state: SharedState) {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwind:compile-css',
+    enforce: 'pre',
     async transform(code, id) {
       const {
-        candidates: {
+        candidatesFromTransforms: {
           className: classNameCandidatesPerId,
           tagged: taggedCandidatesPerId,
         },
-        projectRoot,
-        virtualTailwindModule: {
-          resolvedId: virtualTailwindModuleResolvedId,
-        },
+        projectRootPath,
+        resolveCss,
+        resolveJs,
+        rootCssPath,
+        srcDirPath,
       } = state
 
-      if (!projectRoot)
-        throw new Error('Project root is not defined')
-
-      if (id !== virtualTailwindModuleResolvedId)
+      if (id !== rootCssPath)
         return code
 
+
       const compiler = await compile(code, {
-        base: projectRoot,
+        base: srcDirPath!,
+        customCssResolver: resolveCss!,
+        customJsResolver: resolveJs!,
+        from: id,
         onDependency: (path: string) => {
           this.addWatchFile(path)
         },
+        shouldRewriteUrls: true,
       })
 
-      const ALL_CANDIDATES: string[] = []
+      const scanner = new Scanner({
+        sources: [
+          {
+            base: projectRootPath!,
+            pattern: '**/*',
+            negated: false,
+          },
+          ...compiler.sources,
+        ],
+      })
+
+      const ALL_CANDIDATES: string[] = scanner.scan()
 
       for (const [, candidates] of classNameCandidatesPerId)
         ALL_CANDIDATES.push(...candidates)
