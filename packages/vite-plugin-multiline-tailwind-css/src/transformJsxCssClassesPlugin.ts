@@ -12,13 +12,11 @@ export function transformJsxCssClassesPlugin(state: SharedState) {
         return code
 
       const {
-        candidates: {
+        candidatesFromTransforms: {
           className: candidatesPerId,
         },
         devServer,
-        virtualTailwindModule: {
-          resolvedId: virtualTailwindModuleResolvedId,
-        },
+        rootCssPath,
       } = state
 
       const {
@@ -33,7 +31,7 @@ export function transformJsxCssClassesPlugin(state: SharedState) {
 
       if (candidatesFound.length > 0) {
         if (devServer)
-          updateModule(devServer, virtualTailwindModuleResolvedId)
+          updateModule(devServer, rootCssPath!)
       }
 
       return {
