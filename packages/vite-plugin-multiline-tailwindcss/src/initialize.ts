@@ -10,11 +10,6 @@ export function initialize(state: SharedState): Plugin {
       if (!config.root)
         throw new Error('root is not defined')
 
-      state.resolveCss = config.createResolver({
-        ...config.resolve,
-        extensions: ['.css'],
-      })
-      state.resolveJs = config.createResolver(config.resolve)
       state.rootCssPath = join(config.root, 'src', 'index.css')
       state.projectRootPath = config.root
       state.srcDirPath = join(config.root, 'src')

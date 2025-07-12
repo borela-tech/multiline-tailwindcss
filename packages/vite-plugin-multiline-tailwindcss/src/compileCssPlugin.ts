@@ -18,8 +18,6 @@ export function compileCssPlugin(state: SharedState) {
           tagged: taggedCandidatesPerId,
         },
         projectRootPath,
-        resolveCss,
-        resolveJs,
         rootCssPath,
         srcDirPath,
       } = state
@@ -27,11 +25,8 @@ export function compileCssPlugin(state: SharedState) {
       if (id !== rootCssPath)
         return code
 
-
       const compiler = await compile(code, {
         base: srcDirPath!,
-        customCssResolver: resolveCss!,
-        customJsResolver: resolveJs!,
         from: id,
         onDependency: (path: string) => {
           this.addWatchFile(path)
