@@ -1,17 +1,20 @@
-import {ViteDevServer} from 'vite'
+import {
+  ResolvedConfig,
+  ViteDevServer,
+} from 'vite'
 
 type Id = string
-type PotentialTailwindClass = string
+type Candidates = string[]
 
 export interface SharedState {
-  candidates: {
-    className: Map<Id, PotentialTailwindClass[]>
-    tagged: Map<Id, PotentialTailwindClass[]>
+  candidatesFromTransforms: {
+    className: Map<Id, Candidates>
+    tagged: Map<Id, Candidates>
   }
   devServer?: ViteDevServer
-  projectRoot?: string
-  virtualTailwindModule: {
-    id: string
-    resolvedId: string
-  }
+  projectRootPath?: string
+  resolveCss?: ReturnType<ResolvedConfig['createResolver']>
+  resolveJs?: ReturnType<ResolvedConfig['createResolver']>
+  rootCssPath?: string
+  srcDirPath?: string
 }
