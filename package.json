@@ -1,6 +1,6 @@
 {
-  "name": "@borela-tech/multiline-tailwindcss-root",
   "private": true,
+  "name": "@borela-tech/multiline-tailwindcss-root",
   "workspaces": [
     "packages/esbuild-plugin-multiline-tailwindcss",
     "packages/vite-plugin-multiline-tailwindcss"

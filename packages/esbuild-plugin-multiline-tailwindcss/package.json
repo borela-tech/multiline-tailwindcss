@@ -1,4 +1,7 @@
 {
+  "publishConfig": {
+    "access": "public"
+  },
   "name": "@borela-tech/esbuild-plugin-multiline-tailwindcss",
   "version": "1.0.0",
   "description": "Allows tailwind classes to be broken into multiple lines.",
