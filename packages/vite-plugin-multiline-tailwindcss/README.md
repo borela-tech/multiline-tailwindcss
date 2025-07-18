@@ -12,7 +12,7 @@
     >
     <img
       alt="multiline tailwind logo" 
-      srcset="https://raw.githubusercontent.com/borela-tech/multiline-tailwindcss/refs/heads/main/assets/logo_light_theme.svg"
+      src="https://raw.githubusercontent.com/borela-tech/multiline-tailwindcss/refs/heads/main/assets/logo_light_theme.svg"
       width=200
     >
   </picture>
