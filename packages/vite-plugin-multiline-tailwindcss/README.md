@@ -2,30 +2,32 @@
   <picture>
     <source
       media="(prefers-color-scheme: dark)" 
-      srcset="/assets/logo_dark_theme.svg"
+      srcset="https://raw.githubusercontent.com/borela-tech/multiline-tailwindcss/refs/heads/main/assets/logo_dark_theme.svg"
       width=200
     >
     <source
       media="(prefers-color-scheme: light)" 
-      srcset="/assets/logo_light_theme.svg"
+      srcset="https://raw.githubusercontent.com/borela-tech/multiline-tailwindcss/refs/heads/main/assets/logo_light_theme.svg"
       width=200
     >
     <img
       alt="multiline tailwind logo" 
-      src="/assets/logo_light_theme.svg"
+      srcset="https://raw.githubusercontent.com/borela-tech/multiline-tailwindcss/refs/heads/main/assets/logo_light_theme.svg"
       width=200
     >
   </picture>
 </p>
 
 <p align="center">
-  If you like this plugin, give it a star on GitHub and tell about it to your
-  friends!
+  <em>
+    If you like this plugin, give it a star on GitHub and tell about it to your
+    friends!
+  </em>
 </p>
 
 <p align="center">
-  A Vite plugin that allows tailwindcss classes to be broken into multiple
-  lines.
+  A <a href="https://vite.dev/">Vite</a> plugin that allows <a href="https://tailwindcss.com/">tailwindcss</a> 
+  classes to be broken into multiple lines.
 </p>
 
 ## Installation
@@ -112,14 +114,14 @@ transform the classes into a single line.
 </div>
 ```
 
-Alternatively, you can use the `tailwind` tag to transform string literals:
+Alternatively, you can use the `tailwindcss` tag to transform string literals:
 
 ```js
 // It is not necessary to import the tailwind tag, it is declared globally and
 // the plugin only uses it to know which string literals to transform. This
 // function is never called at runtime.
 
-const BODY_CSS = tailwind`
+const BODY_CSS = tailwindcss`
   bg-[
     linear-gradient(
       to_right,
