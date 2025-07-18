@@ -15,4 +15,14 @@ scripts:
       packages/vite-plugin-multiline-tailwindcss/src \
       --max-warnings 0 \
       --report-unused-disable-directives
+  publish: |
+    nps build
+    nps publish:esbuild-plugin
+    nps publish:vite-plugin
+  publish:esbuild-plugin: |
+    cd packages/esbuild-plugin-multiline-tailwindcss
+    npm publish
+  publish:vite-plugin: |
+    cd packages/vite-plugin-multiline-tailwindcss
+    npm publish
   test: jest
