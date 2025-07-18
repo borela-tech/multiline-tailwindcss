@@ -1,4 +1,4 @@
-import '@/lib/tailwind'
+import '@/lib/tailwindcss'
 import {compileCssPlugin} from './compileCssPlugin'
 import {initialize} from './initialize'
 import {Plugin} from 'vite'
