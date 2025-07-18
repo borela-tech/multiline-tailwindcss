@@ -1,6 +1,6 @@
 export {}
 declare global {
-  function tailwind(
+  function tailwindcss(
     strings: TemplateStringsArray,
     ...expressions: unknown[]
   ): string

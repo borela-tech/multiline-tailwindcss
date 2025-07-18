@@ -25,7 +25,7 @@ export function transformTaggedStrings(code: string) {
       if (!t.isIdentifier(tag))
         return
 
-      if (tag.name !== 'tailwind')
+      if (tag.name !== 'tailwindcss')
         return
 
       if (quasis.length !== 1)

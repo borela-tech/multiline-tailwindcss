@@ -1,5 +1,5 @@
 export {}
-const SOME_CSS = tailwind`
+const SOME_CSS = tailwindcss`
   absolute
   !bg-[
     linear-gradient(
