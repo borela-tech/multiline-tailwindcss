@@ -49,7 +49,7 @@ export default defineConfig({
   plugins: [
     // other plugins...
     react(),
-    ...multilineTailwindCss(),
+    multilineTailwindCss(),
     // other plugins...
   ],
 })
