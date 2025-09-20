@@ -1,3 +1,4 @@
+import '@/lib/tailwindcss'
 import * as fs from 'node:fs'
 import path from 'node:path'
 import {BuildResult, Plugin} from 'esbuild'
