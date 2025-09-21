@@ -7,6 +7,10 @@ import {
   toSourceMap,
 } from '@tailwindcss/node'
 
+function isTailwindCandidatesFile(path: string) {
+  return path.endsWith('tailwindcss.candidates.json')
+}
+
 export function compileCssPlugin(state: SharedState) {
   return {
     name: '@borela-tech/vite-plugin-multiline-tailwindcss:compile-css',
@@ -44,6 +48,11 @@ export function compileCssPlugin(state: SharedState) {
           ...compiler.sources,
         ],
       })
+
+      for (const path of scanner.files) {
+        if (isTailwindCandidatesFile(path))
+          this.addWatchFile(path)
+      }
 
       const ALL_CANDIDATES: string[] = scanner.scan()
 
