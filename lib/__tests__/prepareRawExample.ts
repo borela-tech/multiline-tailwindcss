@@ -3,7 +3,8 @@ export function prepareRawExample(text: string): string[] {
   const trimmedBlocks = blocks.map(
     block => block.split('\n')
       .map(line => line.trim())
-      .join(' '),
+      .join(' ')
+      .trim(),
   )
   return trimmedBlocks.filter(block => block.length > 0)
 }
