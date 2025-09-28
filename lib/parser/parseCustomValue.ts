@@ -5,7 +5,7 @@ import {peek} from './peek'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
 
-export function parseArrayIndex(state: State): Node[] {
+export function parseCustomValue(state: State): Node[] {
   const items: Node[] = []
   next(state) // Skip '['
 

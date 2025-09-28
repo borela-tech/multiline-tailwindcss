@@ -1,8 +1,8 @@
+import {CustomValueNode} from '../parser/CustomValueNode'
 import {generateCodeForNode} from './generateCodeForNode'
-import {ArrayNode} from '../parser/ArrayNode'
 
-export function generateCodeForArray(node: ArrayNode) {
-  const indexItems = node.indexItems
+export function generateCodeForCustomValue(node: CustomValueNode) {
+  const indexItems = node.items
     .map(generateCodeForNode)
     .join(',')
   return `${node.name}[${indexItems}]${node.suffix}`

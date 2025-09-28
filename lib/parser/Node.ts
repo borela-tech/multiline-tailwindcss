@@ -1,8 +1,8 @@
-import {ArrayNode} from './ArrayNode'
+import {CustomValueNode} from './CustomValueNode'
 import {FunctionNode} from './FunctionNode'
 import {IdentifierNode} from './IdentifierNode'
 
 export type Node =
-  | ArrayNode
+  | CustomValueNode
   | FunctionNode
   | IdentifierNode

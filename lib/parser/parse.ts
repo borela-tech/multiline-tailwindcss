@@ -1,5 +1,5 @@
 import {Node} from './Node'
-import {parseArrayIndex} from './parseArrayIndex'
+import {parseCustomValue} from './parseCustomValue'
 import {parseFunction} from './parseFunction'
 import {parseIdentifier} from './parseIdentifier'
 import {peek} from './peek'
@@ -19,15 +19,15 @@ export function parse(input: string): Node[] {
     skipWhitespace(state)
 
     if (peek(state) === '[') {
-      const indexItems = parseArrayIndex(state)
+      const items = parseCustomValue(state)
       const suffix = parseIdentifier(state)
-      const arrayNode: Node = {
-        indexItems: indexItems,
+      const customValueNode: Node = {
+        items,
         name: identifier,
         suffix,
-        type: 'Array',
+        type: 'CustomValue',
       }
-      ast.push(arrayNode)
+      ast.push(customValueNode)
       continue
     }
 
