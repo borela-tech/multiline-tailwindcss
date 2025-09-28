@@ -1,8 +1,9 @@
-import {Node} from './Node'
+import {FunctionArg} from './FunctionArg'
 
 export interface FunctionNode {
-  args: Node[]
+  args: FunctionArg[]
   name: string
+  pseudoElement?: string
   suffix: string
   type: 'Function'
 }

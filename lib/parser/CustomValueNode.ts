@@ -1,8 +1,9 @@
-import {Node} from './Node'
+import {CustomValueNodeItem} from './CustomValueNodeItem'
 
 export interface CustomValueNode {
-  items: Node[]
+  items: CustomValueNodeItem[]
   name?: string
+  pseudoElement?: string
   suffix: string
   type: 'CustomValue'
 }

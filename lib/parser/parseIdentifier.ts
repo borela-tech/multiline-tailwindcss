@@ -12,7 +12,7 @@ export function parseIdentifier(state: State): string {
       continue
     }
 
-    if (/[\s,()[\]]/.test(peek(state)))
+    if (/[\s,:()[\]]/.test(peek(state)))
       break
     value += next(state)
   }
