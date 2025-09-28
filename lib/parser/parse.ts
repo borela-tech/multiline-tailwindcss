@@ -15,8 +15,21 @@ export function parse(input: string): Node[] {
 
   while (state.pos < state.input.length) {
     skipWhitespace(state)
+
+    if (peek(state) === '[') {
+      const items = parseCustomValue(state)
+      const suffix = parseIdentifier(state)
+      const customValueNode: Node = {
+        items,
+        name: undefined,
+        suffix,
+        type: 'CustomValue',
+      }
+      ast.push(customValueNode)
+      continue
+    }
+
     const identifier = parseIdentifier(state)
-    skipWhitespace(state)
 
     if (peek(state) === '[') {
       const items = parseCustomValue(state)
