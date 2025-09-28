@@ -25,4 +25,4 @@ scripts:
   publish:vite-plugin: |
     cd packages/vite-plugin-multiline-tailwindcss
     npm publish
-  test: jest
+  test: jest --verbose

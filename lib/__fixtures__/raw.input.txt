@@ -1,0 +1,43 @@
+absolute
+
+!border-purple-600
+
+flex
+
+h-12
+
+left-0
+
+w-[100%]
+
+before:content-['\[OK\]']
+
+bg-[size:4px_4px]
+
+bg-[
+  linear-gradient(
+    to_right,
+    theme(colors.zinc.900/50%),
+    transparent,
+  ),
+]
+
+!bg-[
+  linear-gradient(
+    to_right,
+    theme(colors.zinc.900/50%),
+    transparent,
+  ),
+  linear-gradient(
+    to_right,
+    theme(colors.purple.600/70%),
+    theme(colors.purple.800/20%)_32px,
+    transparent_50%,
+  ),
+]
+
+[backdrop-filter:blur(4px)]
+
+[
+  box-shadow: 0_0_10px_rgba(0,0,0,0.5)
+]

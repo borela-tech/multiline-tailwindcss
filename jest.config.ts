@@ -4,4 +4,5 @@ export default {
     'lib',
     'packages/vite-plugin-multiline-tailwindcss/src',
   ],
+  testMatch: ['**/__tests__/**/*.test.ts?(x)'],
 }

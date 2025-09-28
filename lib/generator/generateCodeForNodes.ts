@@ -1,7 +1,8 @@
+import {AnyNode} from '../parser/AnyNode'
 import {generateCodeForNode} from './generateCodeForNode'
-import {Node} from '../parser/Node'
 
-export function generateCodeForNodes(nodes: Node[]) {
+export function generateCodeForNodes(nodes: AnyNode[]) {
   return nodes.map(node => generateCodeForNode(node))
     .join(' ')
+    .trim()
 }
