@@ -41,7 +41,7 @@ export function loadRawExamples(): RawExample[] {
   }
 
   const combinedInput = examples.map(example => example.input).join('\n')
-  const combinedOutput = examples.map(example => example.output).join('')
+  const combinedOutput = examples.map(example => example.output).join(' ')
   const finalExample: RawExample = {
     input: combinedInput,
     output: combinedOutput,
