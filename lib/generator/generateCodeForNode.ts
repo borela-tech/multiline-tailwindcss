@@ -1,10 +1,13 @@
 import {AnyNode} from '../parser/AnyNode'
-import {generateCodeForCssProperty} from './generateCodeForCssProperty'
 import {generateCodeForBracketedExpression} from './generateCodeForBracketedExpression'
+import {generateCodeForCssProperty} from './generateCodeForCssProperty'
 import {generateCodeForExpressionNode} from './generateCodeForExpressionNode'
 import {generateCodeForFunction} from './generateCodeForFunction'
 
 export function generateCodeForNode(node: AnyNode): string {
+  if (node.type === 'BracketedExpression')
+    return generateCodeForBracketedExpression(node)
+
   if (node.type === 'Expression')
     return generateCodeForExpressionNode(node)
 
