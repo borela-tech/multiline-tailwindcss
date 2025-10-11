@@ -2,6 +2,8 @@ absolute
 
 !border-purple-600
 
+content-['Hello "world"']
+
 flex
 
 h-12
@@ -10,9 +12,17 @@ left-0
 
 w-[100%]
 
+w-[calc(100%-2rem)]
+
 before:content-['\[OK\]']
 
+hover:[mask-type:alpha]
+
+hover:bg-[rgb(255,0,0)]
+
 bg-[size:4px_4px]
+
+bg-[radial-gradient(circle_at_center,theme(colors.blue.500),transparent)]
 
 bg-[
   linear-gradient(
@@ -41,3 +51,5 @@ bg-[
 [
   box-shadow: 0_0_10px_rgba(0,0,0,0.5)
 ]
+
+[transform:rotate(45deg)_scale(1.2)]
