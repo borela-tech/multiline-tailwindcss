@@ -14,7 +14,7 @@ export function generateCodeForNode(node: AnyNode): string {
   if (node.type === 'CssProperty')
     return generateCodeForCssProperty(node)
 
-  if (node.type === 'CustomValue')
+  if (node.type === 'BracketedExpression')
     return generateCodeForBracketedExpression(node)
 
   // Identifier.

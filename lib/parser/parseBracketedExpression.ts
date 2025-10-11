@@ -12,7 +12,7 @@ export function parseBracketedExpression(
   const expression = parseExpression(state)
   const node: BracketedExpression = {
     name,
-    type: 'CustomValue',
+    type: 'BracketedExpression',
     value: expression,
   }
 
