@@ -1,3 +1,4 @@
+import {PrefixType} from './PrefixType'
 import {next} from './next'
 import {FunctionArg} from './FunctionArg'
 import {FunctionNode} from './FunctionNode'
@@ -9,7 +10,7 @@ import {State} from './State'
 export function parseFunction(
   state: State,
   name: string,
-  pseudoElement?: string,
+  prefix?: PrefixType,
 ): FunctionNode {
   next(state) // Skip '('
 
@@ -31,7 +32,7 @@ export function parseFunction(
   return {
     args,
     name,
-    pseudoElement,
+    prefix,
     type: 'Function',
   }
 }

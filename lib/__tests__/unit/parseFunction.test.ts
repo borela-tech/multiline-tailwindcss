@@ -1,5 +1,6 @@
 import {parseFunction} from '../../parser/parseFunction'
 import {State} from '../../parser/State'
+import {PrefixType} from '../../parser/PrefixType'
 
 describe('parseFunction()', () => {
   it('parses function with no arguments', () => {
@@ -8,7 +9,7 @@ describe('parseFunction()', () => {
     expect(result).toEqual({
       type: 'Function',
       name: 'test',
-      pseudoElement: undefined,
+      prefix: undefined,
       args: [],
     })
     expect(state.pos).toBe(2)
@@ -20,7 +21,7 @@ describe('parseFunction()', () => {
     expect(result).toEqual({
       type: 'Function',
       name: 'test',
-      pseudoElement: undefined,
+      prefix: undefined,
       args: [
         {
           type: 'Expression',
@@ -37,7 +38,7 @@ describe('parseFunction()', () => {
     expect(result).toEqual({
       type: 'Function',
       name: 'test',
-      pseudoElement: undefined,
+      prefix: undefined,
       args: [
         {
           type: 'Expression',
@@ -52,13 +53,17 @@ describe('parseFunction()', () => {
     expect(state.pos).toBe(12)
   })
 
-  it('parses function with pseudoElement', () => {
+  it('parses function with prefix', () => {
     const state: State = {input: '(arg)', pos: 0}
-    const result = parseFunction(state, 'test', 'before')
+    const prefix = {type: 'Identifier', value: 'before'} as PrefixType
+    const result = parseFunction(state, 'test', prefix)
     expect(result).toEqual({
       type: 'Function',
       name: 'test',
-      pseudoElement: 'before',
+      prefix: {
+        type: 'Identifier',
+        value: 'before',
+      },
       args: [
         {
           type: 'Expression',
@@ -75,7 +80,7 @@ describe('parseFunction()', () => {
     expect(result).toEqual({
       type: 'Function',
       name: 'test',
-      pseudoElement: undefined,
+      prefix: undefined,
       args: [
         {
           type: 'Expression',
@@ -111,7 +116,7 @@ describe('parseFunction()', () => {
     expect(result).toEqual({
       type: 'Function',
       name: 'test',
-      pseudoElement: undefined,
+      prefix: undefined,
       args: [
         {
           type: 'Expression',

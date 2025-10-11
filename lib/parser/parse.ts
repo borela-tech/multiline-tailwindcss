@@ -1,12 +1,13 @@
 import {AnyNode} from './AnyNode'
+import {BracketedExpression} from './BracketedExpression'
 import {IdentifierNode} from './IdentifierNode'
 import {next} from './next'
 import {parseBracketedExpression} from './parseBracketedExpression'
 import {parseFunction} from './parseFunction'
-import {parseIdentifier} from './parseIdentifier'
 import {peek} from './peek'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
+import {parseIdentifierNode} from './parseIdentifierNode'
 
 export function parse(input: string): AnyNode[] {
   const ast: AnyNode[] = []
@@ -24,45 +25,43 @@ export function parse(input: string): AnyNode[] {
       continue
     }
 
-    if (peek(state) === '[') {
-      const node = parseBracketedExpression(state)
-      ast.push(node)
-      continue
-    }
+    let node: BracketedExpression | IdentifierNode
 
-    let pseudoElement: string | undefined = undefined
-    let identifier = parseIdentifier(state)
+    if (peek(state) === '[')
+      node = parseBracketedExpression(state)
+    else
+      node = parseIdentifierNode(state)
 
     if (peek(state) === ':') {
-      next(state) // Skip ':'
-      pseudoElement = identifier
-      identifier = parseIdentifier(state)
+      next(state)
+
+      const oldNode = node
+      node = parseIdentifierNode(state)
+      node.prefix = oldNode
+    } else {
+      if (node.type === 'BracketedExpression') {
+        ast.push(node)
+        continue
+      }
     }
 
     if (peek(state) === '[') {
-      const node = parseBracketedExpression(state, identifier)
-      if (pseudoElement)
-        node.pseudoElement = pseudoElement
-      ast.push(node)
+      const bracketedExpression = parseBracketedExpression(state, node)
+      ast.push(bracketedExpression)
       continue
     }
 
     if (peek(state) === '(') {
       const functionNode = parseFunction(
         state,
-        identifier,
-        pseudoElement,
+        node.value,
+        node.prefix,
       )
       ast.push(functionNode)
       continue
     }
 
-    const identifierNode: IdentifierNode = {
-      pseudoElement,
-      type: 'Identifier',
-      value: identifier,
-    }
-    ast.push(identifierNode)
+    ast.push(node)
   }
 
   return ast

@@ -22,7 +22,11 @@ export function generateCodeForNode(node: AnyNode): string {
     return generateCodeForQuotedString(node)
 
   // Identifier.
-  return node.pseudoElement
-    ? `${node.pseudoElement}:${node.value}`
-    : node.value
+  if (node.prefix) {
+    const prefixValue = typeof node.prefix === 'string'
+      ? node.prefix
+      : generateCodeForNode(node.prefix)
+    return `${prefixValue}:${node.value}`
+  }
+  return node.value
 }

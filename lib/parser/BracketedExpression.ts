@@ -1,8 +1,8 @@
+import {PrefixType} from './PrefixType'
 import {ExpressionNode} from './ExpressionNode'
 
 export interface BracketedExpression {
-  name?: string
-  pseudoElement?: string
+  prefix?: PrefixType
   type: 'BracketedExpression'
   value: ExpressionNode[]
 }

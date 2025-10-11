@@ -5,10 +5,11 @@ import {parseExpression} from './parseExpression'
 import {peek} from './peek'
 import {State} from './State'
 import {skipWhitespace} from './skipWhitespace'
+import {PrefixType} from '@/lib/parser/PrefixType'
 
 export function parseBracketedExpression(
   state: State,
-  name?: string,
+  prefix?: PrefixType,
 ): BracketedExpression {
   next(state) // Skip '['
 
@@ -30,7 +31,7 @@ export function parseBracketedExpression(
   }
 
   const node: BracketedExpression = {
-    name,
+    prefix,
     type: 'BracketedExpression',
     value: expressions,
   }

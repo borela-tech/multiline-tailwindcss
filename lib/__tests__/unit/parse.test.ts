@@ -1,7 +1,7 @@
 import {parse} from '../../parser/parse'
 
 describe('parse()', () => {
-  it.only('parses bg-[linear-gradient...] from raw input', () => {
+  it('parses bg-[linear-gradient...] from raw input', () => {
     const input = `
       bg-[
         linear-gradient(
@@ -12,51 +12,79 @@ describe('parse()', () => {
       ],
     `
     const ast = parse(input)
-    expect(ast).toHaveLength(1)
-    expect(ast[0]).toEqual({
-      type: 'BracketedExpression',
-      name: 'bg-',
-      value: [
-        {
-          type: 'Expression',
-          items: [
+    expect(ast).toEqual([
+      {
+        type: 'BracketedExpression',
+        prefix: {
+          type: 'Identifier',
+          value: 'bg-',
+        },
+        value: [
+          {
+            type: 'Expression',
+            items: [
+              {
+                type: 'Function',
+                name: 'linear-gradient',
+                prefix: undefined,
+                args: [
+                  {
+                    type: 'Expression',
+                    items: [
+                      {type: 'Identifier', value: 'to'},
+                      {type: 'Identifier', value: 'right'},
+                    ],
+                  },
+                  {
+                    type: 'Expression',
+                    items: [
+                      {
+                        type: 'Function',
+                        name: 'theme',
+                        prefix: undefined,
+                        args: [
+                          {
+                            type: 'Expression',
+                            items: [{type: 'Identifier', value: 'colors.zinc.900/50%'}],
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                  {
+                    type: 'Expression',
+                    items: [
+                      {type: 'Identifier', value: 'transparent'},
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ])
+  })
+
+  it('parses arbitrary variant with bracketed selector', () => {
+    const input = '[&>p]:text-gray-500'
+    const ast = parse(input)
+    expect(ast).toEqual([
+      {
+        type: 'Identifier',
+        value: 'text-gray-500',
+        prefix: {
+          type: 'BracketedExpression',
+          value: [
             {
-              type: 'Function',
-              name: 'linear-gradient',
-              pseudoElement: undefined,
-              args: [
-                {
-                  type: 'Expression',
-                  items: [
-                    {type: 'Identifier', value: 'to'},
-                    {type: 'Identifier', value: 'right'},
-                  ],
-                },
-                {
-                  type: 'Expression',
-                  items: [
-                    {
-                      type: 'Function',
-                      name: 'theme',
-                      pseudoElement: undefined,
-                      args: [
-                        {
-                          type: 'Expression',
-                          items: [{type: 'Identifier', value: 'colors.zinc.900/50%'}],
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: 'Expression',
-                  items: [{type: 'Identifier', value: 'transparent'}],
-                },
+              type: 'Expression',
+              items: [
+                {type: 'Identifier', value: '&>p'},
               ],
             },
           ],
         },
-      ],
-    })
+      },
+    ])
   })
 })
