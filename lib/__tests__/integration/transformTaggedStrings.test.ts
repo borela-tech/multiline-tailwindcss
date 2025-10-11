@@ -32,9 +32,11 @@ describe('transformTaggedStrings()', () => {
         .split('\n')
         .map(line => '  ' + line)
         .join('\n')
-      const outputWithEscapedBackSlashes = example.output.replace(/\\/g, '\\\\')
+      const escapedOutput = example.output
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
       const preparedInput = inputTemplate.replace('{{CSS_CONTENT}}', indentedInput)
-      const preparedOutput = outputTemplate.replace('{{CSS_CONTENT}}', outputWithEscapedBackSlashes)
+      const preparedOutput = outputTemplate.replace('{{CSS_CONTENT}}', escapedOutput)
 
       const result = transformTaggedStrings(preparedInput)
       const code = result.transformedCode.code
