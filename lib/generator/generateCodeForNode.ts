@@ -6,27 +6,22 @@ import {generateCodeForFunction} from './generateCodeForFunction'
 import {generateCodeForQuotedString} from './generateCodeForQuotedString'
 
 export function generateCodeForNode(node: AnyNode): string {
-  if (node.type === 'BracketedExpression')
+  switch (node.type) {
+  case 'BracketedExpression':
     return generateCodeForBracketedExpression(node)
-
-  if (node.type === 'Expression')
+  case 'Expression':
     return generateCodeForExpressionNode(node)
-
-  if (node.type === 'Function')
+  case 'Function':
     return generateCodeForFunction(node)
-
-  if (node.type === 'CssProperty')
+  case 'CssProperty':
     return generateCodeForCssProperty(node)
-
-  if (node.type === 'QuotedString')
+  case 'QuotedString':
     return generateCodeForQuotedString(node)
-
-  // Identifier.
-  if (node.prefix) {
-    const prefixValue = typeof node.prefix === 'string'
-      ? node.prefix
-      : generateCodeForNode(node.prefix)
-    return `${prefixValue}:${node.value}`
+  case 'Identifier':
+    if (node.prefix) {
+      const prefix = generateCodeForNode(node.prefix)
+      return `${prefix}:${node.value}`
+    }
+    return node.value
   }
-  return node.value
 }

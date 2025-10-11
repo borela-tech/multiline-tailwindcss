@@ -35,24 +35,15 @@ export function loadRawExamples(): RawExample[] {
   if (preparedInput.length !== preparedOutput.length)
     throw new Error('Input and output examples count do not match')
 
-  const examples: RawExample[] = []
+  const examples = preparedInput.map((input, i) => ({
+    input,
+    output: preparedOutput[i],
+  }))
 
-  for (let i = 0; i < preparedInput.length; i++) {
-    examples.push({
-      input: preparedInput[i],
-      output: preparedOutput[i],
-    })
+  const finalExample = {
+    input: examples.map(e => e.input).join('\n'),
+    output: examples.map(e => e.output).join(' '),
   }
 
-  const combinedInput = examples.map(example => example.input).join('\n')
-  const combinedOutput = examples.map(example => example.output).join(' ')
-  const finalExample: RawExample = {
-    input: combinedInput,
-    output: combinedOutput,
-  }
-
-  return [
-    ...examples,
-    finalExample,
-  ]
+  return [...examples, finalExample]
 }
