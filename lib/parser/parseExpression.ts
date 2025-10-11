@@ -1,4 +1,7 @@
 import {AnyNode} from './AnyNode'
+import {ExpressionNode} from './ExpressionNode'
+import {IdentifierNode} from './IdentifierNode'
+import {next} from './next'
 import {parseCssProperty} from './parseCssProperty'
 import {parseFunction} from './parseFunction'
 import {parseIdentifier} from './parseIdentifier'
@@ -6,19 +9,49 @@ import {peek} from './peek'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
 
-export function parseExpression(state: State): AnyNode {
-  skipWhitespace(state)
-  const identifier = parseIdentifier(state)
-  skipWhitespace(state)
+export function parseExpression(state: State): ExpressionNode {
+  const items: AnyNode[] = []
 
-  if (peek(state) === '(')
-    return parseFunction(state, identifier)
+  while (state.pos < state.input.length) {
+    skipWhitespace(state)
 
-  if (peek(state) === ':')
-    return parseCssProperty(state, identifier)
+    if (/[\s,)\]]/.test(peek(state)))
+      break
+
+    if (peek(state) === '_') {
+      next(state) // Skip '_'
+      continue
+    }
+
+    const identifier = parseIdentifier(state)
+
+    if (peek(state) === ':') {
+      const cssPropertyNode = parseCssProperty(
+        state,
+        identifier,
+      )
+      items.push(cssPropertyNode)
+      continue
+    }
+
+    if (peek(state) === '(') {
+      const functionNode = parseFunction(
+        state,
+        identifier,
+      )
+      items.push(functionNode)
+      continue
+    }
+
+    const identifierNode: IdentifierNode = {
+      type: 'Identifier',
+      value: identifier,
+    }
+    items.push(identifierNode)
+  }
 
   return {
-    type: 'Identifier',
-    value: identifier,
+    type: 'Expression',
+    items,
   }
 }

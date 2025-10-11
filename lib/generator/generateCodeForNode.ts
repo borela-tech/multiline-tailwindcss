@@ -1,9 +1,13 @@
 import {AnyNode} from '../parser/AnyNode'
 import {generateCodeForCssProperty} from './generateCodeForCssProperty'
-import {generateCodeForCustomValue} from './generateCodeForCustomValue'
+import {generateCodeForBracketedExpression} from './generateCodeForBracketedExpression'
+import {generateCodeForExpressionNode} from './generateCodeForExpressionNode'
 import {generateCodeForFunction} from './generateCodeForFunction'
 
 export function generateCodeForNode(node: AnyNode): string {
+  if (node.type === 'Expression')
+    return generateCodeForExpressionNode(node)
+
   if (node.type === 'Function')
     return generateCodeForFunction(node)
 
@@ -11,7 +15,7 @@ export function generateCodeForNode(node: AnyNode): string {
     return generateCodeForCssProperty(node)
 
   if (node.type === 'CustomValue')
-    return generateCodeForCustomValue(node)
+    return generateCodeForBracketedExpression(node)
 
   // Identifier.
   return node.pseudoElement

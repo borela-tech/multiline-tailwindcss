@@ -3,8 +3,6 @@ import {generateCodeForNode} from './generateCodeForNode'
 
 export function generateCodeForCssProperty(node: CssPropertyNode) {
   const name = node.name || ''
-  const value = node.value
-    .map(generateCodeForNode)
-    .join(' ')
+  const value = generateCodeForNode(node.value)
   return `${name}:${value}`
 }

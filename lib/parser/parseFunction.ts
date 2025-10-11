@@ -2,7 +2,6 @@ import {next} from './next'
 import {FunctionArg} from './FunctionArg'
 import {FunctionNode} from './FunctionNode'
 import {parseExpression} from './parseExpression'
-import {parseIdentifier} from './parseIdentifier'
 import {peek} from './peek'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
@@ -29,12 +28,10 @@ export function parseFunction(
 
   next(state) // Skip ')'
 
-  const suffix = parseIdentifier(state)
   return {
     args,
     name,
     pseudoElement,
-    suffix,
     type: 'Function',
   }
 }

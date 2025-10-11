@@ -1,8 +1,7 @@
 import {AnyNode} from './AnyNode'
-import {CustomValueNode} from './CustomValueNode'
 import {IdentifierNode} from './IdentifierNode'
 import {next} from './next'
-import {parseCustomValue} from './parseCustomValue'
+import {parseBracketedExpression} from './parseBracketedExpression'
 import {parseFunction} from './parseFunction'
 import {parseIdentifier} from './parseIdentifier'
 import {peek} from './peek'
@@ -20,15 +19,8 @@ export function parse(input: string): AnyNode[] {
     skipWhitespace(state)
 
     if (peek(state) === '[') {
-      const items = parseCustomValue(state)
-      const suffix = parseIdentifier(state)
-      const customValueNode: AnyNode = {
-        items,
-        name: undefined,
-        suffix,
-        type: 'CustomValue',
-      }
-      ast.push(customValueNode)
+      const node = parseBracketedExpression(state)
+      ast.push(node)
       continue
     }
 
@@ -42,16 +34,10 @@ export function parse(input: string): AnyNode[] {
     }
 
     if (peek(state) === '[') {
-      const items = parseCustomValue(state)
-      const suffix = parseIdentifier(state)
-      const customValueNode: CustomValueNode = {
-        items,
-        name: identifier,
-        pseudoElement,
-        suffix,
-        type: 'CustomValue',
-      }
-      ast.push(customValueNode)
+      const node = parseBracketedExpression(state, identifier)
+      if (pseudoElement)
+        node.pseudoElement = pseudoElement
+      ast.push(node)
       continue
     }
 

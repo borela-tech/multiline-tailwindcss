@@ -1,7 +1,7 @@
-import {CssPropertyNodeValue} from './CssPropertyNodeValue'
+import {ExpressionNode} from './ExpressionNode'
 
 export interface CssPropertyNode {
   name: string
   type: 'CssProperty'
-  value: CssPropertyNodeValue
+  value: ExpressionNode
 }

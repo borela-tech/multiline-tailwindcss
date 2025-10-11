@@ -8,5 +8,5 @@ export function generateCodeForFunction(node: FunctionNode) {
   const args = node.args
     .map(generateCodeForNode)
     .join(',')
-  return `${fullName}(${args})${node.suffix}`
+  return `${fullName}(${args})`
 }
