@@ -5,6 +5,7 @@ import {next} from './next'
 import {parseCssProperty} from './parseCssProperty'
 import {parseFunction} from './parseFunction'
 import {parseIdentifier} from './parseIdentifier'
+import {parseQuotedString} from './parseQuotedString'
 import {peek} from './peek'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
@@ -17,6 +18,12 @@ export function parseExpression(state: State): ExpressionNode {
 
     if (/[\s,)\]]/.test(peek(state)))
       break
+
+    if (/['"]/.test(peek(state))) {
+      const quotedStringNode = parseQuotedString(state)
+      items.push(quotedStringNode)
+      continue
+    }
 
     if (peek(state) === '_') {
       next(state) // Skip '_'

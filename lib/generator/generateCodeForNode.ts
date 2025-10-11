@@ -3,6 +3,7 @@ import {generateCodeForBracketedExpression} from './generateCodeForBracketedExpr
 import {generateCodeForCssProperty} from './generateCodeForCssProperty'
 import {generateCodeForExpressionNode} from './generateCodeForExpressionNode'
 import {generateCodeForFunction} from './generateCodeForFunction'
+import {generateCodeForQuotedString} from './generateCodeForQuotedString'
 
 export function generateCodeForNode(node: AnyNode): string {
   if (node.type === 'BracketedExpression')
@@ -17,8 +18,8 @@ export function generateCodeForNode(node: AnyNode): string {
   if (node.type === 'CssProperty')
     return generateCodeForCssProperty(node)
 
-  if (node.type === 'BracketedExpression')
-    return generateCodeForBracketedExpression(node)
+  if (node.type === 'QuotedString')
+    return generateCodeForQuotedString(node)
 
   // Identifier.
   return node.pseudoElement

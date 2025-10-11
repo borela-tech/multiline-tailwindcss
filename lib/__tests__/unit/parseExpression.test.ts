@@ -158,6 +158,24 @@ describe('parseExpression()', () => {
     expect(state.pos).toBe(0)
   })
 
+  it('parses quoted strings', () => {
+    const state: State = {input: '\'hello\' "world"', pos: 0}
+    const result = parseExpression(state)
+    expect(result.type).toBe('Expression')
+    expect(result.items).toHaveLength(2)
+    expect(result.items[0]).toEqual({
+      type: 'QuotedString',
+      value: 'hello',
+      quote: '\'',
+    })
+    expect(result.items[1]).toEqual({
+      type: 'QuotedString',
+      value: 'world',
+      quote: '"',
+    })
+    expect(state.pos).toBe(15)
+  })
+
   it('handles whitespace correctly', () => {
     // Leading whitespace
     let state: State = {input: '  bg red', pos: 0}

@@ -3,6 +3,7 @@ import {CssPropertyNode} from './CssPropertyNode'
 import {ExpressionNode} from './ExpressionNode'
 import {FunctionNode} from './FunctionNode'
 import {IdentifierNode} from './IdentifierNode'
+import {QuotedStringNode} from './QuotedStringNode'
 
 export type AnyNode =
   | BracketedExpression
@@ -10,3 +11,4 @@ export type AnyNode =
   | ExpressionNode
   | FunctionNode
   | IdentifierNode
+  | QuotedStringNode

@@ -65,6 +65,20 @@ describe('parseIdentifier()', () => {
     expect(state.pos).toBe(2)
   })
 
+  it('stops at single quote', () => {
+    const state: State = {input: "bg'red", pos: 0}
+    const result = parseIdentifier(state)
+    expect(result).toBe('bg')
+    expect(state.pos).toBe(2)
+  })
+
+  it('stops at double quote', () => {
+    const state: State = {input: 'bg"red', pos: 0}
+    const result = parseIdentifier(state)
+    expect(result).toBe('bg')
+    expect(state.pos).toBe(2)
+  })
+
   it('handles escape sequences', () => {
     const state: State = {input: 'bg\\ red', pos: 0}
     const result = parseIdentifier(state)
