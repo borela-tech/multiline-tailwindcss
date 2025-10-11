@@ -1,6 +1,6 @@
 import {join} from 'node:path'
-import {prepareRawExample} from './prepareRawExample'
 import {readFileSync} from 'node:fs'
+import {prepareRawExample} from './prepareRawExample'
 
 interface RawExample {
   input: string
@@ -11,14 +11,18 @@ export function loadRawExamples(): RawExample[] {
   const inputPath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'raw.input.txt',
   )
 
   const outputPath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'raw.output.txt',
   )
 

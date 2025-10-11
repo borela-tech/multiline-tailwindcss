@@ -1,5 +1,7 @@
+import {PrefixType} from './PrefixType'
+
 export interface IdentifierNode {
-  pseudoElement?: string
+  prefix?: PrefixType
   type: 'Identifier'
   value: string
 }

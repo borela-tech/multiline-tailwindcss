@@ -1,10 +1,14 @@
+import {BracketedExpression} from './BracketedExpression'
 import {CssPropertyNode} from './CssPropertyNode'
-import {CustomValueNode} from './CustomValueNode'
+import {ExpressionNode} from './ExpressionNode'
 import {FunctionNode} from './FunctionNode'
 import {IdentifierNode} from './IdentifierNode'
+import {QuotedStringNode} from './QuotedStringNode'
 
 export type AnyNode =
+  | BracketedExpression
   | CssPropertyNode
-  | CustomValueNode
+  | ExpressionNode
   | FunctionNode
   | IdentifierNode
+  | QuotedStringNode

@@ -1,9 +1,8 @@
 import {PrefixType} from './PrefixType'
 import {ExpressionNode} from './ExpressionNode'
 
-export interface CssPropertyNode {
-  name: string
+export interface BracketedExpression {
   prefix?: PrefixType
-  type: 'CssProperty'
-  value: ExpressionNode
+  type: 'BracketedExpression'
+  value: ExpressionNode[]
 }

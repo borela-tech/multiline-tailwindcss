@@ -1,40 +1,19 @@
-import {CssPropertyNodeValue} from './CssPropertyNodeValue'
 import {CssPropertyNode} from './CssPropertyNode'
 import {next} from './next'
-import {parseFunction} from './parseFunction'
-import {parseIdentifier} from './parseIdentifier'
-import {peek} from './peek'
-import {skipWhitespace} from './skipWhitespace'
+import {parseExpression} from './parseExpression'
+import {PrefixType} from './PrefixType'
 import {State} from './State'
 
-export function parseCssProperty(state: State, name: string): CssPropertyNode {
+export function parseCssProperty(
+  state: State,
+  name: string,
+  prefix?: PrefixType,
+): CssPropertyNode {
   next(state) // Skip ':'
-
-  const value: CssPropertyNodeValue = []
-
-  while (state.pos < state.input.length) {
-    skipWhitespace(state)
-
-    if (/[,\]]/.test(peek(state)))
-      break
-
-    const identifier = parseIdentifier(state)
-
-    skipWhitespace(state)
-
-    if (peek(state) === '(') {
-      value.push(parseFunction(state, identifier))
-      continue
-    }
-
-    value.push({
-      type: 'Identifier',
-      value: identifier,
-    })
-  }
-
+  const value = parseExpression(state)
   return {
     name,
+    prefix,
     type: 'CssProperty',
     value,
   }

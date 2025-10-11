@@ -1,10 +1,10 @@
 import {AnyNode} from './AnyNode'
-import {CustomValueNode} from './CustomValueNode'
+import {BracketedExpression} from './BracketedExpression'
 import {IdentifierNode} from './IdentifierNode'
 import {next} from './next'
-import {parseCustomValue} from './parseCustomValue'
+import {parseBracketedExpression} from './parseBracketedExpression'
 import {parseFunction} from './parseFunction'
-import {parseIdentifier} from './parseIdentifier'
+import {parseIdentifierNode} from './parseIdentifierNode'
 import {peek} from './peek'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
@@ -19,58 +19,49 @@ export function parse(input: string): AnyNode[] {
   while (state.pos < state.input.length) {
     skipWhitespace(state)
 
-    if (peek(state) === '[') {
-      const items = parseCustomValue(state)
-      const suffix = parseIdentifier(state)
-      const customValueNode: AnyNode = {
-        items,
-        name: undefined,
-        suffix,
-        type: 'CustomValue',
-      }
-      ast.push(customValueNode)
+    if (peek(state) === ',') {
+      next(state) // Skip ','
+      skipWhitespace(state)
       continue
     }
 
-    let pseudoElement: string | undefined = undefined
-    let identifier = parseIdentifier(state)
+    let node: BracketedExpression | IdentifierNode
+
+    if (peek(state) === '[')
+      node = parseBracketedExpression(state)
+    else
+      node = parseIdentifierNode(state)
 
     if (peek(state) === ':') {
-      next(state) // Skip ':'
-      pseudoElement = identifier
-      identifier = parseIdentifier(state)
+      next(state)
+
+      const oldNode = node
+      node = parseIdentifierNode(state)
+      node.prefix = oldNode
+    } else {
+      if (node.type === 'BracketedExpression') {
+        ast.push(node)
+        continue
+      }
     }
 
     if (peek(state) === '[') {
-      const items = parseCustomValue(state)
-      const suffix = parseIdentifier(state)
-      const customValueNode: CustomValueNode = {
-        items,
-        name: identifier,
-        pseudoElement,
-        suffix,
-        type: 'CustomValue',
-      }
-      ast.push(customValueNode)
+      const bracketedExpression = parseBracketedExpression(state, node)
+      ast.push(bracketedExpression)
       continue
     }
 
     if (peek(state) === '(') {
       const functionNode = parseFunction(
         state,
-        identifier,
-        pseudoElement,
+        node.value,
+        node.prefix,
       )
       ast.push(functionNode)
       continue
     }
 
-    const identifierNode: IdentifierNode = {
-      pseudoElement,
-      type: 'Identifier',
-      value: identifier,
-    }
-    ast.push(identifierNode)
+    ast.push(node)
   }
 
   return ast

@@ -133,3 +133,5 @@ const BODY_CSS = tailwindcss`
 
 const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
 ```
+
+[tailwindcss]: https://tailwindcss.com

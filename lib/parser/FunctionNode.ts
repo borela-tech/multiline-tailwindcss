@@ -1,9 +1,9 @@
+import {PrefixType} from './PrefixType'
 import {FunctionArg} from './FunctionArg'
 
 export interface FunctionNode {
   args: FunctionArg[]
   name: string
-  pseudoElement?: string
-  suffix: string
+  prefix?: PrefixType
   type: 'Function'
 }

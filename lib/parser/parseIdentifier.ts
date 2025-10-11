@@ -6,14 +6,15 @@ export function parseIdentifier(state: State): string {
   let value = ''
 
   while (state.pos < state.input.length) {
+    if (/[\s'"_,:()[\]`]/.test(peek(state)))
+      break
+
     if (/\\/.test(peek(state))) {
       value += next(state)
       value += next(state)
       continue
     }
 
-    if (/[\s,:()[\]]/.test(peek(state)))
-      break
     value += next(state)
   }
 

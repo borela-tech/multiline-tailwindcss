@@ -37,6 +37,7 @@ export function transformJsxCssClasses(code: string) {
       const filtered = transformed
         .split(' ')
         .filter(Boolean)
+        .map(x => x.replace(/"/g, '&quot;'))
 
       candidatesFound.push(...filtered)
 
