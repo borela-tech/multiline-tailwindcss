@@ -107,6 +107,49 @@ describe('parseExpression()', () => {
     expect(state.pos).toBe(11)
   })
 
+  it('parses complex linear-gradient expression', () => {
+    const state: State = {
+      input: 'linear-gradient(to_right,theme(colors.zinc.900/50%),transparent)',
+      pos: 0,
+    }
+    const result = parseExpression(state)
+    expect(result.type).toBe('Expression')
+    expect(result.items).toHaveLength(1)
+    expect(result.items[0]).toEqual({
+      type: 'Function',
+      name: 'linear-gradient',
+      args: [
+        {
+          type: 'Expression',
+          items: [
+            {type: 'Identifier', value: 'to'},
+            {type: 'Identifier', value: 'right'},
+          ],
+        },
+        {
+          type: 'Expression',
+          items: [
+            {
+              type: 'Function',
+              name: 'theme',
+              args: [
+                {
+                  type: 'Expression',
+                  items: [{type: 'Identifier', value: 'colors.zinc.900/50%'}],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: 'Expression',
+          items: [{type: 'Identifier', value: 'transparent'}],
+        },
+      ],
+    })
+    expect(state.pos).toBe(64)
+  })
+
   it('handles empty expression', () => {
     const state: State = {input: '', pos: 0}
     const result = parseExpression(state)
