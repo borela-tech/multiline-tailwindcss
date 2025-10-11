@@ -1,6 +1,5 @@
 import {AnyNode} from './AnyNode'
 import {ExpressionNode} from './ExpressionNode'
-import {IdentifierNode} from './IdentifierNode'
 import {next} from './next'
 import {parseCssProperty} from './parseCssProperty'
 import {parseFunction} from './parseFunction'
@@ -20,8 +19,7 @@ export function parseExpression(state: State): ExpressionNode {
       break
 
     if (/['"]/.test(peek(state))) {
-      const quotedStringNode = parseQuotedString(state)
-      items.push(quotedStringNode)
+      items.push(parseQuotedString(state))
       continue
     }
 
@@ -33,28 +31,19 @@ export function parseExpression(state: State): ExpressionNode {
     const identifier = parseIdentifier(state)
 
     if (peek(state) === ':') {
-      const cssPropertyNode = parseCssProperty(
-        state,
-        identifier,
-      )
-      items.push(cssPropertyNode)
+      items.push(parseCssProperty(state, identifier))
       continue
     }
 
     if (peek(state) === '(') {
-      const functionNode = parseFunction(
-        state,
-        identifier,
-      )
-      items.push(functionNode)
+      items.push(parseFunction(state, identifier))
       continue
     }
 
-    const identifierNode: IdentifierNode = {
+    items.push({
       type: 'Identifier',
       value: identifier,
-    }
-    items.push(identifierNode)
+    })
   }
 
   return {
