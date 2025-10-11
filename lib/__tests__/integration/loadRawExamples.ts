@@ -11,14 +11,18 @@ export function loadRawExamples(): RawExample[] {
   const inputPath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'raw.input.txt',
   )
 
   const outputPath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'raw.output.txt',
   )
 

@@ -1,20 +1,24 @@
 import {join} from 'node:path'
 import {loadRawExamples} from './loadRawExamples'
 import {readFileSync} from 'node:fs'
-import {transformJsxCssClasses} from '../transformJsxCssClasses'
+import {transformJsxCssClasses} from '../../transformJsxCssClasses'
 
 describe('transformJsxCssClasses()', () => {
   const examples = loadRawExamples()
   const inputFixturePath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'jsx.input.tsx',
   )
   const outputFixturePath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'jsx.output.tsx',
   )
   const inputTemplate = readFileSync(inputFixturePath, 'utf8')

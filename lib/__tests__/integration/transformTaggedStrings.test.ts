@@ -1,20 +1,24 @@
 import {join} from 'node:path'
 import {loadRawExamples} from './loadRawExamples'
 import {readFileSync} from 'node:fs'
-import {transformTaggedStrings} from '../transformTaggedStrings'
+import {transformTaggedStrings} from '../../transformTaggedStrings'
 
 describe('transformTaggedStrings()', () => {
   const examples = loadRawExamples()
   const inputFixturePath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'taggedStrings.input.ts',
   )
   const outputFixturePath = join(
     __dirname,
     '..',
+    '..',
     '__fixtures__',
+    'integration',
     'taggedStrings.output.ts',
   )
   const inputTemplate = readFileSync(inputFixturePath, 'utf8')
