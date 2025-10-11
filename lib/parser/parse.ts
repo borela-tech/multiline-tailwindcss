@@ -18,6 +18,12 @@ export function parse(input: string): AnyNode[] {
   while (state.pos < state.input.length) {
     skipWhitespace(state)
 
+    if (peek(state) === ',') {
+      next(state) // Skip ','
+      skipWhitespace(state)
+      continue
+    }
+
     if (peek(state) === '[') {
       const node = parseBracketedExpression(state)
       ast.push(node)

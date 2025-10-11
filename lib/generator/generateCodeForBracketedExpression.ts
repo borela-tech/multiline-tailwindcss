@@ -7,6 +7,8 @@ export function generateCodeForBracketedExpression(node: BracketedExpression) {
   const fullName = pseudoElement
     ? `${pseudoElement}:${name}`
     : name
-  const expression = generateCodeForNode(node.value)
-  return `${fullName}[${expression}]`
+  const expressions = node.value
+    .map(generateCodeForNode)
+    .join(',')
+  return `${fullName}[${expressions}]`
 }

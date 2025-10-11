@@ -4,5 +4,5 @@ export interface BracketedExpression {
   name?: string
   pseudoElement?: string
   type: 'BracketedExpression'
-  value: ExpressionNode
+  value: ExpressionNode[]
 }
