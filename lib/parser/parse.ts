@@ -4,10 +4,10 @@ import {IdentifierNode} from './IdentifierNode'
 import {next} from './next'
 import {parseBracketedExpression} from './parseBracketedExpression'
 import {parseFunction} from './parseFunction'
+import {parseIdentifierNode} from './parseIdentifierNode'
 import {peek} from './peek'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
-import {parseIdentifierNode} from './parseIdentifierNode'
 
 export function parse(input: string): AnyNode[] {
   const ast: AnyNode[] = []

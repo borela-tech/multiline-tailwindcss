@@ -1,9 +1,9 @@
-import {PrefixType} from './PrefixType'
-import {next} from './next'
 import {FunctionArg} from './FunctionArg'
 import {FunctionNode} from './FunctionNode'
+import {next} from './next'
 import {parseExpression} from './parseExpression'
 import {peek} from './peek'
+import {PrefixType} from './PrefixType'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
 

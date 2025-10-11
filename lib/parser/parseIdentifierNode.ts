@@ -1,6 +1,6 @@
 import {IdentifierNode} from './IdentifierNode'
-import {State} from './State'
 import {parseIdentifier} from './parseIdentifier'
+import {State} from './State'
 
 export function parseIdentifierNode(state: State): IdentifierNode {
   const identifier = parseIdentifier(state)

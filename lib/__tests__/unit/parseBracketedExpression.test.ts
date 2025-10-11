@@ -1,6 +1,6 @@
 import {parseBracketedExpression} from '../../parser/parseBracketedExpression'
-import {State} from '../../parser/State'
 import {PrefixType} from '../../parser/PrefixType'
+import {State} from '../../parser/State'
 
 describe('parseBracketedExpression()', () => {
   it('parses simple bracketed expression', () => {
@@ -78,7 +78,6 @@ describe('parseBracketedExpression()', () => {
     const result = parseBracketedExpression(state)
     expect(result).toEqual({
       type: 'BracketedExpression',
-      name: undefined,
       value: [],
     })
     expect(state.pos).toBe(2)
@@ -138,7 +137,6 @@ describe('parseBracketedExpression()', () => {
     const result = parseBracketedExpression(state)
     expect(result).toEqual({
       type: 'BracketedExpression',
-      name: undefined,
       value: [
         {
           type: 'Expression',
@@ -158,7 +156,6 @@ describe('parseBracketedExpression()', () => {
     const result = parseBracketedExpression(state)
     expect(result).toEqual({
       type: 'BracketedExpression',
-      name: undefined,
       value: [
         {
           type: 'Expression',

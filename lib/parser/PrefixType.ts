@@ -1,5 +1,5 @@
 import {BracketedExpression} from './BracketedExpression'
-import {IdentifierNode} from '@/lib/parser/IdentifierNode'
+import {IdentifierNode} from './IdentifierNode'
 
 export type PrefixType =
   | BracketedExpression

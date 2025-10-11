@@ -1,6 +1,6 @@
 import {parseFunction} from '../../parser/parseFunction'
-import {State} from '../../parser/State'
 import {PrefixType} from '../../parser/PrefixType'
+import {State} from '../../parser/State'
 
 describe('parseFunction()', () => {
   it('parses function with no arguments', () => {

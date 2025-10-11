@@ -1,8 +1,8 @@
-import {PrefixType} from './PrefixType'
 import {CssPropertyNode} from './CssPropertyNode'
 import {next} from './next'
-import {State} from './State'
 import {parseExpression} from './parseExpression'
+import {PrefixType} from './PrefixType'
+import {State} from './State'
 
 export function parseCssProperty(
   state: State,

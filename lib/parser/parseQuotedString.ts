@@ -1,5 +1,5 @@
-import {QuotedStringNode} from './QuotedStringNode'
 import {next} from './next'
+import {QuotedStringNode} from './QuotedStringNode'
 import {State} from './State'
 
 export function parseQuotedString(state: State): QuotedStringNode {

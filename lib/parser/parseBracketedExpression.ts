@@ -3,9 +3,9 @@ import {ExpressionNode} from './ExpressionNode'
 import {next} from './next'
 import {parseExpression} from './parseExpression'
 import {peek} from './peek'
-import {State} from './State'
+import {PrefixType} from './PrefixType'
 import {skipWhitespace} from './skipWhitespace'
-import {PrefixType} from '@/lib/parser/PrefixType'
+import {State} from './State'
 
 export function parseBracketedExpression(
   state: State,
