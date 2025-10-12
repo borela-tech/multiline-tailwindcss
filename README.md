@@ -19,6 +19,12 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/borela-tech/multiline-tailwindcss/actions">
+    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/ci.yml/badge.svg" alt="CI">
+  </a>
+</p>
+
+<p align="center">
   <em>
     If you like this plugin, give it a star on GitHub and tell about it to your
     friends!
