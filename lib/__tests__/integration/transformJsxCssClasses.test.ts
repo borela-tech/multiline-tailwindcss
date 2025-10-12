@@ -27,7 +27,7 @@ describe('transformJsxCssClasses()', () => {
   for (const [index, example] of examples.entries()) {
     if (index != 2)
       continue
-    it(`extracts correctly. Example #${index + 1}`, () => {
+    it(`transforms JSX CSS classes correctly. Example #${index + 1}`, () => {
       console.log(`Running example #${index + 1}`)
 
       const indentedEscapedInput = example.input

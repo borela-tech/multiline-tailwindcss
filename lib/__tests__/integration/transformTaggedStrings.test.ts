@@ -25,7 +25,7 @@ describe('transformTaggedStrings()', () => {
   const outputTemplate = readFileSync(outputFixturePath, 'utf8')
 
   for (const [index, example] of examples.entries()) {
-    it(`extracts correctly. Example #${index + 1}`, () => {
+    it(`transforms tagged template strings correctly. Example #${index + 1}`, () => {
       console.log(`Running example #${index + 1}`)
 
       const indentedInput = example.input
