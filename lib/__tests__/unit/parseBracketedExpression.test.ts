@@ -18,7 +18,7 @@ describe('parseBracketedExpression()', () => {
     expect(state.pos).toBe(4)
   })
 
-  it('parses bracketed expression with name', () => {
+  it('parses bracketed expression with prefix', () => {
     const state: State = {input: '[bg red]', pos: 0}
     const prefix = {type: 'Identifier', value: 'test'} as PrefixType
     const result = parseBracketedExpression(state, prefix)
