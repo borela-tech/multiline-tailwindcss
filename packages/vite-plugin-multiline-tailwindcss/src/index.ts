@@ -12,8 +12,8 @@ export function multilineTailwindCss(config?: Config) {
     candidatesFromTransforms: {
       className: new Map(),
       tagged: new Map(),
-      ...config,
     },
+    ...config,
   }
   return [
     initialize(state),
