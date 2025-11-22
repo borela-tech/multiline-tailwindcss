@@ -21,16 +21,15 @@ export function compileCssPlugin(state: SharedState) {
           className: classNameCandidatesPerId,
           tagged: taggedCandidatesPerId,
         },
-        projectRootPath,
+        rootCssDirPath,
         rootCssPath,
-        srcDirPath,
       } = state
 
       if (id !== rootCssPath)
         return code
 
       const compiler = await compile(code, {
-        base: srcDirPath!,
+        base: rootCssDirPath!,
         from: id,
         onDependency: (path: string) => {
           this.addWatchFile(path)
@@ -41,7 +40,7 @@ export function compileCssPlugin(state: SharedState) {
       const scanner = new Scanner({
         sources: [
           {
-            base: projectRootPath!,
+            base: rootCssDirPath!,
             pattern: '**/*',
             negated: false,
           },

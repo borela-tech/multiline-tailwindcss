@@ -9,7 +9,6 @@ export interface SharedState {
     tagged: Map<Id, Candidates>
   }
   devServer?: ViteDevServer
-  projectRootPath?: string
+  rootCssDirPath?: string
   rootCssPath?: string
-  srcDirPath?: string
 }
