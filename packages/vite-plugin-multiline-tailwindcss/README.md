@@ -61,10 +61,23 @@ export default defineConfig({
 })
 ```
 
-### Index.css
+## Configuration
 
-Create a file called `index.css` under `<Project Root>/src/` directory and 
-import [tailwindcss][tailwindcss]:
+You can configure the plugin by passing options to the `multilineTailwindCss()` function.
+
+### rootCssPath
+
+The path to your root CSS file where Tailwind CSS is imported. Defaults to `src/index.css`.
+
+```typescript
+multilineTailwindCss({
+  rootCssPath: 'src/index.css'
+})
+```
+
+## Setup
+
+Create your root CSS file and import [tailwindcss][tailwindcss]:
 
 ```css
 @import "tailwindcss";
