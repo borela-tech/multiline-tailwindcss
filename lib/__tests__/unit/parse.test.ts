@@ -296,4 +296,90 @@ describe('parse()', () => {
       value: 'text-white',
     }])
   })
+
+  it('parses multiple prefixes', () => {
+    const input = 'group-hover:before:opacity-100'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'opacity-100',
+      prefix: {
+        type: 'Identifier',
+        value: 'before',
+        prefix: {
+          type: 'Identifier',
+          value: 'group-hover',
+        },
+      },
+    }])
+  })
+
+  it('parses three prefixes', () => {
+    const input = 'hover:focus:active:bg-blue-500'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'bg-blue-500',
+      prefix: {
+        type: 'Identifier',
+        value: 'active',
+        prefix: {
+          type: 'Identifier',
+          value: 'focus',
+          prefix: {
+            type: 'Identifier',
+            value: 'hover',
+          },
+        },
+      },
+    }])
+  })
+
+  it('parses bracketed prefix', () => {
+    const input = '[hover]:bg-red-500'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'bg-red-500',
+      prefix: {
+        type: 'BracketedExpression',
+        value: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'hover',
+          }],
+        }],
+      },
+    }])
+  })
+
+  it('parses multiple bracketed prefixes', () => {
+    const input = '[hover]:[focus]:bg-green-500'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'bg-green-500',
+      prefix: {
+        type: 'BracketedExpression',
+        value: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'focus',
+          }],
+        }],
+        prefix: {
+          type: 'BracketedExpression',
+          value: [{
+            type: 'Expression',
+            items: [{
+              type: 'Identifier',
+              value: 'hover',
+            }],
+          }],
+        },
+      },
+    }])
+  })
 })

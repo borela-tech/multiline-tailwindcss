@@ -28,12 +28,16 @@ export function parse(input: string): AnyNode[] {
         ? parseBracketedExpression(state)
         : parseIdentifierNode(state)
 
-    if (peek(state) === ':') {
+    while (peek(state) === ':') {
       next(state)
       const prefix = node
-      node = parseIdentifierNode(state)
+      node = peek(state) === '['
+        ? parseBracketedExpression(state)
+        : parseIdentifierNode(state)
       node.prefix = prefix
-    } else if (node.type === 'BracketedExpression') {
+    }
+
+    if (node.type === 'BracketedExpression') {
       ast.push(node)
       continue
     }
