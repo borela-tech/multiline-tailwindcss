@@ -4,6 +4,7 @@ import {parseBracketedExpression} from './parseBracketedExpression'
 import {parseFunction} from './parseFunction'
 import {parseIdentifierNode} from './parseIdentifierNode'
 import {peek} from './peek'
+import {skipComments} from './skipComments'
 import {skipWhitespace} from './skipWhitespace'
 import {State} from './State'
 
@@ -13,10 +14,12 @@ export function parse(input: string): AnyNode[] {
 
   while (state.pos < state.input.length) {
     skipWhitespace(state)
+    skipComments(state)
 
     if (peek(state) === ',') {
       next(state) // Skip ','
       skipWhitespace(state)
+      skipComments(state)
       continue
     }
 
@@ -44,6 +47,9 @@ export function parse(input: string): AnyNode[] {
       ast.push(parseFunction(state, node.value, node.prefix))
       continue
     }
+
+    if (node.type === 'Identifier' && node.value === '')
+      continue
 
     ast.push(node)
   }
