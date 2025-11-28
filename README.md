@@ -61,7 +61,7 @@ transform the classes into a single line.
 <div className="
   bg-[
     linear-gradient(
-      to_right,
+      to right,
       theme(colors.purple.600),
       theme(colors.purple.900),
     ),
@@ -70,12 +70,12 @@ transform the classes into a single line.
   <div className="
     bg-[
       linear-gradient(
-        to_right,
+        to right,
         theme(colors.zinc.900/15%)_1px,
         transparent_1px,
       ),
       linear-gradient(
-        to_top,
+        to top,
         theme(colors.zinc.900/15%)_1px,
         transparent_1px,
       ),
@@ -96,6 +96,20 @@ transform the classes into a single line.
 </div>
 ```
 
+The parser supports `/* */` and `//` comments within multiline Tailwind class strings. For example:
+
+```jsx
+<div className="
+  bg-red-500
+  // This is a comment
+  text-white
+  /* Another comment */
+  p-4
+">
+  Content
+</div>
+```
+
 Alternatively, you can use the `tailwindcss` tag to transform string literals:
 
 ```js
@@ -106,7 +120,7 @@ Alternatively, you can use the `tailwindcss` tag to transform string literals:
 const BODY_CSS = tailwindcss`
   bg-[
     linear-gradient(
-      to_right,
+      to right,
       theme(colors.purple.600),
       theme(colors.purple.900),
     ),
