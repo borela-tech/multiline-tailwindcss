@@ -64,7 +64,7 @@ bg-[
 
 group-hover:before:opacity-100
 
-hover:group-hover:bg-[
+group-hover:before:bg-[
   linear-gradient(
     to_right,
     theme(colors.blue.500),
