@@ -1,7 +1,7 @@
 import {
   dirname,
-  isAbsolute,
   join,
+  resolve,
 } from 'node:path'
 import {Plugin} from 'vite'
 import {SharedState} from './SharedState'
@@ -14,10 +14,11 @@ export function initialize(state: SharedState): Plugin {
       if (!config.root)
         throw new Error('root is not defined')
 
-      state.rootCssPath ||= 'src/index.css'
-
-      if (!isAbsolute(state.rootCssPath))
-        state.rootCssPath = join(config.root, state.rootCssPath)
+      state.rootCssPath ||= join('src', 'index.css')
+      state.rootCssPath = resolve(
+        config.root,
+        state.rootCssPath,
+      )
 
       state.rootCssDirPath = dirname(state.rootCssPath)
     },
