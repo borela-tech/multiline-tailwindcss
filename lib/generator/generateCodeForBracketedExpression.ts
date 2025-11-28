@@ -8,5 +8,10 @@ export function generateCodeForBracketedExpression(node: BracketedExpression) {
   const expressions = node.value
     .map(generateCodeForNode)
     .join(',')
-  return `${prefix}[${expressions}]`
+  let separator = ''
+  if (prefix) {
+    if (!prefix.endsWith('-'))
+      separator = ':'
+  }
+  return `${prefix}${separator}[${expressions}]`
 }
