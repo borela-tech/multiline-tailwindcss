@@ -22,12 +22,13 @@ describe('parseFunction()', () => {
       type: 'Function',
       name: 'test',
       prefix: undefined,
-      args: [
-        {
-          type: 'Expression',
-          items: [{type: 'Identifier', value: 'arg'}],
-        },
-      ],
+      args: [{
+        type: 'Expression',
+        items: [{
+          type: 'Identifier',
+          value: 'arg',
+        }],
+      }],
     })
     expect(state.pos).toBe(5)
   })
@@ -39,16 +40,19 @@ describe('parseFunction()', () => {
       type: 'Function',
       name: 'test',
       prefix: undefined,
-      args: [
-        {
-          type: 'Expression',
-          items: [{type: 'Identifier', value: 'arg1'}],
-        },
-        {
-          type: 'Expression',
-          items: [{type: 'Identifier', value: 'arg2'}],
-        },
-      ],
+      args: [{
+        type: 'Expression',
+        items: [{
+          type: 'Identifier',
+          value: 'arg1',
+        }],
+      }, {
+        type: 'Expression',
+        items: [{
+          type: 'Identifier',
+          value: 'arg2',
+        }],
+      }],
     })
     expect(state.pos).toBe(12)
   })
@@ -64,12 +68,13 @@ describe('parseFunction()', () => {
         type: 'Identifier',
         value: 'before',
       },
-      args: [
-        {
-          type: 'Expression',
-          items: [{type: 'Identifier', value: 'arg'}],
-        },
-      ],
+      args: [{
+        type: 'Expression',
+        items: [{
+          type: 'Identifier',
+          value: 'arg',
+        }],
+      }],
     })
     expect(state.pos).toBe(5)
   })
@@ -81,31 +86,27 @@ describe('parseFunction()', () => {
       type: 'Function',
       name: 'test',
       prefix: undefined,
-      args: [
-        {
-          type: 'Expression',
-          items: [
-            {
-              type: 'CssProperty',
-              name: 'color',
-              value: {
-                type: 'Expression',
-                items: [{type: 'Identifier', value: 'red'}],
-              },
-            },
-          ],
-        },
-        {
-          type: 'Expression',
-          items: [
-            {
-              type: 'QuotedString',
-              value: 'value',
-              quote: '"',
-            },
-          ],
-        },
-      ],
+      args: [{
+        type: 'Expression',
+        items: [{
+          type: 'CssProperty',
+          name: 'color',
+          value: {
+            type: 'Expression',
+            items: [{
+              type: 'Identifier',
+              value: 'red',
+            }],
+          },
+        }],
+      }, {
+        type: 'Expression',
+        items: [{
+          type: 'QuotedString',
+          value: 'value',
+          quote: '"',
+        }],
+      }],
     })
     expect(state.pos).toBe(20)
   })
@@ -117,16 +118,19 @@ describe('parseFunction()', () => {
       type: 'Function',
       name: 'test',
       prefix: undefined,
-      args: [
-        {
-          type: 'Expression',
-          items: [{type: 'Identifier', value: 'arg1'}],
-        },
-        {
-          type: 'Expression',
-          items: [{type: 'Identifier', value: 'arg2'}],
-        },
-      ],
+      args: [{
+        type: 'Expression',
+        items: [{
+          type: 'Identifier',
+          value: 'arg1',
+        }],
+      }, {
+        type: 'Expression',
+        items: [{
+          type: 'Identifier',
+          value: 'arg2',
+        }],
+      }],
     })
     expect(state.pos).toBe(15)
   })

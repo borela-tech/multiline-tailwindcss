@@ -7,10 +7,13 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {type: 'Identifier', value: 'bg'},
-        {type: 'Identifier', value: 'red'},
-      ],
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }, {
+        type: 'Identifier',
+        value: 'red',
+      }],
     })
     expect(state.pos).toBe(6)
   })
@@ -20,16 +23,17 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {
-          type: 'CssProperty',
-          name: 'color',
-          value: {
-            type: 'Expression',
-            items: [{type: 'Identifier', value: 'red'}],
-          },
+      items: [{
+        type: 'CssProperty',
+        name: 'color',
+        value: {
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'red',
+          }],
         },
-      ],
+      }],
     })
     expect(state.pos).toBe(9)
   })
@@ -39,17 +43,29 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {
-          type: 'Function',
-          name: 'rgb',
-          args: [
-            {type: 'Expression', items: [{type: 'Identifier', value: '255'}]},
-            {type: 'Expression', items: [{type: 'Identifier', value: '0'}]},
-            {type: 'Expression', items: [{type: 'Identifier', value: '0'}]},
-          ],
-        },
-      ],
+      items: [{
+        type: 'Function',
+        name: 'rgb',
+        args: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: '255',
+          }],
+        }, {
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: '0',
+          }],
+        }, {
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: '0',
+          }],
+        }],
+      }],
     })
     expect(state.pos).toBe(12)
   })
@@ -59,28 +75,42 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {type: 'Identifier', value: 'bg'},
-        {
-          type: 'CssProperty',
-          name: 'color',
-          value: {
-            type: 'Expression',
-            items: [
-              {type: 'Identifier', value: 'red'},
-              {
-                type: 'Function',
-                name: 'rgb',
-                args: [
-                  {type: 'Expression', items: [{type: 'Identifier', value: '255'}]},
-                  {type: 'Expression', items: [{type: 'Identifier', value: '0'}]},
-                  {type: 'Expression', items: [{type: 'Identifier', value: '0'}]},
-                ],
-              },
-            ],
-          },
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }, {
+        type: 'CssProperty',
+        name: 'color',
+        value: {
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'red',
+          }, {
+            type: 'Function',
+            name: 'rgb',
+            args: [{
+              type: 'Expression',
+              items: [{
+                type: 'Identifier',
+                value: '255',
+              }],
+            }, {
+              type: 'Expression',
+              items: [{
+                type: 'Identifier',
+                value: '0',
+              }],
+            }, {
+              type: 'Expression',
+              items: [{
+                type: 'Identifier',
+                value: '0',
+              }],
+            }],
+          }],
         },
-      ],
+      }],
     })
     expect(state.pos).toBe(25)
   })
@@ -90,7 +120,10 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [{type: 'Identifier', value: 'bg'}],
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }],
     })
     expect(state.pos).toBe(2)
   })
@@ -100,7 +133,10 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [{type: 'Identifier', value: 'bg'}],
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }],
     })
     expect(state.pos).toBe(2)
   })
@@ -110,7 +146,10 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [{type: 'Identifier', value: 'bg'}],
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }],
     })
     expect(state.pos).toBe(2)
   })
@@ -120,11 +159,16 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {type: 'Identifier', value: 'bg'},
-        {type: 'Identifier', value: 'red'},
-        {type: 'Identifier', value: 'blue'},
-      ],
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }, {
+        type: 'Identifier',
+        value: 'red',
+      }, {
+        type: 'Identifier',
+        value: 'blue',
+      }],
     })
     expect(state.pos).toBe(11)
   })
@@ -137,40 +181,39 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {
-          type: 'Function',
-          name: 'linear-gradient',
-          args: [
-            {
+      items: [{
+        type: 'Function',
+        name: 'linear-gradient',
+        args: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'to',
+          }, {
+            type: 'Identifier',
+            value: 'right',
+          }],
+        }, {
+          type: 'Expression',
+          items: [{
+            type: 'Function',
+            name: 'theme',
+            args: [{
               type: 'Expression',
-              items: [
-                {type: 'Identifier', value: 'to'},
-                {type: 'Identifier', value: 'right'},
-              ],
-            },
-            {
-              type: 'Expression',
-              items: [
-                {
-                  type: 'Function',
-                  name: 'theme',
-                  args: [
-                    {
-                      type: 'Expression',
-                      items: [{type: 'Identifier', value: 'colors.zinc.900/50%'}],
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              type: 'Expression',
-              items: [{type: 'Identifier', value: 'transparent'}],
-            },
-          ],
-        },
-      ],
+              items: [{
+                type: 'Identifier',
+                value: 'colors.zinc.900/50%',
+              }],
+            }],
+          }],
+        }, {
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'transparent',
+          }],
+        }],
+      }],
     })
     expect(state.pos).toBe(64)
   })
@@ -190,18 +233,15 @@ describe('parseExpression()', () => {
     const result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {
-          type: 'QuotedString',
-          value: 'hello',
-          quote: '\'',
-        },
-        {
-          type: 'QuotedString',
-          value: 'world',
-          quote: '"',
-        },
-      ],
+      items: [{
+        type: 'QuotedString',
+        value: 'hello',
+        quote: '\'',
+      }, {
+        type: 'QuotedString',
+        value: 'world',
+        quote: '"',
+      }],
     })
     expect(state.pos).toBe(15)
   })
@@ -212,10 +252,13 @@ describe('parseExpression()', () => {
     let result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {type: 'Identifier', value: 'bg'},
-        {type: 'Identifier', value: 'red'},
-      ],
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }, {
+        type: 'Identifier',
+        value: 'red',
+      }],
     })
     expect(state.pos).toBe(8)
 
@@ -224,10 +267,13 @@ describe('parseExpression()', () => {
     result = parseExpression(state)
     expect(result).toEqual({
       type: 'Expression',
-      items: [
-        {type: 'Identifier', value: 'bg'},
-        {type: 'Identifier', value: 'red'},
-      ],
+      items: [{
+        type: 'Identifier',
+        value: 'bg',
+      }, {
+        type: 'Identifier',
+        value: 'red',
+      }],
     })
     expect(state.pos).toBe(8)
   })
