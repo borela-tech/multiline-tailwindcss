@@ -11,10 +11,12 @@ scripts:
     rm -rf dist
     tsup-node
   lint: |
-    eslint \
-      packages/vite-plugin-multiline-tailwindcss/src \
-      --max-warnings 0 \
-      --report-unused-disable-directives
+     eslint \
+       lib \
+       packages/esbuild-plugin-multiline-tailwindcss/src \
+       packages/vite-plugin-multiline-tailwindcss/src \
+       --max-warnings 0 \
+       --report-unused-disable-directives
   publish: |
     nps build
     nps publish:esbuild-plugin

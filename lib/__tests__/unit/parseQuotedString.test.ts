@@ -1,7 +1,6 @@
 import {parseQuotedString} from '../../parser/parseQuotedString'
 import {State} from '../../parser/State'
 
-/* eslint-disable @stylistic/quotes */
 describe('parseQuotedString()', () => {
   it('parses single quoted strings', () => {
     const state: State = {input: "'hello world'", pos: 0}
@@ -47,4 +46,3 @@ describe('parseQuotedString()', () => {
     expect(state.pos).toBe(2)
   })
 })
-/* eslint-enable @stylistic/quotes */
