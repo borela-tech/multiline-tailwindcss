@@ -1,5 +1,11 @@
 import {State} from './State'
 
-export function peek(state: State): string {
-  return state.input[state.pos]
+export function peek(
+  state: State,
+  length = 1,
+): string {
+  return state.input.slice(
+    state.pos,
+    state.pos + length,
+  )
 }

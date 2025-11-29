@@ -133,6 +133,26 @@ transform the classes into a single line.
 </div>
 ```
 
+The parser supports `/* */` and `//` comments within multiline Tailwind class strings. For example:
+
+```jsx
+<div className="
+  bg-red-500
+  // This is a comment
+  text-white
+  /* Another comment */
+  p-4
+">
+  Content
+</div>
+
+// Becomes:
+
+<div className="bg-red-500 text-white p-4">
+  Content
+</div>
+```
+
 Alternatively, you can use the `tailwindcss` tag to transform string literals:
 
 ```js

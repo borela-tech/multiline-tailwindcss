@@ -25,8 +25,10 @@ scripts:
   publish:vite-plugin: |
     cd packages/vite-plugin-multiline-tailwindcss
     npm publish
-  test: jest --verbose
+  test: |
+    nps test:unit
+    nps test:integration
   test:integration: |
-    jest --verbose --testMatch=**/integration/**
+    jest --verbose --testMatch="**/integration/**/*.test.ts?(x)"
   test:unit: |
-    jest --verbose --testMatch=**/unit/**
+    jest --verbose --testMatch="**/unit/**/*.test.ts?(x)"

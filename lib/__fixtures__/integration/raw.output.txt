@@ -39,3 +39,9 @@ bg-[linear-gradient(to_right,theme(colors.zinc.900/50%),transparent)]
 [&>p]:text-gray-500
 
 [&_a]:text-black
+
+group-hover:before:opacity-100
+
+group-hover:before:bg-[linear-gradient(to_right,theme(colors.blue.500),transparent)]
+
+hover:[&>p]:text-gray-500
