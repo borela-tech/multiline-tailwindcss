@@ -4,8 +4,7 @@ import {next} from './next'
 import {parseExpression} from './parseExpression'
 import {peek} from './peek'
 import {PrefixType} from './PrefixType'
-import {skipComments} from './skipComments'
-import {skipWhitespace} from './skipWhitespace'
+import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
 import {State} from './State'
 
 export function parseBracketedExpression(
@@ -17,8 +16,7 @@ export function parseBracketedExpression(
   const expressions: ExpressionNode[] = []
 
   while (state.pos < state.input.length) {
-    skipWhitespace(state)
-    skipComments(state)
+    skipWhitespaceAndComments(state)
 
     if (peek(state) === ',') {
       next(state) // Skip ','

@@ -6,18 +6,16 @@ import {parseFunction} from './parseFunction'
 import {parseIdentifier} from './parseIdentifier'
 import {parseQuotedString} from './parseQuotedString'
 import {peek} from './peek'
-import {skipComments} from './skipComments'
-import {skipWhitespace} from './skipWhitespace'
+import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
 import {State} from './State'
 
 export function parseExpression(state: State): ExpressionNode {
   const items: AnyNode[] = []
 
   while (state.pos < state.input.length) {
-    skipWhitespace(state)
-    skipComments(state)
+    skipWhitespaceAndComments(state)
 
-    if (/[\s,)\]]/.test(peek(state)))
+    if (/[,)\]]/.test(peek(state)))
       break
 
     if (/['"]/.test(peek(state))) {
