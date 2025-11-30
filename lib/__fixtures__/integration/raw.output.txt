@@ -47,3 +47,5 @@ group-hover:before:bg-[linear-gradient(to_right,theme(colors.blue.500),transpare
 hover:[&>p]:text-gray-500
 
 animate-[wiggle_1s_ease-in-out_infinite]
+
+animate-[wiggle_1s_ease-in-out_infinite]
