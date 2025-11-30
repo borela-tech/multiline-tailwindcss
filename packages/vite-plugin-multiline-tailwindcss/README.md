@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="https://github.com/borela-tech/multiline-tailwindcss/actions">
-    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/ci.yml/badge.svg" alt="CI">
+    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/CI/badge.svg" alt="CI">
   </a>
 </p>
 
@@ -42,6 +42,21 @@
 npm install -D @borela-tech/vite-plugin-multiline-tailwindcss
 ```
 
+## TypeScript Configuration
+
+To get proper type support for the `tailwindcss` tagged template literal, add the
+package to your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "@borela-tech/vite-plugin-multiline-tailwindcss"
+    ]
+  }
+}
+```
+
 ## Vite Configuration
 
 Add the plugin to your Vite configuration:
@@ -61,7 +76,7 @@ export default defineConfig({
 })
 ```
 
-## Configuration
+## Plugin Configuration
 
 You can configure the plugin by passing options to the `multilineTailwindCss()` function.
 
@@ -89,7 +104,7 @@ Then, include this file in your main entry point, typically `main.tsx` or `index
 import './index.css'
 ```
 
-### Usage
+## Usage
 
 The plugin will search for the className attribute in your JSX/TSX files and 
 transform the classes into a single line.

@@ -189,4 +189,29 @@ describe('parseBracketedExpression()', () => {
     })
     expect(state.pos).toBe(10)
   })
+
+  it('parses animation with spaces', () => {
+    const state: State = {input: '[wiggle 1s ease-in-out infinite]', pos: 0}
+    const result = parseBracketedExpression(state)
+    expect(result).toEqual({
+      type: 'BracketedExpression',
+      value: [{
+        type: 'Expression',
+        items: [{
+          type: 'Identifier',
+          value: 'wiggle',
+        }, {
+          type: 'Identifier',
+          value: '1s',
+        }, {
+          type: 'Identifier',
+          value: 'ease-in-out',
+        }, {
+          type: 'Identifier',
+          value: 'infinite',
+        }],
+      }],
+    })
+    expect(state.pos).toBe(32)
+  })
 })

@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="https://github.com/borela-tech/multiline-tailwindcss/actions">
-    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/ci.yml/badge.svg" alt="CI">
+    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/CI/badge.svg" alt="CI">
   </a>
 </p>
 
@@ -32,7 +32,7 @@
 </p>
 
 <p align="center">
-  A <a href="https://vite.dev/">Vite</a> plugin that allows <a href="https://tailwindcss.com/">tailwindcss</a> 
+  An <a href="https://esbuild.github.io/">esbuild</a> plugin that allows <a href="https://tailwindcss.com/">tailwindcss</a> 
   classes to be broken into multiple lines.
 </p>
 
@@ -40,6 +40,21 @@
 
 ```bash
 npm install -D @borela-tech/esbuild-plugin-multiline-tailwindcss
+```
+
+## TypeScript Configuration
+
+To get proper type support for the `tailwindcss` tagged template literal, add the
+package to your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "types": [
+      "@borela-tech/esbuild-plugin-multiline-tailwindcss"
+    ]
+  }
+}
 ```
 
 ## TSUP
@@ -60,7 +75,7 @@ export default defineConfig(options => {
 })
 ```
 
-### Build
+## Build
 
 After building, a file `tailwindcss.candidates.json` will be generated which
 contains the candidates for the [tailwindcss][tailwindcss] classes that were
@@ -74,7 +89,7 @@ in their css file as follows:
 @source "../node_modules/some-package/**/tailwindcss.candidates.json";
 ```
 
-### Usage
+## Usage
 
 The plugin will search for the className attribute in your JSX/TSX files and
 transform the classes into a single line.
@@ -159,5 +174,15 @@ const BODY_CSS = tailwindcss`
 
 const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
 ```
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any
+improvements or bug fixes.
+
+## License
+
+This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE.md)
+file for details.
 
 [tailwindcss]: https://tailwindcss.com
