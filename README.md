@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="https://github.com/borela-tech/multiline-tailwindcss/actions">
-    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/ci.yml/badge.svg" alt="CI">
+    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/CI/badge.svg" alt="CI">
   </a>
 </p>
 
@@ -32,7 +32,7 @@
 </p>
 
 <p align="center">
-  A <a href="https://vite.dev/">Vite</a> plugin that allows <a href="https://tailwindcss.com/">tailwindcss</a> 
+  Plugins that allow <a href="https://tailwindcss.com/">tailwindcss</a> 
   classes to be broken into multiple lines.
 </p>
 
@@ -52,7 +52,7 @@ final CSS.
 Like the Vite plugin, it allows [tailwindcss][tailwindcss] classes to be broken
 into multiple lines. Works with [Tsup][tsup] or any project that uses [esbuild][esbuild].
 
-### Usage
+## Usage
 
 The plugin will search for the className attribute in your JSX/TSX files and
 transform the classes into a single line.
