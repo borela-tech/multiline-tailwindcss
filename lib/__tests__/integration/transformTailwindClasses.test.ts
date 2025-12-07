@@ -1,4 +1,4 @@
-import {loadRawExamples} from './loadRawExamples'
+import {loadRawExamples} from '../loadRawExamples'
 import {transformTailwindClasses} from '../../transformTailwindClasses'
 
 describe('transformTailwindClasses()', () => {

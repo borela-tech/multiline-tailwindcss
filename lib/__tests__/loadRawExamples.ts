@@ -9,18 +9,16 @@ interface RawExample {
 
 export function loadRawExamples(): RawExample[] {
   const inputPath = join(
-    __dirname,
-    '..',
-    '..',
+    process.cwd(),
+    'lib',
     '__fixtures__',
     'integration',
     'raw.input.txt',
   )
 
   const outputPath = join(
-    __dirname,
-    '..',
-    '..',
+    process.cwd(),
+    'lib',
     '__fixtures__',
     'integration',
     'raw.output.txt',

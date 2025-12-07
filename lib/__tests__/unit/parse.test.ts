@@ -191,7 +191,7 @@ describe('parse()', () => {
       /* unclosed comment
       text-blue-600
     `
-    expect(() => parse(input)).toThrow('Unclosed comment')
+    expect(() => parse(input)).toThrow(/Unclosed comment/)
   })
 
   it('parses input with comments inside brackets', () => {

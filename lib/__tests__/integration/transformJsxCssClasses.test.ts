@@ -1,5 +1,5 @@
 import {join} from 'node:path'
-import {loadRawExamples} from './loadRawExamples'
+import {loadRawExamples} from '../loadRawExamples'
 import {readFileSync} from 'node:fs'
 import {transformJsxCssClasses} from '../../transformJsxCssClasses'
 

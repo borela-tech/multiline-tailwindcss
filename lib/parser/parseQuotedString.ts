@@ -2,6 +2,7 @@ import {next} from './next'
 import {peek} from './peek'
 import {QuotedStringNode} from './QuotedStringNode'
 import {State} from './State'
+import {throwError} from './throwError'
 
 export function parseQuotedString(state: State): QuotedStringNode {
   const quote = next(state)
@@ -34,7 +35,7 @@ export function parseQuotedString(state: State): QuotedStringNode {
   }
 
   if (!closed)
-    throw new Error(`Unclosed quoted string starting at position ${state.pos}`)
+    throwError(state, 'Unclosed quoted string')
 
   return {
     type: 'QuotedString',
