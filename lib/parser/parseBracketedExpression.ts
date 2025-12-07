@@ -16,7 +16,8 @@ export function parseBracketedExpression(
   const expressions: ExpressionNode[] = []
 
   while (state.pos < state.input.length) {
-    skipWhitespaceAndComments(state)
+    if (skipWhitespaceAndComments(state))
+      continue
 
     if (peek(state) === ',') {
       next(state) // Skip ','

@@ -13,7 +13,8 @@ export function parseExpression(state: State): ExpressionNode {
   const items: AnyNode[] = []
 
   while (state.pos < state.input.length) {
-    skipWhitespaceAndComments(state)
+    if (skipWhitespaceAndComments(state))
+      continue
 
     if (/[,)\]]/.test(peek(state)))
       break

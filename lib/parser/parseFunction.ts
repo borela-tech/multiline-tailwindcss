@@ -16,17 +16,18 @@ export function parseFunction(
 
   const args: FunctionArg[] = []
   while (state.pos < state.input.length) {
-    skipWhitespaceAndComments(state)
+    if (skipWhitespaceAndComments(state))
+      continue
+
+    if (peek(state) === ',') {
+      next(state) // Skip ,
+      continue
+    }
 
     if (peek(state) === ')')
       break
 
     args.push(parseExpression(state))
-
-    skipWhitespaceAndComments(state)
-
-    if (peek(state) === ',')
-      next(state)
   }
 
   next(state) // Skip ')'

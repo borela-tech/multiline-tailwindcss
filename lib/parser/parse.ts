@@ -20,7 +20,6 @@ export function parse(input: string): AnyNode[] {
 
     if (peek(state) === ',') {
       next(state) // Skip ','
-      skipWhitespaceAndComments(state)
       continue
     }
 
