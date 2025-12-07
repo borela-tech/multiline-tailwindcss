@@ -18,6 +18,11 @@ export function parse(input: string): AnyNode[] {
     if (skipWhitespaceAndComments(state))
       continue
 
+    if (peek(state) === '_') {
+      next(state) // Skip '_'
+      continue
+    }
+
     if (peek(state) === ',') {
       next(state) // Skip ','
       continue
