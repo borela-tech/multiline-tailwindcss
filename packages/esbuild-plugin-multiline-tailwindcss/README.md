@@ -98,7 +98,7 @@ transform the classes into a single line.
 <div className="
   bg-[
     linear-gradient(
-      to_right,
+      to right,
       theme(colors.purple.600),
       theme(colors.purple.900),
     ),
@@ -107,17 +107,17 @@ transform the classes into a single line.
   <div className="
     bg-[
       linear-gradient(
-        to_right,
-        theme(colors.zinc.900/15%)_1px,
-        transparent_1px,
+        to right,
+        theme(colors.zinc.900/15%) 1px,
+        transparent 1px,
       ),
       linear-gradient(
-        to_top,
-        theme(colors.zinc.900/15%)_1px,
-        transparent_1px,
+        to top,
+        theme(colors.zinc.900/15%) 1px,
+        transparent 1px,
       ),
     ]
-    bg-[size:4px_4px]
+    bg-[size:4px 4px]
     p-4
   ">
     Some content
@@ -163,7 +163,7 @@ Alternatively, you can use the `tailwindcss` tag to transform string literals:
 const BODY_CSS = tailwindcss`
   bg-[
     linear-gradient(
-      to_right,
+      to right,
       theme(colors.purple.600),
       theme(colors.purple.900),
     ),
