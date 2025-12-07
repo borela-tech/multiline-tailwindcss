@@ -16,7 +16,13 @@ w-[calc(100%-2rem)]
 
 before:content-['[OK]']
 
-before:content-['[OK]']
+before:content-['\[OK\]']
+
+before:content-['Hello_World']
+
+before:content-['Hello\_World']
+
+before:content-['Hello\nWorld']
 
 hover:[mask-type:alpha]
 

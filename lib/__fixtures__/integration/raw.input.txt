@@ -18,6 +18,12 @@ before:content-['[OK]']
 
 before:content-['\[OK\]']
 
+before:content-['Hello World']
+
+before:content-['Hello\_World']
+
+before:content-['Hello\nWorld']
+
 hover:[mask-type:alpha]
 
 hover:bg-[rgb(255,0,0)]
