@@ -7,7 +7,7 @@ describe('parseQuotedString()', () => {
     const result = parseQuotedString(state)
     expect(result).toEqual({
       type: 'QuotedString',
-      value: 'hello world',
+      value: 'hello_world',
       quote: "'",
     })
     expect(state.pos).toBe(13)
@@ -18,7 +18,7 @@ describe('parseQuotedString()', () => {
     const result = parseQuotedString(state)
     expect(result).toEqual({
       type: 'QuotedString',
-      value: 'hello world',
+      value: 'hello_world',
       quote: '"',
     })
     expect(state.pos).toBe(13)
@@ -29,10 +29,21 @@ describe('parseQuotedString()', () => {
     const result = parseQuotedString(state)
     expect(result).toEqual({
       type: 'QuotedString',
-      value: "hello 'world'",
+      value: "hello_'world'",
       quote: "'",
     })
     expect(state.pos).toBe(17)
+  })
+
+  it('parses quoted strings with escaped underscore', () => {
+    const state: State = {input: "'hello\\_world'", pos: 0}
+    const result = parseQuotedString(state)
+    expect(result).toEqual({
+      type: 'QuotedString',
+      value: 'hello\\_world',
+      quote: "'",
+    })
+    expect(state.pos).toBe(14)
   })
 
   it('handles empty quoted strings', () => {
