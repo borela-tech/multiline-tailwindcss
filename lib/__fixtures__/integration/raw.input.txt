@@ -68,6 +68,8 @@ bg-[
   &>p
 ]:text-gray-500
 
+[& a]:text-black
+
 [&_a]:text-black
 
 group-hover:before:opacity-100
