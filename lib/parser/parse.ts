@@ -11,8 +11,12 @@ export function parse(input: string): AnyNode[] {
   const ast: AnyNode[] = []
   const state: State = {input, pos: 0}
 
+  let node: AnyNode | undefined = undefined
+  let prefix: AnyNode | undefined = undefined
+
   while (state.pos < state.input.length) {
-    skipWhitespaceAndComments(state)
+    if (skipWhitespaceAndComments(state))
+      continue
 
     if (peek(state) === ',') {
       next(state) // Skip ','
@@ -20,39 +24,30 @@ export function parse(input: string): AnyNode[] {
       continue
     }
 
-    let node =
-      peek(state) === '['
-        ? parseBracketedExpression(state)
-        : parseIdentifierNode(state)
+    node = peek(state) === '['
+      ? parseBracketedExpression(state)
+      : parseIdentifierNode(state)
 
-    while (peek(state) === ':') {
-      next(state)
-      const prefix = node
-      node = peek(state) === '['
-        ? parseBracketedExpression(state)
-        : parseIdentifierNode(state)
+    if (prefix)
       node.prefix = prefix
+
+    if (node.type === 'Identifier') {
+      if (peek(state) === '(')
+        node = parseFunction(state, node.value, node.prefix)
+      else if (peek(state) === '[')
+        node = parseBracketedExpression(state, node)
     }
 
-    if (node.type === 'BracketedExpression') {
-      ast.push(node)
+    if (peek(state) === ':') {
+      next(state) // Skip ':'
+      prefix = node
+      node = undefined
       continue
     }
-
-    if (peek(state) === '[') {
-      ast.push(parseBracketedExpression(state, node))
-      continue
-    }
-
-    if (peek(state) === '(') {
-      ast.push(parseFunction(state, node.value, node.prefix))
-      continue
-    }
-
-    if (node.type === 'Identifier' && node.value === '')
-      continue
 
     ast.push(node)
+    node = undefined
+    prefix = undefined
   }
 
   return ast
