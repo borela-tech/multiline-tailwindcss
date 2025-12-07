@@ -66,4 +66,6 @@ group-focus-visible:group-aria-[disabled=false]:opacity-100
 
 lg:[&:nth-child(3)]:hover:underline
 
+some bogus class
+
 some\_bogus\_class

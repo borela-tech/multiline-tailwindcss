@@ -28,11 +28,12 @@ describe('transformTaggedStrings()', () => {
     const exampleLabel = index == examples.length - 1
       ? 'All examples combined'
       : `${example.input}`
-    it(`transforms tagged template strings correctly: ${exampleLabel}`, () => {
+    it(`transforms tagged template strings correctly: #${index} ${exampleLabel}`, () => {
       const indentedInput = example.input
         .split('\n')
         .map(line => '  ' + line)
         .join('\n')
+        .replace(/\\/g, '\\\\')
       const escapedOutput = example.output
         .replace(/\\/g, '\\\\')
         .replace(/"/g, '\\"')

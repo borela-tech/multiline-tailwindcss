@@ -31,8 +31,8 @@ export function transformTaggedStrings(code: string) {
       if (quasis.length !== 1)
         throw new Error('Tailwind tagged template should have exactly one argument.')
 
-      const rawString = quasis[0].value.raw
-      const transformed = transformTailwindClasses(rawString)
+      const value = quasis[0].value.cooked || ''
+      const transformed = transformTailwindClasses(value)
       const filtered = transformed
         .split(' ')
         .filter(Boolean)

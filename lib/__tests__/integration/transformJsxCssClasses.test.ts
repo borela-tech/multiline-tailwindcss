@@ -28,7 +28,7 @@ describe('transformJsxCssClasses()', () => {
     const exampleLabel = index == examples.length - 1
       ? 'All examples combined'
       : `${example.input}`
-    it(`transforms JSX CSS classes correctly: ${exampleLabel}`, () => {
+    it(`transforms JSX CSS classes correctly: #${index} ${exampleLabel}`, () => {
       const indentedEscapedInput = example.input
         .split('\n')
         .map(line => '          ' + line)
