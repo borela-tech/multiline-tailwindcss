@@ -382,4 +382,54 @@ describe('parse()', () => {
       },
     }])
   })
+
+  it('parses identifier-bracketed prefix like group-aria-[disabled=false]', () => {
+    const input = 'group-aria-[disabled=false]:opacity-100'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'opacity-100',
+      prefix: {
+        type: 'BracketedExpression',
+        value: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'disabled=false',
+          }],
+        }],
+        prefix: {
+          type: 'Identifier',
+          value: 'group-aria-',
+        },
+      },
+    }])
+  })
+
+  it('parses chained prefixes with identifier-bracketed prefix', () => {
+    const input = 'group-hover:group-aria-[disabled=false]:opacity-100'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'opacity-100',
+      prefix: {
+        type: 'BracketedExpression',
+        value: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'disabled=false',
+          }],
+        }],
+        prefix: {
+          type: 'Identifier',
+          value: 'group-aria-',
+          prefix: {
+            type: 'Identifier',
+            value: 'group-hover',
+          },
+        },
+      },
+    }])
+  })
 })

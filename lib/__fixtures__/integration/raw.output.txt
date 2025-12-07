@@ -14,7 +14,9 @@ w-[100%]
 
 w-[calc(100%-2rem)]
 
-before:content-['\[OK\]']
+before:content-['[OK]']
+
+before:content-['[OK]']
 
 hover:[mask-type:alpha]
 
@@ -49,3 +51,7 @@ hover:[&>p]:text-gray-500
 animate-[wiggle_1s_ease-in-out_infinite]
 
 animate-[wiggle_1s_ease-in-out_infinite]
+
+group-aria-[disabled=false]:opacity-100
+
+group-focus-visible:group-aria-[disabled=false]:opacity-100
