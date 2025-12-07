@@ -2,7 +2,7 @@ absolute
 
 !border-purple-600
 
-content-['Hello "world"']
+content-['Hello_"world"']
 
 flex
 
