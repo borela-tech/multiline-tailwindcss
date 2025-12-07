@@ -29,7 +29,7 @@ describe('parseQuotedString()', () => {
     const result = parseQuotedString(state)
     expect(result).toEqual({
       type: 'QuotedString',
-      value: "hello \\'world\\'",
+      value: "hello 'world'",
       quote: "'",
     })
     expect(state.pos).toBe(17)

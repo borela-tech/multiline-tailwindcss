@@ -10,7 +10,7 @@ export function parseQuotedString(state: State): QuotedStringNode {
     const ch = next(state)
 
     if (ch === '\\') {
-      value += ch + next(state)
+      value += next(state)
       continue
     }
 

@@ -33,10 +33,8 @@ describe('transformJsxCssClasses()', () => {
         .split('\n')
         .map(line => '          ' + line)
         .join('\n')
-        .replace(/\\/g, '\\\\')
         .replace(/"/g, '&quot;')
       const escapedOutput = example.output
-        .replace(/\\/g, '\\\\')
         .replace(/"/g, '&quot;')
       const preparedInput = inputTemplate.replace('{{CSS_CONTENT}}', indentedEscapedInput)
       const preparedOutput = outputTemplate.replace('{{CSS_CONTENT}}', escapedOutput)
