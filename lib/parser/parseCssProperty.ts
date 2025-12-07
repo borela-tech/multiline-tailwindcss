@@ -1,13 +1,13 @@
+import {AnyNode} from './AnyNode'
 import {CssPropertyNode} from './CssPropertyNode'
 import {next} from './next'
 import {parseExpression} from './parseExpression'
-import {PrefixType} from './PrefixType'
 import {State} from './State'
 
 export function parseCssProperty(
   state: State,
   name: string,
-  prefix?: PrefixType,
+  prefix?: AnyNode,
 ): CssPropertyNode {
   next(state) // Skip ':'
   const value = parseExpression(state)

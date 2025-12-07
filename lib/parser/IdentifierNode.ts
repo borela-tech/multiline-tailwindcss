@@ -1,7 +1,7 @@
-import {PrefixType} from './PrefixType'
+import {AnyNode} from './AnyNode'
 
 export interface IdentifierNode {
-  prefix?: PrefixType
+  prefix?: AnyNode
   type: 'Identifier'
   value: string
 }

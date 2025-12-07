@@ -1,16 +1,16 @@
+import {AnyNode} from './AnyNode'
 import {FunctionArg} from './FunctionArg'
 import {FunctionNode} from './FunctionNode'
 import {next} from './next'
 import {parseExpression} from './parseExpression'
 import {peek} from './peek'
-import {PrefixType} from './PrefixType'
 import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
 import {State} from './State'
 
 export function parseFunction(
   state: State,
   name: string,
-  prefix?: PrefixType,
+  prefix?: AnyNode,
 ): FunctionNode {
   next(state) // Skip '('
 

@@ -1,5 +1,5 @@
+import {AnyNode} from '../../parser/AnyNode'
 import {parseFunction} from '../../parser/parseFunction'
-import {PrefixType} from '../../parser/PrefixType'
 import {State} from '../../parser/State'
 
 describe('parseFunction()', () => {
@@ -59,7 +59,7 @@ describe('parseFunction()', () => {
 
   it('parses function with prefix', () => {
     const state: State = {input: '(arg)', pos: 0}
-    const prefix = {type: 'Identifier', value: 'before'} as PrefixType
+    const prefix = {type: 'Identifier', value: 'before'} as AnyNode
     const result = parseFunction(state, 'test', prefix)
     expect(result).toEqual({
       type: 'Function',

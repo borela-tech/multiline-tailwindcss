@@ -1,15 +1,15 @@
+import {AnyNode} from './AnyNode'
 import {BracketedExpression} from './BracketedExpression'
 import {ExpressionNode} from './ExpressionNode'
 import {next} from './next'
 import {parseExpression} from './parseExpression'
 import {peek} from './peek'
-import {PrefixType} from './PrefixType'
 import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
 import {State} from './State'
 
 export function parseBracketedExpression(
   state: State,
-  prefix?: PrefixType,
+  prefix?: AnyNode,
 ): BracketedExpression {
   next(state) // Skip '['
 
