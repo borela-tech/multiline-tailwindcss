@@ -71,16 +71,16 @@ transform the classes into a single line.
     bg-[
       linear-gradient(
         to right,
-        theme(colors.zinc.900/15%)_1px,
-        transparent_1px,
+        theme(colors.zinc.900/15%) 1px,
+        transparent 1px,
       ),
       linear-gradient(
         to top,
-        theme(colors.zinc.900/15%)_1px,
-        transparent_1px,
+        theme(colors.zinc.900/15%) 1px,
+        transparent 1px,
       ),
     ]
-    bg-[size:4px_4px]
+    bg-[size:4px 4px]
     p-4
   ">
     Some content

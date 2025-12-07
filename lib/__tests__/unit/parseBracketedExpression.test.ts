@@ -1,5 +1,5 @@
+import {AnyNode} from '../../parser/AnyNode'
 import {parseBracketedExpression} from '../../parser/parseBracketedExpression'
-import {PrefixType} from '../../parser/PrefixType'
 import {State} from '../../parser/State'
 
 describe('parseBracketedExpression()', () => {
@@ -24,7 +24,7 @@ describe('parseBracketedExpression()', () => {
     const prefix = {
       type: 'Identifier',
       value: 'test',
-    } as PrefixType
+    } as AnyNode
     const result = parseBracketedExpression(state, prefix)
     expect(result).toEqual({
       type: 'BracketedExpression',

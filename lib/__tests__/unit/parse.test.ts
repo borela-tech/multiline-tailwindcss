@@ -191,7 +191,7 @@ describe('parse()', () => {
       /* unclosed comment
       text-blue-600
     `
-    expect(() => parse(input)).toThrow('Unclosed comment')
+    expect(() => parse(input)).toThrow(/Unclosed comment/)
   })
 
   it('parses input with comments inside brackets', () => {
@@ -378,6 +378,56 @@ describe('parse()', () => {
               value: 'hover',
             }],
           }],
+        },
+      },
+    }])
+  })
+
+  it('parses identifier-bracketed prefix like group-aria-[disabled=false]', () => {
+    const input = 'group-aria-[disabled=false]:opacity-100'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'opacity-100',
+      prefix: {
+        type: 'BracketedExpression',
+        value: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'disabled=false',
+          }],
+        }],
+        prefix: {
+          type: 'Identifier',
+          value: 'group-aria-',
+        },
+      },
+    }])
+  })
+
+  it('parses chained prefixes with identifier-bracketed prefix', () => {
+    const input = 'group-hover:group-aria-[disabled=false]:opacity-100'
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'opacity-100',
+      prefix: {
+        type: 'BracketedExpression',
+        value: [{
+          type: 'Expression',
+          items: [{
+            type: 'Identifier',
+            value: 'disabled=false',
+          }],
+        }],
+        prefix: {
+          type: 'Identifier',
+          value: 'group-aria-',
+          prefix: {
+            type: 'Identifier',
+            value: 'group-hover',
+          },
         },
       },
     }])

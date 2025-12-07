@@ -41,7 +41,8 @@ export function transformJsxCssClasses(code: string) {
 
       candidatesFound.push(...filtered)
 
-      value.value = filtered.join(' ')
+      value.extra ||= {}
+      value.extra.raw = `"${filtered.join(' ')}"`
     },
   })
 

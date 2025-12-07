@@ -2,7 +2,7 @@ absolute
 
 !border-purple-600
 
-content-['Hello "world"']
+content-['Hello_"world"']
 
 flex
 
@@ -14,7 +14,15 @@ w-[100%]
 
 w-[calc(100%-2rem)]
 
+before:content-['[OK]']
+
 before:content-['\[OK\]']
+
+before:content-['Hello_World']
+
+before:content-['Hello\_World']
+
+before:content-['Hello\nWorld']
 
 hover:[mask-type:alpha]
 
@@ -40,6 +48,8 @@ bg-[linear-gradient(to_right,theme(colors.zinc.900/50%),transparent)]
 
 [&_a]:text-black
 
+[&_a]:text-black
+
 group-hover:before:opacity-100
 
 group-hover:before:bg-[linear-gradient(to_right,theme(colors.blue.500),transparent)]
@@ -49,3 +59,11 @@ hover:[&>p]:text-gray-500
 animate-[wiggle_1s_ease-in-out_infinite]
 
 animate-[wiggle_1s_ease-in-out_infinite]
+
+group-aria-[disabled=false]:opacity-100
+
+group-focus-visible:group-aria-[disabled=false]:opacity-100
+
+lg:[&:nth-child(3)]:hover:underline
+
+some\_bogus\_class

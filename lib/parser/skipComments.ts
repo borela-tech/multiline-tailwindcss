@@ -1,6 +1,7 @@
 import {next} from './next'
 import {peek} from './peek'
 import {State} from './State'
+import {throwError} from './throwError'
 
 function skipLineComment(state: State) {
   next(state) // Skip /
@@ -29,7 +30,7 @@ function skipBlockComment(state: State) {
   }
 
   if (!closed)
-    throw new Error('Unclosed comment')
+    throwError(state, 'Unclosed comment')
 }
 
 function skipHashComment(state: State) {

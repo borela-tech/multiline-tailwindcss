@@ -14,7 +14,15 @@ w-[100%]
 
 w-[calc(100%-2rem)]
 
+before:content-['[OK]']
+
 before:content-['\[OK\]']
+
+before:content-['Hello World']
+
+before:content-['Hello\_World']
+
+before:content-['Hello\nWorld']
 
 hover:[mask-type:alpha]
 
@@ -60,6 +68,8 @@ bg-[
   &>p
 ]:text-gray-500
 
+[& a]:text-black
+
 [&_a]:text-black
 
 group-hover:before:opacity-100
@@ -82,3 +92,11 @@ animate-[
   ease-in-out
   infinite
 ]
+
+group-aria-[disabled=false]:opacity-100
+
+group-focus-visible:group-aria-[disabled=false]:opacity-100
+
+lg:[&:nth-child(3)]:hover:underline
+
+some\_bogus\_class
