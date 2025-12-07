@@ -25,11 +25,10 @@ describe('transformJsxCssClasses()', () => {
   const outputTemplate = readFileSync(outputFixturePath, 'utf8')
 
   for (const [index, example] of examples.entries()) {
-    if (index != 2)
-      continue
-    it(`transforms JSX CSS classes correctly. Example #${index + 1}`, () => {
-      console.log(`Running example #${index + 1}`)
-
+    const exampleLabel = index == examples.length - 1
+      ? 'All examples combined'
+      : `${example.input}`
+    it(`transforms JSX CSS classes correctly: ${exampleLabel}`, () => {
       const indentedEscapedInput = example.input
         .split('\n')
         .map(line => '          ' + line)
