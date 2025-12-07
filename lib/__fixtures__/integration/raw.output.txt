@@ -63,3 +63,5 @@ animate-[wiggle_1s_ease-in-out_infinite]
 group-aria-[disabled=false]:opacity-100
 
 group-focus-visible:group-aria-[disabled=false]:opacity-100
+
+lg:[&:nth-child(3)]:hover:underline
