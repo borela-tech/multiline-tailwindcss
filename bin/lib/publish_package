@@ -1,6 +1,6 @@
 #!/usr/bin/env -S bash -e -o pipefail
 
-while [ $# -gt 0 ]; do
+while [[ $# -gt 0 ]]; do
   case $1 in
     --path)
       path=$(realpath "$2")
@@ -13,7 +13,7 @@ while [ $# -gt 0 ]; do
   esac
 done
 
-if [ -z "$path" ]; then
+if [[ -z "$path" ]]; then
   echo 'Missing --path argument'
   exit 1
 fi
@@ -23,7 +23,7 @@ pushd "$SCRIPT_DIR" > /dev/null
 
 published=$(./is_package_published --path "$path")
 
-if [ "$published" = 'no' ]; then
+if [[ "$published" == 'no' ]]; then
   pushd "$path" > /dev/null
   npm publish
   popd > /dev/null
