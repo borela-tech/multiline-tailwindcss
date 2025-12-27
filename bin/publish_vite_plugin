@@ -1,0 +1,8 @@
+#!/usr/bin/env -S bash -e -o pipefail
+
+SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
+pushd "$SCRIPT_DIR/.." > /dev/null
+
+./bin/lib/publish_package --path packages/vite-plugin-multiline-tailwindcss
+
+popd > /dev/null

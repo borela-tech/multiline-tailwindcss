@@ -1,0 +1,10 @@
+#!/usr/bin/env -S bash -e -o pipefail
+
+SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
+pushd "$SCRIPT_DIR" > /dev/null
+
+./build
+./publish_esbuild_plugin
+./publish_vite_plugin
+
+popd > /dev/null

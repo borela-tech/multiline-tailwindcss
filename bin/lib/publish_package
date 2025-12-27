@@ -1,0 +1,34 @@
+#!/usr/bin/env -S bash -e -o pipefail
+
+while [ $# -gt 0 ]; do
+  case $1 in
+    --path)
+      path=$(realpath "$2")
+      shift 2
+      ;;
+    *)
+      echo "Usage: $0 --path <package-directory>"
+      exit 1
+      ;;
+  esac
+done
+
+if [ -z "$path" ]; then
+  echo 'Missing --path argument'
+  exit 1
+fi
+
+SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
+pushd "$SCRIPT_DIR" > /dev/null
+
+published=$(./is_package_published --path "$path")
+
+if [ "$published" = 'no' ]; then
+  pushd "$path" > /dev/null
+  npm publish
+  popd > /dev/null
+else
+  echo "Package already published: $path"
+fi
+
+pushd > /dev/null

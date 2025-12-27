@@ -1,0 +1,8 @@
+#!/usr/bin/env -S bash -e -o pipefail
+
+SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
+pushd "$SCRIPT_DIR/.." > /dev/null
+
+npx jest --verbose --testMatch="**/unit/**/*.test.ts?(x)"
+
+popd > /dev/null

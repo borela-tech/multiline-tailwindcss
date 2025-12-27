@@ -16,5 +16,5 @@ jobs:
         node-version: '23.11.0'
         cache: 'npm'
     - run: npm install
-    - run: npx nps test
-    - run: npx nps lint
+    - run: ./bin/lint
+    - run: ./bin/test

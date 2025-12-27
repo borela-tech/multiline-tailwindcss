@@ -1,0 +1,32 @@
+#!/usr/bin/env -S bash -e -o pipefail
+
+while [ $# -gt 0 ]; do
+  case $1 in
+    --path)
+      path=$(realpath "$2")
+      shift 2
+      ;;
+    *)
+      echo "Usage: $0 --path <path>"
+      exit 1
+      ;;
+  esac
+done
+
+if [ -z "$path" ]; then
+  echo 'Missing --path argument'
+  exit 1
+fi
+
+pushd "$path" > /dev/null
+
+package_name=$(node -p 'require("./package.json").name')
+version=$(node -p 'require("./package.json").version')
+
+if npm view "$package_name@$version" version > /dev/null 2>&1; then
+  echo 'yes'
+else
+  echo 'no'
+fi
+
+popd > /dev/null
