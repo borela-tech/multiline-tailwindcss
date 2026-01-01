@@ -1,7 +1,6 @@
 import {Plugin} from 'vite'
 import {Scanner} from '@tailwindcss/oxide'
 import {SharedState} from './SharedState'
-
 import {
   compile,
   toSourceMap,

@@ -1,6 +1,6 @@
 import {join} from 'node:path'
-import {readFileSync} from 'node:fs'
 import {prepareRawExample} from './prepareRawExample'
+import {readFileSync} from 'node:fs'
 
 interface RawExample {
   input: string

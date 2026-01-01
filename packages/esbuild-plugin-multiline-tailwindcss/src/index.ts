@@ -1,9 +1,9 @@
 import '@/lib/tailwindcss'
 import * as fs from 'node:fs'
 import path from 'node:path'
-import {BuildResult, Plugin} from 'esbuild'
 import {transformJsxCssClasses} from '@/lib/transformJsxCssClasses'
 import {transformTaggedStrings} from '@/lib/transformTaggedStrings'
+import {BuildResult, Plugin} from 'esbuild'
 
 const blue = (text: string) => `\x1b[34m${text}\x1b[0m`
 const red = (text: string) => `\x1b[31m${text}\x1b[0m`

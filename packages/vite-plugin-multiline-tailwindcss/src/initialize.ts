@@ -1,10 +1,10 @@
+import {Plugin} from 'vite'
+import {SharedState} from './SharedState'
 import {
   dirname,
   join,
   resolve,
 } from 'node:path'
-import {Plugin} from 'vite'
-import {SharedState} from './SharedState'
 
 export function initialize(state: SharedState): Plugin {
   return {
