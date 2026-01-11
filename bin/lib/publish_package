@@ -7,14 +7,14 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     *)
-      echo "Usage: $0 --path <package-directory>"
+      echo "Usage: $0 --path <package-directory>" >&2
       exit 1
       ;;
   esac
 done
 
 if [[ -z "$path" ]]; then
-  echo 'Missing --path argument'
+  echo 'Missing --path argument' >&2
   exit 1
 fi
 
