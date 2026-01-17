@@ -185,6 +185,25 @@ describe('parse()', () => {
     }])
   })
 
+  it('parses input with multiline block comments', () => {
+    const input = `
+      bg-red-500,
+      /**
+       * This is a multiline
+       * block comment
+       */
+      text-blue-600
+    `
+    const ast = parse(input)
+    expect(ast).toEqual([{
+      type: 'Identifier',
+      value: 'bg-red-500',
+    }, {
+      type: 'Identifier',
+      value: 'text-blue-600',
+    }])
+  })
+
   it('throws error for unclosed block comment', () => {
     const input = `
       bg-red-500,
