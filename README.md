@@ -36,6 +36,17 @@
   classes to be broken into multiple lines.
 </p>
 
+## Table of Contents
+
+- [Vite](#vite)
+- [ESBuild](#esbuild)
+- [Usage](#usage)
+- [Features](#features)
+  - [Spaces](#spaces)
+  - [Comments](#comments)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Vite
 
 [Vite Plugin][vite-plugin] for [Vite][vite] that allows you to break [tailwindcss][tailwindcss]
@@ -43,8 +54,8 @@ classes into multiple lines.
 
 ## ESBuild
 
-[This plugin][esbuild-plugin] is useful for creating packages — like UI libraries
-— that depend on [tailwindcss][tailwindcss]. It generates a `tailwindcss.candidates.json`
+[This plugin][esbuild-plugin] is useful for creating packages, like UI libraries,
+ that depend on [tailwindcss][tailwindcss]. It generates a `tailwindcss.candidates.json`
 file, which lists all Tailwind classes used in the package. Other projects can
 then import this file to ensure those classes are included when generating the
 final CSS.
@@ -118,7 +129,9 @@ const BODY_CSS = tailwindcss`
 const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
 ```
 
-## Spaces
+## Features
+
+### Spaces
 
 Tailwind requires underscores (`_`) in place of spaces within arbitrary values.
 With this plugin, you can write spaces directly, and they will be automatically
@@ -136,7 +149,7 @@ converted to underscores:
 </div>
 ```
 
-## Comments
+### Comments
 
 The plugin supports `/* */` and `//` comments within multiline class strings:
 

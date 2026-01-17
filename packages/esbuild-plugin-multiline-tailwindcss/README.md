@@ -19,9 +19,15 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/borela-tech/multiline-tailwindcss/actions">
-    <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/CI/badge.svg" alt="CI">
-  </a>
+   <a href="https://github.com/borela-tech/multiline-tailwindcss/actions">
+     <img src="https://github.com/borela-tech/multiline-tailwindcss/workflows/CI/badge.svg" alt="CI">
+   </a>
+   <a href="https://www.npmjs.com/package/@borela-tech/esbuild-plugin-multiline-tailwindcss">
+     <img src="https://img.shields.io/npm/v/@borela-tech/esbuild-plugin-multiline-tailwindcss" alt="npm version">
+   </a>
+   <a href="https://github.com/borela-tech/multiline-tailwindcss/blob/main/LICENSE.md">
+     <img src="https://img.shields.io/npm/l/@borela-tech/esbuild-plugin-multiline-tailwindcss" alt="license">
+   </a>
 </p>
 
 <p align="center">
@@ -35,6 +41,19 @@
   An <a href="https://esbuild.github.io/">esbuild</a> plugin that allows <a href="https://tailwindcss.com/">tailwindcss</a> 
   classes to be broken into multiple lines.
 </p>
+
+## Table of Contents
+
+- [Installation](#installation)
+- [TypeScript Configuration](#typescript-configuration)
+- [TSUP](#tsup)
+- [Build](#build)
+- [Usage](#usage)
+- [Features](#features)
+  - [Spaces](#spaces)
+  - [Comments](#comments)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
@@ -155,7 +174,9 @@ const BODY_CSS = tailwindcss`
 const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
 ```
 
-## Spaces
+## Features
+
+### Spaces
 
 Tailwind requires underscores (`_`) in place of spaces within arbitrary values.
 With this plugin, you can write spaces directly, and they will be automatically
@@ -173,7 +194,7 @@ converted to underscores:
 </div>
 ```
 
-## Comments
+### Comments
 
 The plugin supports `/* */` and `//` comments within multiline class strings:
 
