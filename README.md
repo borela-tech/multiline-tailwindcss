@@ -96,20 +96,6 @@ transform the classes into a single line.
 </div>
 ```
 
-The parser supports `/* */` and `//` comments within multiline Tailwind class strings. For example:
-
-```jsx
-<div className="
-  bg-red-500
-  // This is a comment
-  text-white
-  /* Another comment */
-  p-4
-">
-  Content
-</div>
-```
-
 Alternatively, you can use the `tailwindcss` tag to transform string literals:
 
 ```js
@@ -130,6 +116,48 @@ const BODY_CSS = tailwindcss`
 // Becomes:
 
 const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
+```
+
+## Spaces
+
+Tailwind requires underscores (`_`) in place of spaces within arbitrary values.
+With this plugin, you can write spaces directly, and they will be automatically
+converted to underscores:
+
+```jsx
+<div className="bg-[size:4px 4px]">
+  Content
+</div>
+
+// Becomes:
+
+<div className="bg-[size:4px_4px]">
+  Content
+</div>
+```
+
+## Comments
+
+The plugin supports `/* */` and `//` comments within multiline class strings:
+
+```jsx
+<div className="
+  bg-red-500
+  // This is a comment
+  text-white
+  /**
+   * Another comment
+   */
+  p-4
+">
+  Content
+</div>
+
+// Becomes:
+
+<div className="bg-red-500 text-white p-4">
+  Content
+</div>
 ```
 
 ## Contributing
