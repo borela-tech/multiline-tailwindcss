@@ -12,14 +12,12 @@ describe('error reporting', () => {
          Unclosed comment
     `)
 
-    let error: Error | undefined
     try {
       transformJsxCssClasses(code)
     } catch (e) {
-      error = e as Error
+      const error = e as Error
+      expect(error).toBeDefined()
+      expect(error.message).toBe(expected)
     }
-
-    expect(error).toBeDefined()
-    expect(error!.message).toBe(expected)
   })
 })

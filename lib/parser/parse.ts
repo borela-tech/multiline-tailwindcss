@@ -5,14 +5,15 @@ import {parseIdentifierNode} from './parseIdentifierNode'
 import {peek} from './peek'
 import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
 import type {AnyNode} from './AnyNode'
+import type {MaybeNode} from './MaybeNode'
 import type {State} from './State'
 
 export function parse(input: string): AnyNode[] {
   const ast: AnyNode[] = []
   const state: State = {input, pos: 0}
 
-  let node: AnyNode | undefined = undefined
-  let prefix: AnyNode | undefined = undefined
+  let node: MaybeNode = undefined
+  let prefix: MaybeNode = undefined
 
   while (state.pos < state.input.length) {
     if (skipWhitespaceAndComments(state))

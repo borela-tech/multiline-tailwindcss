@@ -1,6 +1,9 @@
 {
   "private": true,
   "name": "@borela-tech/multiline-tailwindcss-root",
+  "scripts": {
+    "test": "./bin/test"
+  },
   "workspaces": [
     "packages/esbuild-plugin-multiline-tailwindcss",
     "packages/vite-plugin-multiline-tailwindcss"
