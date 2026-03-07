@@ -8,6 +8,9 @@ export default defineConfig(options => {
     entry: {
       index: 'src/index.ts',
     },
+    deps: {
+      skipNodeModulesBundle: true,
+    },
     format: ['esm'],
     splitting: false,
     sourcemap: true,
