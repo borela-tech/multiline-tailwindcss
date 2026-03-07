@@ -2,6 +2,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "scripts": {
+    "build": "../../bin/build_vite_plugin",
+    "typecheck": "../../bin/typecheck_vite_plugin"
+  },
   "name": "@borela-tech/vite-plugin-multiline-tailwindcss",
   "version": "2.5.1",
   "description": "Allows tailwindcss classes to be broken into multiple lines.",
