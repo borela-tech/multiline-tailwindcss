@@ -4,6 +4,6 @@ SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
 pushd "$SCRIPT_DIR/.." > /dev/null
 
 cd packages/esbuild-plugin-multiline-tailwindcss
-npx tsup
+npx tsdown
 
 popd > /dev/null
