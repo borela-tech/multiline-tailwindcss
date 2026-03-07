@@ -25,7 +25,7 @@ export function transformTaggedStringsPlugin(state: SharedState) {
           code: transformedCode,
           map: transformedCodeMap,
         },
-      } = transformTaggedStrings(code)
+      } = transformTaggedStrings(code, id)
 
       candidatesPerId.set(id, candidatesFound)
 

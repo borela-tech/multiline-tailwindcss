@@ -58,8 +58,8 @@ export const multilineTailwindCssPlugin: Plugin = {
       )
     })
 
-    build.onLoad({filter: /.[jt]sx?/}, async ({path}) => {
-      const buffer = await fs.promises.readFile(path)
+    build.onLoad({filter: /.[jt]sx?/}, async ({path: filePath}) => {
+      const buffer = await fs.promises.readFile(filePath)
       const rawContents = buffer.toString()
 
       const {
@@ -67,14 +67,14 @@ export const multilineTailwindCssPlugin: Plugin = {
         transformedCode: {
           code: transformedJsx,
         },
-      } = transformJsxCssClasses(rawContents)
+      } = transformJsxCssClasses(rawContents, filePath)
 
       const {
         candidatesFound: candidatesInTaggedStrings,
         transformedCode: {
           code: transformedTaggedStrings,
         },
-      } = transformTaggedStrings(transformedJsx)
+      } = transformTaggedStrings(transformedJsx, filePath)
 
       collectedCandidates.push(
         ...candidatesInJsx,
@@ -82,7 +82,7 @@ export const multilineTailwindCssPlugin: Plugin = {
       )
 
       const LOADER =
-        /\.tsx?$/.test(path)
+        /\.tsx?$/.test(filePath)
           ? 'tsx'
           : 'jsx'
 

@@ -1,19 +1,23 @@
 import * as t from '@babel/types'
 import {generate} from './babel/generate'
-import {NodePath} from '@babel/traverse'
-import {parse} from '@babel/parser'
+import {parseSync} from '@babel/core'
 import {transformTailwindClasses} from './transformTailwindClasses'
 import {traverse} from './babel/traverse'
+import type {NodePath} from '@babel/traverse'
 
-export function transformTaggedStrings(code: string) {
+export function transformTaggedStrings(code: string, filePath?: string) {
   const candidatesFound: string[] = []
-  const ast = parse(code, {
-    sourceType: 'module',
-    plugins: [
-      'jsx',
-      'typescript',
+
+  const ast = parseSync(code, {
+    filename: filePath || 'file.tsx',
+    presets: [
+      '@babel/preset-react',
+      '@babel/preset-typescript',
     ],
-  })
+    plugins: [
+      ['@babel/plugin-syntax-decorators', {version: '2023-11'}],
+    ],
+  })!
 
   traverse(ast, {
     TaggedTemplateExpression(path: NodePath<t.TaggedTemplateExpression>) {

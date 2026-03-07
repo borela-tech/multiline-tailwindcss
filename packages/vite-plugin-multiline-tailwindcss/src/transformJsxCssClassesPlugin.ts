@@ -25,7 +25,7 @@ export function transformJsxCssClassesPlugin(state: SharedState) {
           code: transformedCode,
           map: transformedCodeMap,
         },
-      } = transformJsxCssClasses(code)
+      } = transformJsxCssClasses(code, id)
 
       candidatesPerId.set(id, candidatesFound)
 
