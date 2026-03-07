@@ -1,10 +1,8 @@
-import {Plugin} from 'vite'
+import {compile} from '@tailwindcss/node'
 import {Scanner} from '@tailwindcss/oxide'
-import {SharedState} from './SharedState'
-import {
-  compile,
-  toSourceMap,
-} from '@tailwindcss/node'
+import {toSourceMap} from '@tailwindcss/node'
+import type {Plugin} from 'vite'
+import type {SharedState} from './SharedState'
 
 export function compileCssPlugin(state: SharedState) {
   return {

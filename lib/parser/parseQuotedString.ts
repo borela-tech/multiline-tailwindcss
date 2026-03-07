@@ -1,8 +1,8 @@
 import {next} from './next'
 import {peek} from './peek'
-import {QuotedStringNode} from './QuotedStringNode'
-import {State} from './State'
 import {throwError} from './throwError'
+import type {QuotedStringNode} from './QuotedStringNode'
+import type {State} from './State'
 
 export function parseQuotedString(state: State): QuotedStringNode {
   const quote = next(state)

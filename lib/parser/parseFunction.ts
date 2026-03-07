@@ -1,11 +1,11 @@
-import {AnyNode} from './AnyNode'
-import {FunctionArg} from './FunctionArg'
-import {FunctionNode} from './FunctionNode'
 import {next} from './next'
 import {parseExpression} from './parseExpression'
 import {peek} from './peek'
 import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
-import {State} from './State'
+import type {AnyNode} from './AnyNode'
+import type {FunctionArg} from './FunctionArg'
+import type {FunctionNode} from './FunctionNode'
+import type {State} from './State'
 
 export function parseFunction(
   state: State,

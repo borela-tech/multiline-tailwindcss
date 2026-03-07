@@ -1,11 +1,11 @@
-import {AnyNode} from './AnyNode'
 import {next} from './next'
 import {parseBracketedExpression} from './parseBracketedExpression'
 import {parseFunction} from './parseFunction'
 import {parseIdentifierNode} from './parseIdentifierNode'
 import {peek} from './peek'
 import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
-import {State} from './State'
+import type {AnyNode} from './AnyNode'
+import type {State} from './State'
 
 export function parse(input: string): AnyNode[] {
   const ast: AnyNode[] = []

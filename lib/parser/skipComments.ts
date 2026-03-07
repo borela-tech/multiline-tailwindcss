@@ -1,7 +1,7 @@
 import {next} from './next'
 import {peek} from './peek'
-import {State} from './State'
 import {throwError} from './throwError'
+import type {State} from './State'
 
 function skipLineComment(state: State) {
   next(state) // Skip /

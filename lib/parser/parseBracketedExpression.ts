@@ -1,11 +1,11 @@
-import {AnyNode} from './AnyNode'
-import {BracketedExpression} from './BracketedExpression'
-import {ExpressionNode} from './ExpressionNode'
 import {next} from './next'
 import {parseExpression} from './parseExpression'
 import {peek} from './peek'
 import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
-import {State} from './State'
+import type {AnyNode} from './AnyNode'
+import type {BracketedExpression} from './BracketedExpression'
+import type {ExpressionNode} from './ExpressionNode'
+import type {State} from './State'
 
 export function parseBracketedExpression(
   state: State,

@@ -1,4 +1,4 @@
-import {State} from './State'
+import type {State} from './State'
 
 export function formatContext(state: State, message: string): string {
   const lines = state.input.split('\n')

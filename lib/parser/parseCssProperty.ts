@@ -1,8 +1,8 @@
-import {AnyNode} from './AnyNode'
-import {CssPropertyNode} from './CssPropertyNode'
 import {next} from './next'
 import {parseExpression} from './parseExpression'
-import {State} from './State'
+import type {AnyNode} from './AnyNode'
+import type {CssPropertyNode} from './CssPropertyNode'
+import type {State} from './State'
 
 export function parseCssProperty(
   state: State,

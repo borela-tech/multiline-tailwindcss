@@ -1,9 +1,9 @@
-import {BracketedExpression} from './BracketedExpression'
-import {CssPropertyNode} from './CssPropertyNode'
-import {ExpressionNode} from './ExpressionNode'
-import {FunctionNode} from './FunctionNode'
-import {IdentifierNode} from './IdentifierNode'
-import {QuotedStringNode} from './QuotedStringNode'
+import type {BracketedExpression} from './BracketedExpression'
+import type {CssPropertyNode} from './CssPropertyNode'
+import type {ExpressionNode} from './ExpressionNode'
+import type {FunctionNode} from './FunctionNode'
+import type {IdentifierNode} from './IdentifierNode'
+import type {QuotedStringNode} from './QuotedStringNode'
 
 export type AnyNode =
   | BracketedExpression

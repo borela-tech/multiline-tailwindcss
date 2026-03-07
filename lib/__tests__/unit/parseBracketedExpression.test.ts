@@ -1,6 +1,6 @@
-import {AnyNode} from '../../parser/AnyNode'
 import {parseBracketedExpression} from '../../parser/parseBracketedExpression'
-import {State} from '../../parser/State'
+import type {AnyNode} from '../../parser/AnyNode'
+import type {State} from '../../parser/State'
 
 describe('parseBracketedExpression()', () => {
   it('parses simple bracketed expression', () => {

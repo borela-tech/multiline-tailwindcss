@@ -1,4 +1,4 @@
-import {AnyNode} from './AnyNode'
+import type {AnyNode} from './AnyNode'
 
 export interface IdentifierNode {
   prefix?: AnyNode

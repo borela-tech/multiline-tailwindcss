@@ -1,5 +1,5 @@
-import {CssPropertyNode} from '../parser/CssPropertyNode'
 import {generateCodeForNode} from './generateCodeForNode'
+import type {CssPropertyNode} from '../parser/CssPropertyNode'
 
 export function generateCodeForCssProperty(node: CssPropertyNode) {
   const name = node.name || ''

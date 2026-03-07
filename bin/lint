@@ -7,7 +7,7 @@ npx eslint \
   --max-warnings 0 \
   --report-unused-disable-directives \
   lib \
-  packages/esbuild-plugin-multiline-tailwindcss/src \
-  packages/vite-plugin-multiline-tailwindcss/src
+  packages/**/src \
+  $@
 
 popd > /dev/null

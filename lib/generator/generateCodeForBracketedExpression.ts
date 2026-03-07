@@ -1,5 +1,5 @@
-import {BracketedExpression} from '../parser/BracketedExpression'
 import {generateCodeForNode} from './generateCodeForNode'
+import type {BracketedExpression} from '../parser/BracketedExpression'
 
 export function generateCodeForBracketedExpression(node: BracketedExpression) {
   const prefix = node.prefix

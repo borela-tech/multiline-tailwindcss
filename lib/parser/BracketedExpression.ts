@@ -1,5 +1,5 @@
-import {AnyNode} from './AnyNode'
-import {ExpressionNode} from './ExpressionNode'
+import type {AnyNode} from './AnyNode'
+import type {ExpressionNode} from './ExpressionNode'
 
 export interface BracketedExpression {
   prefix?: AnyNode

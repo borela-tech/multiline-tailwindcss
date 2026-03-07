@@ -1,5 +1,5 @@
 import {parseQuotedString} from '../../parser/parseQuotedString'
-import {State} from '../../parser/State'
+import type {State} from '../../parser/State'
 
 describe('parseQuotedString()', () => {
   it('parses single quoted strings', () => {

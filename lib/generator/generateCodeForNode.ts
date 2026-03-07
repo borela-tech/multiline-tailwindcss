@@ -1,9 +1,9 @@
-import {AnyNode} from '../parser/AnyNode'
 import {generateCodeForBracketedExpression} from './generateCodeForBracketedExpression'
 import {generateCodeForCssProperty} from './generateCodeForCssProperty'
 import {generateCodeForExpressionNode} from './generateCodeForExpressionNode'
 import {generateCodeForFunction} from './generateCodeForFunction'
 import {generateCodeForQuotedString} from './generateCodeForQuotedString'
+import type {AnyNode} from '../parser/AnyNode'
 
 export function generateCodeForNode(node: AnyNode): string {
   switch (node.type) {

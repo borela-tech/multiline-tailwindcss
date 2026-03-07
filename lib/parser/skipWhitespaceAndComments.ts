@@ -1,6 +1,6 @@
 import {skipComments} from './skipComments'
 import {skipWhitespace} from './skipWhitespace'
-import {State} from './State'
+import type {State} from './State'
 
 export function skipWhitespaceAndComments(state: State) {
   const initialStatePosition = state.pos

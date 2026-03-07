@@ -1,5 +1,5 @@
 import {parseExpression} from '../../parser/parseExpression'
-import {State} from '../../parser/State'
+import type {State} from '../../parser/State'
 
 describe('parseExpression()', () => {
   it('parses simple identifiers separated by spaces', () => {

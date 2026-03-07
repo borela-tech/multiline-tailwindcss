@@ -1,5 +1,5 @@
-import {FunctionNode} from '../parser/FunctionNode'
 import {generateCodeForNode} from './generateCodeForNode'
+import type {FunctionNode} from '../parser/FunctionNode'
 
 export function generateCodeForFunction(node: FunctionNode) {
   let fullName = node.name

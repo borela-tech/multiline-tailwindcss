@@ -1,6 +1,6 @@
 import {adjustExpectedString} from '../adjustExpectedString'
 import {formatContext} from '../../parser/formatContext'
-import {State} from '../../parser/State'
+import type {State} from '../../parser/State'
 
 describe('formatContext()', () => {
   it('formats context for position at start of single-line input', () => {

@@ -1,5 +1,3 @@
-import {AnyNode} from './AnyNode'
-import {ExpressionNode} from './ExpressionNode'
 import {next} from './next'
 import {parseCssProperty} from './parseCssProperty'
 import {parseFunction} from './parseFunction'
@@ -7,7 +5,9 @@ import {parseIdentifier} from './parseIdentifier'
 import {parseQuotedString} from './parseQuotedString'
 import {peek} from './peek'
 import {skipWhitespaceAndComments} from './skipWhitespaceAndComments'
-import {State} from './State'
+import type {AnyNode} from './AnyNode'
+import type {ExpressionNode} from './ExpressionNode'
+import type {State} from './State'
 
 export function parseExpression(state: State): ExpressionNode {
   const items: AnyNode[] = []

@@ -1,5 +1,5 @@
 import {parseIdentifier} from '../../parser/parseIdentifier'
-import {State} from '../../parser/State'
+import type {State} from '../../parser/State'
 
 describe('parseIdentifier()', () => {
   it('parses a simple identifier', () => {

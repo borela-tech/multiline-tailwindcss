@@ -1,4 +1,4 @@
-import {QuotedStringNode} from '../parser/QuotedStringNode'
+import type {QuotedStringNode} from '../parser/QuotedStringNode'
 
 export function generateCodeForQuotedString(node: QuotedStringNode): string {
   const value = node.value

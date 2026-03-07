@@ -1,4 +1,4 @@
-import {ViteDevServer} from 'vite'
+import type {ViteDevServer} from 'vite'
 
 type Id = string
 type Candidates = string[]

@@ -1,6 +1,6 @@
-import {AnyNode} from '../../parser/AnyNode'
 import {parseFunction} from '../../parser/parseFunction'
-import {State} from '../../parser/State'
+import type {AnyNode} from '../../parser/AnyNode'
+import type {State} from '../../parser/State'
 
 describe('parseFunction()', () => {
   it('parses function with no arguments', () => {
