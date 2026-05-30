@@ -94,7 +94,7 @@ export function transformTaggedStrings(code: string, filePath?: string) {
 
         text = resolved
       } else
-        text ??= quasis[0].value.raw || ''
+        text = quasis[0].value.cooked ?? quasis[0].value.raw
 
       const transformed = transformTailwindClasses(text)
       candidatesFound.push(...transformed.split(' ').filter(Boolean))
