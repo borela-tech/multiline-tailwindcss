@@ -1,4 +1,4 @@
-import {adjustExpectedString} from '../adjustExpectedString'
+import {dedent} from '@borela-tech/ts-toolbox'
 import {transformJsxCssClasses} from '../../transformJsxCssClasses'
 
 describe('error reporting', () => {
@@ -6,11 +6,11 @@ describe('error reporting', () => {
     const code = `
       <div className="bg-red-500, /* unclosed comment text-blue-600"></div>
     `
-    const expected = adjustExpectedString(`
+    const expected = dedent`
       1| bg-red-500, /* unclosed comment text-blue-600
                                                       ^
          Unclosed comment
-    `)
+    `
 
     try {
       transformJsxCssClasses(code)

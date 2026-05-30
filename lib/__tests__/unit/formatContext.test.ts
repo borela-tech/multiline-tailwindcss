@@ -1,4 +1,4 @@
-import {adjustExpectedString} from '../adjustExpectedString'
+import {dedent} from '@borela-tech/ts-toolbox'
 import {formatContext} from '../../parser/formatContext'
 import type {State} from '../../parser/State'
 
@@ -7,11 +7,11 @@ describe('formatContext()', () => {
     const state: State = {input: 'hello world', pos: 0}
     const message = 'Error at start'
     const result = formatContext(state, message)
-    const expected = adjustExpectedString(`
+    const expected = dedent`
       1| hello world
          ^
          Error at start
-    `)
+    `
     expect(result).toBe(expected)
   })
 
@@ -19,11 +19,11 @@ describe('formatContext()', () => {
     const state: State = {input: 'hello world', pos: 6}
     const message = 'Space error'
     const result = formatContext(state, message)
-    const expected = adjustExpectedString(`
+    const expected = dedent`
       1| hello world
                ^
          Space error
-    `)
+    `
     expect(result).toBe(expected)
   })
 
@@ -31,13 +31,13 @@ describe('formatContext()', () => {
     const state: State = {input: 'line1\nline2\nline3', pos: 6}
     const message = 'Error on line2'
     const result = formatContext(state, message)
-    const expected = adjustExpectedString(`
+    const expected = dedent`
       1| line1
       2| line2
          ^
          Error on line2
       3| line3
-    `)
+    `
     expect(result).toBe(expected)
   })
 })

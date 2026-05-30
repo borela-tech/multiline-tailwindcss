@@ -10,6 +10,7 @@
   ],
   "devDependencies": {
     "@borela-tech/eslint-config": "^2.2.1",
+    "@borela-tech/ts-toolbox": "^1.0.1",
     "@types/babel__generator": "^7.27.0",
     "@types/babel__traverse": "^7.20.7",
     "@types/jest": "^29.5.14",

@@ -1,3 +1,4 @@
+import {indent} from '@borela-tech/ts-toolbox'
 import {join} from 'node:path'
 import {loadRawExamples} from '../loadRawExamples'
 import {readFileSync} from 'node:fs'
@@ -29,10 +30,7 @@ describe('transformJsxCssClasses()', () => {
       ? 'All examples combined'
       : `${example.input}`
     it(`transforms JSX CSS classes correctly: #${index} ${exampleLabel}`, () => {
-      const indentedEscapedInput = example.input
-        .split('\n')
-        .map(line => '          ' + line)
-        .join('\n')
+      const indentedEscapedInput = indent(example.input, 10, ' ')
         .replace(/"/g, '&quot;')
       const escapedOutput = example.output
         .replace(/"/g, '&quot;')
