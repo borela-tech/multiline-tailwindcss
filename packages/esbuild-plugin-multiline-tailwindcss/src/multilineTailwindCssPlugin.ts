@@ -1,8 +1,8 @@
+import {logInfo} from './logInfo'
+import {transformFile} from './transformFile'
+import {writeCandidatesFile} from './writeCandidatesFile'
 import type {BuildResult} from 'esbuild'
 import type {Plugin} from 'esbuild'
-import {logInfo} from './logInfo'
-import {writeCandidatesFile} from './writeCandidatesFile'
-import {transformFile} from './transformFile'
 
 /**
  * Esbuild plugin to extract TailwindCSS class candidates from JSX and tagged
@@ -32,7 +32,10 @@ export const multilineTailwindCssPlugin: Plugin = {
 
       collectedCandidates.push(...candidates)
 
-      return {contents: code, loader}
+      return {
+        contents: code,
+        loader,
+      }
     })
   },
 }

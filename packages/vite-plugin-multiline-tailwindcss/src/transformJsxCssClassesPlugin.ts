@@ -5,8 +5,8 @@ import type {SharedState} from './SharedState'
 
 export function transformJsxCssClassesPlugin(state: SharedState) {
   return {
-    name: '@borela-tech/vite-plugin-multiline-tailwindcss:transform-jsx-css-classes',
     enforce: 'pre',
+    name: '@borela-tech/vite-plugin-multiline-tailwindcss:transform-jsx-css-classes',
     transform(code, id) {
       if (!/\.[jt]sx$/.test(id))
         return code

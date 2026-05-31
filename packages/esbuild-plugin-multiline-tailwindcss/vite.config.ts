@@ -1,7 +1,7 @@
 import path from 'path'
 import {defineConfig} from 'vite'
 
-export default defineConfig({
+const viteConfig = defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
@@ -30,3 +30,5 @@ export default defineConfig({
     },
   },
 })
+
+export {viteConfig as default}

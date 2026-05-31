@@ -6,8 +6,8 @@ import type {SharedState} from './SharedState'
 
 export function compileCssPlugin(state: SharedState) {
   return {
-    name: '@borela-tech/vite-plugin-multiline-tailwindcss:compile-css',
     enforce: 'pre',
+    name: '@borela-tech/vite-plugin-multiline-tailwindcss:compile-css',
     async transform(code, id) {
       const {
         candidatesFromTransforms: {
@@ -31,14 +31,11 @@ export function compileCssPlugin(state: SharedState) {
       })
 
       const scanner = new Scanner({
-        sources: [
-          {
-            base: rootCssDirPath!,
-            pattern: '**/*',
-            negated: false,
-          },
-          ...compiler.sources,
-        ],
+        sources: [{
+          base: rootCssDirPath!,
+          negated: false,
+          pattern: '**/*',
+        }, ...compiler.sources],
       })
 
       for (const path of scanner.files)

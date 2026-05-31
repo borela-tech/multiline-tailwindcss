@@ -38,8 +38,8 @@ export function parseQuotedString(state: State): QuotedStringNode {
     throwError(state, 'Unclosed quoted string')
 
   return {
+    quote,
     type: 'QuotedString',
     value,
-    quote,
   }
 }

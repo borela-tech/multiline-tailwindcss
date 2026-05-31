@@ -5,10 +5,12 @@ import {transformTaggedStrings} from '@lib/transformTaggedStrings'
 interface TransformResult {
   candidates: string[]
   code: string
-  loader: 'tsx' | 'jsx'
+  loader: 'jsx' | 'tsx'
 }
 
-export async function transformFile(filePath: string): Promise<TransformResult> {
+export async function transformFile(
+  filePath: string,
+): Promise<TransformResult> {
   const buffer = await fs.promises.readFile(filePath)
   const rawContents = buffer.toString()
 
@@ -26,7 +28,7 @@ export async function transformFile(filePath: string): Promise<TransformResult> 
     },
   } = transformTaggedStrings(transformedJsx, filePath)
 
-  const loader: 'tsx' | 'jsx' =
+  const loader =
     /\.tsx?$/.test(filePath)
       ? 'tsx'
       : 'jsx'

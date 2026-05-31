@@ -1,9 +1,9 @@
 import {dedent} from '@borela-tech/ts-toolbox'
-import {transformJsxCssClasses} from '../../transformJsxCssClasses'
+import {transformJsxCssClasses} from '@lib/transformJsxCssClasses'
 
 describe('error reporting', () => {
   it('reports error with context for invalid tailwind classes in JSX', () => {
-    const code = `
+    const CODE = `
       <div className="bg-red-500, /* unclosed comment text-blue-600"></div>
     `
     const expected = dedent`
@@ -13,11 +13,11 @@ describe('error reporting', () => {
     `
 
     try {
-      transformJsxCssClasses(code)
-    } catch (e) {
-      const error = e as Error
-      expect(error).toBeDefined()
-      expect(error.message).toBe(expected)
+      transformJsxCssClasses(CODE)
+    } catch (error) {
+      const e = error as Error
+      expect(e).toBeDefined()
+      expect(e.message).toBe(expected)
     }
   })
 })

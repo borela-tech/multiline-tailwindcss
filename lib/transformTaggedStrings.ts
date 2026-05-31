@@ -8,8 +8,13 @@ import type {NodePath} from '@babel/traverse'
 
 const PLUGIN_OPTIONS = {
   filename: 'file.tsx',
-  presets: ['@babel/preset-react', '@babel/preset-typescript'],
-  plugins: [['@babel/plugin-syntax-decorators', {version: '2023-11'}]],
+  plugins: [
+    ['@babel/plugin-syntax-decorators', {version: '2023-11'}],
+  ],
+  presets: [
+    '@babel/preset-react',
+    '@babel/preset-typescript',
+  ],
 }
 
 function resolveTemplateExpressions(

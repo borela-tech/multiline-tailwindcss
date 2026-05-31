@@ -1,12 +1,9 @@
 import * as fs from 'node:fs'
 import path from 'node:path'
-import {logInfo} from './logInfo'
 import {logError} from './logError'
+import {logInfo} from './logInfo'
 
-export function writeCandidatesFile(
-  outputDir: string,
-  candidates: string[],
-) {
+export function writeCandidatesFile(outputDir: string, candidates: string[]) {
   const resolvedOutputDir = path.resolve(outputDir)
 
   logInfo(`Ensuring output directory exists: ${resolvedOutputDir}`)
@@ -18,8 +15,8 @@ export function writeCandidatesFile(
   const sortedCandidates = uniqueCandidates.sort()
   const jsonString = JSON.stringify(sortedCandidates, null, 2)
 
-  const candidatesFileName = 'tailwindcss.candidates.json'
-  const candidatesFilePath = path.join(resolvedOutputDir, candidatesFileName)
+  const CANDIDATES_FILE_NAME = 'tailwindcss.candidates.json'
+  const candidatesFilePath = path.join(resolvedOutputDir, CANDIDATES_FILE_NAME)
 
   logInfo(`Writing TailwindCSS candidates: ${candidatesFilePath}`)
 

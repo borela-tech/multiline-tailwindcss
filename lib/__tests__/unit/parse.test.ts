@@ -2,7 +2,7 @@ import {parse} from '../../parser/parse'
 
 describe('parse()', () => {
   it('parses bg-[linear-gradient...] from raw input', () => {
-    const input = `
+    const INPUT = `
       bg-[
         linear-gradient(
           to_right,
@@ -11,21 +11,16 @@ describe('parse()', () => {
         ),
       ],
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'BracketedExpression',
       prefix: {
         type: 'Identifier',
         value: 'bg-',
       },
+      type: 'BracketedExpression',
       value: [{
-        type: 'Expression',
         items: [{
-          type: 'Function',
-          name: 'linear-gradient',
-          prefix: undefined,
           args: [{
-            type: 'Expression',
             items: [{
               type: 'Identifier',
               value: 'to',
@@ -33,39 +28,44 @@ describe('parse()', () => {
               type: 'Identifier',
               value: 'right',
             }],
-          }, {
             type: 'Expression',
+          }, {
             items: [{
-              type: 'Function',
-              name: 'theme',
-              prefix: undefined,
               args: [{
-                type: 'Expression',
                 items: [{
                   type: 'Identifier',
                   value: 'colors.zinc.900/50%',
                 }],
+                type: 'Expression',
               }],
+              name: 'theme',
+              prefix: undefined,
+              type: 'Function',
             }],
-          }, {
             type: 'Expression',
+          }, {
             items: [{
               type: 'Identifier',
               value: 'transparent',
             }],
+            type: 'Expression',
           }],
+          name: 'linear-gradient',
+          prefix: undefined,
+          type: 'Function',
         }],
+        type: 'Expression',
       }],
     }])
   })
 
   it('parses input with line comments at the start', () => {
-    const input = `
+    const INPUT = `
       // Comment at start
       bg-red-500,
       text-blue-600
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -76,12 +76,12 @@ describe('parse()', () => {
   })
 
   it('parses input with line comments between elements', () => {
-    const input = `
+    const INPUT = `
       bg-red-500,
       // Comment between
       text-blue-600
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -92,11 +92,11 @@ describe('parse()', () => {
   })
 
   it('parses input with line comments at the end of the class', () => {
-    const input = `
+    const INPUT = `
       bg-red-500, // Comment at end of class
       text-blue-600
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -107,12 +107,12 @@ describe('parse()', () => {
   })
 
   it('parses input with line comments at the end', () => {
-    const input = `
+    const INPUT = `
       bg-red-500,
       text-blue-600
       // Comment at end
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -123,12 +123,12 @@ describe('parse()', () => {
   })
 
   it('parses input with block comments at the start', () => {
-    const input = `
+    const INPUT = `
       /* Block comment */
       bg-red-500,
       text-blue-600
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -139,12 +139,12 @@ describe('parse()', () => {
   })
 
   it('parses input with block comments between elements', () => {
-    const input = `
+    const INPUT = `
       bg-red-500,
       /* Block comment */
       text-blue-600
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -155,11 +155,11 @@ describe('parse()', () => {
   })
 
   it('parses input with block comments at the end of the class', () => {
-    const input = `
+    const INPUT = `
       bg-red-500, /* Block comment */
       text-blue-600
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -170,12 +170,12 @@ describe('parse()', () => {
   })
 
   it('parses input with block comments at the end', () => {
-    const input = `
+    const INPUT = `
       bg-red-500,
       text-blue-600
       /* Block comment */
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -186,7 +186,7 @@ describe('parse()', () => {
   })
 
   it('parses input with multiline block comments', () => {
-    const input = `
+    const INPUT = `
       bg-red-500,
       /**
        * This is a multiline
@@ -194,7 +194,7 @@ describe('parse()', () => {
        */
       text-blue-600
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
       type: 'Identifier',
       value: 'bg-red-500',
@@ -205,35 +205,30 @@ describe('parse()', () => {
   })
 
   it('throws error for unclosed block comment', () => {
-    const input = `
+    const INPUT = `
       bg-red-500,
       /* unclosed comment
       text-blue-600
     `
-    expect(() => parse(input)).toThrow(/Unclosed comment/)
+    expect(() => parse(INPUT)).toThrow(/Unclosed comment/)
   })
 
   it('parses input with comments inside brackets', () => {
-    const input = `
+    const INPUT = `
       bg-[
         linear-gradient(/* comment */ to right, red, blue)
       ]
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'BracketedExpression',
       prefix: {
         type: 'Identifier',
         value: 'bg-',
       },
+      type: 'BracketedExpression',
       value: [{
-        type: 'Expression',
         items: [{
-          type: 'Function',
-          name: 'linear-gradient',
-          prefix: undefined,
           args: [{
-            type: 'Expression',
             items: [{
               type: 'Identifier',
               value: 'to',
@@ -241,26 +236,31 @@ describe('parse()', () => {
               type: 'Identifier',
               value: 'right',
             }],
-          }, {
             type: 'Expression',
+          }, {
             items: [{
               type: 'Identifier',
               value: 'red',
             }],
-          }, {
             type: 'Expression',
+          }, {
             items: [{
               type: 'Identifier',
               value: 'blue',
             }],
+            type: 'Expression',
           }],
+          name: 'linear-gradient',
+          prefix: undefined,
+          type: 'Function',
         }],
+        type: 'Expression',
       }],
     }])
   })
 
   it('parses complex input with mixed comments', () => {
-    const input = `
+    const INPUT = `
       // Line comment
       bg-[
         /* Block comment */
@@ -270,21 +270,16 @@ describe('parse()', () => {
       /* Another block */
       text-white
     `
-    const ast = parse(input)
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'BracketedExpression',
       prefix: {
         type: 'Identifier',
         value: 'bg-',
       },
+      type: 'BracketedExpression',
       value: [{
-        type: 'Expression',
         items: [{
-          type: 'Function',
-          name: 'linear-gradient',
-          prefix: undefined,
           args: [{
-            type: 'Expression',
             items: [{
               type: 'Identifier',
               value: 'to',
@@ -292,20 +287,25 @@ describe('parse()', () => {
               type: 'Identifier',
               value: 'right',
             }],
-          }, {
             type: 'Expression',
+          }, {
             items: [{
               type: 'Identifier',
               value: 'red',
             }],
-          }, {
             type: 'Expression',
+          }, {
             items: [{
               type: 'Identifier',
               value: 'blue',
             }],
+            type: 'Expression',
           }],
+          name: 'linear-gradient',
+          prefix: undefined,
+          type: 'Function',
         }],
+        type: 'Expression',
       }],
     }, {
       type: 'Identifier',
@@ -317,138 +317,138 @@ describe('parse()', () => {
   })
 
   it('parses multiple prefixes', () => {
-    const input = 'group-hover:before:opacity-100'
-    const ast = parse(input)
+    const INPUT = 'group-hover:before:opacity-100'
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'Identifier',
-      value: 'opacity-100',
       prefix: {
-        type: 'Identifier',
-        value: 'before',
         prefix: {
           type: 'Identifier',
           value: 'group-hover',
         },
+        type: 'Identifier',
+        value: 'before',
       },
+      type: 'Identifier',
+      value: 'opacity-100',
     }])
   })
 
   it('parses three prefixes', () => {
-    const input = 'hover:focus:active:bg-blue-500'
-    const ast = parse(input)
+    const INPUT = 'hover:focus:active:bg-blue-500'
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'Identifier',
-      value: 'bg-blue-500',
       prefix: {
-        type: 'Identifier',
-        value: 'active',
         prefix: {
-          type: 'Identifier',
-          value: 'focus',
           prefix: {
             type: 'Identifier',
             value: 'hover',
           },
+          type: 'Identifier',
+          value: 'focus',
         },
+        type: 'Identifier',
+        value: 'active',
       },
+      type: 'Identifier',
+      value: 'bg-blue-500',
     }])
   })
 
   it('parses bracketed prefix', () => {
-    const input = '[hover]:bg-red-500'
-    const ast = parse(input)
+    const INPUT = '[hover]:bg-red-500'
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'Identifier',
-      value: 'bg-red-500',
       prefix: {
         type: 'BracketedExpression',
         value: [{
-          type: 'Expression',
           items: [{
             type: 'Identifier',
             value: 'hover',
           }],
+          type: 'Expression',
         }],
       },
+      type: 'Identifier',
+      value: 'bg-red-500',
     }])
   })
 
   it('parses multiple bracketed prefixes', () => {
-    const input = '[hover]:[focus]:bg-green-500'
-    const ast = parse(input)
+    const INPUT = '[hover]:[focus]:bg-green-500'
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'Identifier',
-      value: 'bg-green-500',
       prefix: {
-        type: 'BracketedExpression',
-        value: [{
-          type: 'Expression',
-          items: [{
-            type: 'Identifier',
-            value: 'focus',
-          }],
-        }],
         prefix: {
           type: 'BracketedExpression',
           value: [{
-            type: 'Expression',
             items: [{
               type: 'Identifier',
               value: 'hover',
             }],
+            type: 'Expression',
           }],
         },
+        type: 'BracketedExpression',
+        value: [{
+          items: [{
+            type: 'Identifier',
+            value: 'focus',
+          }],
+          type: 'Expression',
+        }],
       },
+      type: 'Identifier',
+      value: 'bg-green-500',
     }])
   })
 
-  it('parses identifier-bracketed prefix like group-aria-[disabled=false]', () => {
-    const input = 'group-aria-[disabled=false]:opacity-100'
-    const ast = parse(input)
+  it('parses id-bracketed prefix like group-aria-[disabled=false]', () => {
+    const INPUT = 'group-aria-[disabled=false]:opacity-100'
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'Identifier',
-      value: 'opacity-100',
       prefix: {
-        type: 'BracketedExpression',
-        value: [{
-          type: 'Expression',
-          items: [{
-            type: 'Identifier',
-            value: 'disabled=false',
-          }],
-        }],
         prefix: {
           type: 'Identifier',
           value: 'group-aria-',
         },
+        type: 'BracketedExpression',
+        value: [{
+          items: [{
+            type: 'Identifier',
+            value: 'disabled=false',
+          }],
+          type: 'Expression',
+        }],
       },
+      type: 'Identifier',
+      value: 'opacity-100',
     }])
   })
 
   it('parses chained prefixes with identifier-bracketed prefix', () => {
-    const input = 'group-hover:group-aria-[disabled=false]:opacity-100'
-    const ast = parse(input)
+    const INPUT = 'group-hover:group-aria-[disabled=false]:opacity-100'
+    const ast = parse(INPUT)
     expect(ast).toEqual([{
-      type: 'Identifier',
-      value: 'opacity-100',
       prefix: {
-        type: 'BracketedExpression',
-        value: [{
-          type: 'Expression',
-          items: [{
-            type: 'Identifier',
-            value: 'disabled=false',
-          }],
-        }],
         prefix: {
-          type: 'Identifier',
-          value: 'group-aria-',
           prefix: {
             type: 'Identifier',
             value: 'group-hover',
           },
+          type: 'Identifier',
+          value: 'group-aria-',
         },
+        type: 'BracketedExpression',
+        value: [{
+          items: [{
+            type: 'Identifier',
+            value: 'disabled=false',
+          }],
+          type: 'Expression',
+        }],
       },
+      type: 'Identifier',
+      value: 'opacity-100',
     }])
   })
 })

@@ -5,8 +5,8 @@ import type {SharedState} from './SharedState'
 
 export function transformTaggedStringsPlugin(state: SharedState) {
   return {
-    name: '@borela-tech/vite-plugin-multiline-tailwindcss:transform-tagged-strings',
     enforce: 'pre',
+    name: '@borela-tech/vite-plugin-multiline-tailwindcss:transform-tagged-strings',
     transform(code, id) {
       if (!/\.[jt]sx?$/.test(id))
         return code

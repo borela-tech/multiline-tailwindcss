@@ -29,14 +29,20 @@ describe('transformTaggedStrings()', () => {
     const exampleLabel = index == examples.length - 1
       ? 'All examples combined'
       : `${example.input}`
-    it(`transforms tagged template strings correctly: #${index} ${exampleLabel}`, () => {
+    it(`transforms tagged strings: #${index} ${exampleLabel}`, () => {
       const indentedInput = indent(example.input, 2, ' ')
-        .replace(/\\/g, '\\\\')
+        .replaceAll('\\', '\\\\')
       const escapedOutput = example.output
-        .replace(/\\/g, '\\\\')
-        .replace(/"/g, '\\"')
-      const preparedInput = inputTemplate.replace('{{CSS_CONTENT}}', indentedInput)
-      const preparedOutput = outputTemplate.replace('{{CSS_CONTENT}}', escapedOutput)
+        .replaceAll('\\', '\\\\')
+        .replaceAll('"', String.raw`\"`)
+      const preparedInput = inputTemplate.replace(
+        '{{CSS_CONTENT}}',
+        indentedInput,
+      )
+      const preparedOutput = outputTemplate.replace(
+        '{{CSS_CONTENT}}',
+        escapedOutput,
+      )
 
       const result = transformTaggedStrings(preparedInput)
       const code = result.transformedCode.code
@@ -83,7 +89,7 @@ describe('transformTaggedStrings()', () => {
       expect(result.candidatesFound).toEqual(['bg-red-500', 'hover:text-white'])
     })
 
-    it('leaves template unchanged and warns when variable is not a string literal', () => {
+    it('leaves template unchanged, warns if var not string literal', () => {
       const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
       const code = [
         'const a = 42',
@@ -99,7 +105,7 @@ describe('transformTaggedStrings()', () => {
       warnSpy.mockRestore()
     })
 
-    it('leaves template unchanged and warns for non-identifier expressions', () => {
+    it('leaves template unchanged, warns for non-ident expr', () => {
       const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
       const code = [
         'const b = tailwindcss`${someFn()}`',

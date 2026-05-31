@@ -29,13 +29,19 @@ describe('transformJsxCssClasses()', () => {
     const exampleLabel = index == examples.length - 1
       ? 'All examples combined'
       : `${example.input}`
-    it(`transforms JSX CSS classes correctly: #${index} ${exampleLabel}`, () => {
+    it(`transforms JSX CSS: #${index} ${exampleLabel}`, () => {
       const indentedEscapedInput = indent(example.input, 10, ' ')
-        .replace(/"/g, '&quot;')
+        .replaceAll('"', '&quot;')
       const escapedOutput = example.output
-        .replace(/"/g, '&quot;')
-      const preparedInput = inputTemplate.replace('{{CSS_CONTENT}}', indentedEscapedInput)
-      const preparedOutput = outputTemplate.replace('{{CSS_CONTENT}}', escapedOutput)
+        .replaceAll('"', '&quot;')
+      const preparedInput = inputTemplate.replace(
+        '{{CSS_CONTENT}}',
+        indentedEscapedInput,
+      )
+      const preparedOutput = outputTemplate.replace(
+        '{{CSS_CONTENT}}',
+        escapedOutput,
+      )
 
       const result = transformJsxCssClasses(preparedInput)
       const code = result.transformedCode.code

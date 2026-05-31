@@ -8,7 +8,7 @@ describe('transformTailwindClasses()', () => {
     const exampleLabel = index == examples.length - 1
       ? 'All examples combined'
       : `${example.input}`
-    it(`transforms Tailwind classes correctly: #${index} ${exampleLabel}`, () => {
+    it(`transforms Tailwind classes: #${index} ${exampleLabel}`, () => {
       const result = transformTailwindClasses(example.input)
       expect(result).toBe(example.output)
     })

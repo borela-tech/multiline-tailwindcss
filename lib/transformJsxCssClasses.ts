@@ -10,12 +10,12 @@ export function transformJsxCssClasses(code: string, filePath?: string) {
 
   const ast = parseSync(code, {
     filename: filePath || 'file.tsx',
+    plugins: [
+      ['@babel/plugin-syntax-decorators', {version: '2023-11'}],
+    ],
     presets: [
       '@babel/preset-react',
       '@babel/preset-typescript',
-    ],
-    plugins: [
-      ['@babel/plugin-syntax-decorators', {version: '2023-11'}],
     ],
   })!
 
@@ -41,7 +41,7 @@ export function transformJsxCssClasses(code: string, filePath?: string) {
       const filtered = transformed
         .split(' ')
         .filter(Boolean)
-        .map(x => x.replace(/"/g, '&quot;'))
+        .map(x => x.replaceAll('"', '&quot;'))
 
       candidatesFound.push(...filtered)
 

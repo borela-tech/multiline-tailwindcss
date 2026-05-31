@@ -7,4 +7,4 @@ config.push({
   ],
 })
 
-export default config
+export {config as default}

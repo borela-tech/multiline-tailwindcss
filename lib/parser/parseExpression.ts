@@ -16,10 +16,10 @@ export function parseExpression(state: State): ExpressionNode {
     if (skipWhitespaceAndComments(state))
       continue
 
-    if (/[,)\]]/.test(peek(state)))
+    if (/[),\]]/.test(peek(state)))
       break
 
-    if (/['"]/.test(peek(state))) {
+    if (/["']/.test(peek(state))) {
       items.push(parseQuotedString(state))
       continue
     }
@@ -48,7 +48,7 @@ export function parseExpression(state: State): ExpressionNode {
   }
 
   return {
-    type: 'Expression',
     items,
+    type: 'Expression',
   }
 }
