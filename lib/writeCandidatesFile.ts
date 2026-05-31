@@ -3,6 +3,8 @@ import path from 'node:path'
 import {logError} from './logError'
 import {logInfo} from './logInfo'
 
+const CANDIDATES_FILE_NAME = 'tailwindcss.candidates.json'
+
 export function writeCandidatesFile(outputDir: string, candidates: string[]) {
   const resolvedOutputDir = path.resolve(outputDir)
 
@@ -15,17 +17,13 @@ export function writeCandidatesFile(outputDir: string, candidates: string[]) {
   const sortedCandidates = uniqueCandidates.sort()
   const jsonString = JSON.stringify(sortedCandidates, null, 2)
 
-  const CANDIDATES_FILE_NAME = 'tailwindcss.candidates.json'
   const candidatesFilePath = path.join(resolvedOutputDir, CANDIDATES_FILE_NAME)
 
-  logInfo(`Writing TailwindCSS candidates: ${candidatesFilePath}`)
+  logInfo(`Writing candidates file: ${candidatesFilePath}`)
 
-  fs.writeFile(
-    candidatesFilePath,
-    jsonString,
-    error => {
-      if (error)
-        logError('Error writing candidates file:', error)
-    },
-  )
+  try {
+    fs.writeFileSync(candidatesFilePath, jsonString)
+  } catch (error) {
+    logError('Error writing candidates file:', error as Error)
+  }
 }

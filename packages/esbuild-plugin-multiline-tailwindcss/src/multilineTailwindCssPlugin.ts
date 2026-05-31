@@ -1,6 +1,6 @@
-import {logInfo} from './logInfo'
+import {logInfo} from '@lib/logInfo'
 import {transformFile} from './transformFile'
-import {writeCandidatesFile} from './writeCandidatesFile'
+import {writeCandidatesFile} from '@lib/writeCandidatesFile'
 import type {BuildResult} from 'esbuild'
 import type {Plugin} from 'esbuild'
 
