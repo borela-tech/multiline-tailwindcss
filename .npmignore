@@ -3,5 +3,6 @@ src
 *.tgz
 api-extractor.json
 tsconfig.json
+tsconfig.api-extractor.json
 tsconfig.build.json
 vite.config.ts
