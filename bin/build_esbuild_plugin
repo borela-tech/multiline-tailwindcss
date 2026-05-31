@@ -1,9 +1,11 @@
 #!/usr/bin/env -S bash -e -o pipefail
 
 SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
-pushd "$SCRIPT_DIR/.." > /dev/null
+cd "$SCRIPT_DIR/../packages/esbuild-plugin-multiline-tailwindcss"
 
-cd packages/esbuild-plugin-multiline-tailwindcss
-npx tsdown
-
-popd > /dev/null
+rm -rf dist
+npx vite build
+npx tsc -p tsconfig.build.json
+npx api-extractor run --local --verbose
+tail -n +2 ../../globals/tailwindcss.d.ts >> dist/index.d.ts
+rm -rf dist/types

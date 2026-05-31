@@ -1,4 +1,7 @@
 src
 
 *.tgz
-tsdown.config.ts
+api-extractor.json
+tsconfig.json
+tsconfig.build.json
+vite.config.ts

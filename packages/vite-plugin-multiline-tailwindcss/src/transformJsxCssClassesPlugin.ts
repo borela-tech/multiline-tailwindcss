@@ -1,4 +1,4 @@
-import {transformJsxCssClasses} from '@/lib/transformJsxCssClasses'
+import {transformJsxCssClasses} from '@lib/transformJsxCssClasses'
 import {updateModule} from './updateModule'
 import type {Plugin} from 'vite'
 import type {SharedState} from './SharedState'
