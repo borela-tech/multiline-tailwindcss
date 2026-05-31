@@ -1,7 +1,11 @@
-export default {
-  preset: 'ts-jest',
-  roots: [
-    'lib',
-    'packages/vite-plugin-multiline-tailwindcss/src',
-  ],
+const jestConfig = {
+  moduleNameMapper: {
+    '^@lib/(.*)$': '<rootDir>/lib/$1',
+  },
+  testEnvironment: 'node',
+  transform: {
+    '^.+\\.tsx?$': '@swc/jest',
+  },
 }
+
+export {jestConfig as default}

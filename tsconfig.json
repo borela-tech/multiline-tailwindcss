@@ -11,7 +11,10 @@
     "target": "ESNext",
   },
   "include": [
-    "lib/**/*",
+    "eslint.config.ts",
     "globals/**/*",
+    "jest.config.ts",
+    "lib/**/*",
+    "packages/*/vite.config.ts",
   ]
 }
