@@ -3,6 +3,7 @@
 SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
 pushd "$SCRIPT_DIR" > /dev/null
 
+./build_multiline_tailwindcss
 ./build_esbuild_plugin
 ./build_vite_plugin
 
