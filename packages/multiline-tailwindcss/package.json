@@ -1,0 +1,51 @@
+{
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "../../bin/build_multiline_tailwindcss",
+    "typecheck": "../../bin/typecheck_multiline_tailwindcss"
+  },
+  "name": "@borela-tech/multiline-tailwindcss",
+  "version": "1.0.0",
+  "description": "Runtime exports for multiline-tailwindcss package suite.",
+  "exports": {
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.mjs"
+    },
+    "require": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borela-tech/multiline-tailwindcss.git",
+    "directory": "packages/multiline-tailwindcss"
+  },
+  "keywords": [
+    "classname",
+    "css-in-js",
+    "jsx",
+    "multiline",
+    "react",
+    "tailwind",
+    "tailwindcss",
+    "utility-classes"
+  ],
+  "author": {
+    "name": "Alexandre Borela",
+    "email": "alexandre@borela.tech"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/generator": "^7.27.1",
+    "@babel/plugin-syntax-decorators": "^7.27.1",
+    "@babel/preset-react": "^7.27.1",
+    "@babel/preset-typescript": "^7.27.1",
+    "@babel/traverse": "^7.27.1",
+    "@babel/types": "^7.27.1"
+  }
+}
