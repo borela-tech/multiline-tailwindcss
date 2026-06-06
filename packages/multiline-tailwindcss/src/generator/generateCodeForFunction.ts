@@ -1,5 +1,5 @@
 import {generateCodeForNode} from './generateCodeForNode'
-import type {FunctionNode} from '../FunctionNode'
+import type {FunctionNode} from '../parseTailwindCssClasses/FunctionNode'
 
 export function generateCodeForFunction(node: FunctionNode) {
   let fullName = node.name

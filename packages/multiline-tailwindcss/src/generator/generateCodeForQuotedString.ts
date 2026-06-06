@@ -1,4 +1,4 @@
-import type {QuotedStringNode} from '../QuotedStringNode'
+import type {QuotedStringNode} from '../parseTailwindCssClasses/QuotedStringNode'
 
 export function generateCodeForQuotedString(node: QuotedStringNode): string {
   const value = node.value

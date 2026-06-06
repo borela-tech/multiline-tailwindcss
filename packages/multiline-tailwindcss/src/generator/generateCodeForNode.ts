@@ -3,7 +3,7 @@ import {generateCodeForCssProperty} from './generateCodeForCssProperty'
 import {generateCodeForExpressionNode} from './generateCodeForExpressionNode'
 import {generateCodeForFunction} from './generateCodeForFunction'
 import {generateCodeForQuotedString} from './generateCodeForQuotedString'
-import type {AnyNode} from '../AnyNode'
+import type {AnyNode} from '../parseTailwindCssClasses/AnyNode'
 
 export function generateCodeForNode(node: AnyNode): string {
   switch (node.type) {

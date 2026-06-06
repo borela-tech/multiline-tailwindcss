@@ -1,5 +1,5 @@
 import {generateCodeForNode} from './generateCodeForNode'
-import type {CssPropertyNode} from '../CssPropertyNode'
+import type {CssPropertyNode} from '../parseTailwindCssClasses/CssPropertyNode'
 
 export function generateCodeForCssProperty(node: CssPropertyNode) {
   const name = node.name || ''

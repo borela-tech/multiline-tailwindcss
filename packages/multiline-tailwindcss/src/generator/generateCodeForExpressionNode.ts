@@ -1,5 +1,5 @@
 import {generateCodeForNode} from './generateCodeForNode'
-import type {ExpressionNode} from '../ExpressionNode'
+import type {ExpressionNode} from '../parseTailwindCssClasses/ExpressionNode'
 
 export function generateCodeForExpressionNode(node: ExpressionNode): string {
   return node.items

@@ -1,5 +1,5 @@
 import {generateCodeForNode} from './generateCodeForNode'
-import type {BracketedExpression} from '../BracketedExpression'
+import type {BracketedExpression} from '../parseTailwindCssClasses/BracketedExpression'
 
 export function generateCodeForBracketedExpression(node: BracketedExpression) {
   const prefix = node.prefix
