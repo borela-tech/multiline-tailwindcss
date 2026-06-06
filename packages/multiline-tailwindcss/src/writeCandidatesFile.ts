@@ -5,6 +5,7 @@ import {logInfo} from './logInfo'
 
 const CANDIDATES_FILE_NAME = 'tailwindcss.candidates.json'
 
+/** @public */
 export function writeCandidatesFile(
   directoryPath: string,
   candidates: string[],

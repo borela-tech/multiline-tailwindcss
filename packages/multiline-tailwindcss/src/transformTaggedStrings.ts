@@ -3,6 +3,7 @@ import {parseTypeScriptCode} from './parseTypeScriptCode'
 import {processBase64AssetTag} from './processBase64AssetTag'
 import {processTailwindCssTags} from './processTailwindCssTags'
 
+/** @public */
 export function transformTaggedStrings(code: string, filePath = 'unknown') {
   const ast = parseTypeScriptCode(code, filePath)
 

@@ -5,6 +5,7 @@ import {transformTailwindClasses} from './transformTailwindClasses'
 import {traverse} from './babel/traverse'
 import type {NodePath} from '@babel/traverse'
 
+/** @public */
 export function transformJsxCssClasses(code: string, filePath = 'unknown') {
   const candidatesFound: string[] = []
 
