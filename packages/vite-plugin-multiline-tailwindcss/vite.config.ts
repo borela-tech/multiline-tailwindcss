@@ -13,13 +13,14 @@ const viteConfig = defineConfig({
     minify: false,
     rollupOptions: {
       external: [
-        /^@?babel\//,
-        /^node:/,
-        /^@tailwindcss\//,
+        '@borela-tech/multiline-tailwindcss',
         'fs',
         'path',
         'tailwindcss',
         'vite',
+        /^@?babel\//,
+        /^@tailwindcss\//,
+        /^node:/,
       ],
     },
     sourcemap: true,

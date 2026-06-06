@@ -13,9 +13,10 @@ const viteConfig = defineConfig({
     minify: false,
     rollupOptions: {
       external: [
-        /^node:/,
         'fs',
         'path',
+        /^@?babel\//,
+        /^node:/,
       ],
     },
     sourcemap: true,
