@@ -3,7 +3,6 @@
 SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
 pushd "$SCRIPT_DIR" > /dev/null
 
-./test_unit
-./test_integration
+npx jest --verbose --testMatch="**/*.test.ts?(x)"
 
 popd > /dev/null

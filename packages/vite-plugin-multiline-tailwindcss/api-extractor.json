@@ -6,10 +6,7 @@
     "enabled": true,
     "untrimmedFilePath": "<projectFolder>/dist/index.d.ts"
   },
-  "mainEntryPointFilePath": "<projectFolder>/dist/types/packages/vite-plugin-multiline-tailwindcss/src/index.d.ts",
-  "compiler": {
-    "tsconfigFilePath": "<projectFolder>/tsconfig.api-extractor.json"
-  },
+  "mainEntryPointFilePath": "<projectFolder>/dist/types/src/index.d.ts",
   "tsdocMetadata": {
     "enabled": true,
     "tsdocMetadataFilePath": "<projectFolder>/dist/tsdoc-metadata.json"

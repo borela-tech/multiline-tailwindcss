@@ -1,7 +1,7 @@
 #!/usr/bin/env -S bash -e -o pipefail
 
 SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
-cd "$SCRIPT_DIR/../packages/vite-plugin-multiline-tailwindcss"
+cd "$SCRIPT_DIR/../packages/multiline-tailwindcss"
 
 rm -rf dist
 npx vite build

@@ -3,6 +3,6 @@
 SCRIPT_DIR=$(dirname -- "${BASH_SOURCE[0]}")
 pushd "$SCRIPT_DIR/.." > /dev/null
 
-npx jest --verbose --testMatch="**/integration/**/*.test.ts?(x)"
+./bin/lib/publish_package --path packages/multiline-tailwindcss
 
 popd > /dev/null

@@ -1,4 +1,4 @@
-import {transformTaggedStrings} from '@lib/transformTaggedStrings'
+import {transformTaggedStrings} from '@borela-tech/multiline-tailwindcss'
 import {updateModule} from './updateModule'
 import type {Plugin} from 'vite'
 import type {SharedState} from './SharedState'

@@ -24,11 +24,6 @@ const viteConfig = defineConfig({
     sourcemap: true,
     target: 'node25',
   },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, '../..'),
-    },
-  },
 })
 
 export {viteConfig as default}

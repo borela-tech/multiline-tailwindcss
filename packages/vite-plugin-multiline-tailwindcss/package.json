@@ -7,10 +7,8 @@
     "typecheck": "../../bin/typecheck_vite_plugin"
   },
   "name": "@borela-tech/vite-plugin-multiline-tailwindcss",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Allows tailwindcss classes to be broken into multiple lines.",
-  "type": "module",
-  "main": "./dist/index.cjs",
   "exports": {
     "import": {
       "types": "./dist/index.d.ts",
@@ -40,12 +38,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "@babel/core": "^7.27.1",
-    "@babel/generator": "^7.27.1",
-    "@babel/plugin-syntax-decorators": "^7.27.1",
-    "@babel/preset-react": "^7.27.1",
-    "@babel/preset-typescript": "^7.27.1",
-    "@babel/traverse": "^7.27.1",
+    "@borela-tech/multiline-tailwindcss": "^1.0.0",
     "@tailwindcss/node": "^4.1.8",
     "@tailwindcss/oxide": "^4.1.11",
     "tailwindcss": "^4.1.8"

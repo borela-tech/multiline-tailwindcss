@@ -1,6 +1,6 @@
 import * as fs from 'node:fs'
-import {transformJsxCssClasses} from '@lib/transformJsxCssClasses'
-import {transformTaggedStrings} from '@lib/transformTaggedStrings'
+import {transformJsxCssClasses} from '@borela-tech/multiline-tailwindcss'
+import {transformTaggedStrings} from '@borela-tech/multiline-tailwindcss'
 
 interface TransformResult {
   candidates: string[]

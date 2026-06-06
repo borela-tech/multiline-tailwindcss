@@ -1,6 +1,5 @@
-import {logInfo} from '@lib/logInfo'
 import {transformFile} from './transformFile'
-import {writeCandidatesFile} from '@lib/writeCandidatesFile'
+import {writeCandidatesFile} from '@borela-tech/multiline-tailwindcss'
 import type {BuildResult} from 'esbuild'
 import type {Plugin} from 'esbuild'
 
@@ -14,8 +13,6 @@ export const multilineTailwindCssPlugin: Plugin = {
   setup(build) {
     const collectedCandidates: string[] = []
     const outputDir = build.initialOptions.outdir || 'dist'
-
-    logInfo(`Output directory: ${outputDir}`)
 
     build.onEnd((result: BuildResult) => {
       if (result.errors.length > 0)

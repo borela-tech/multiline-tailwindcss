@@ -6,6 +6,7 @@
   },
   "workspaces": [
     "packages/esbuild-plugin-multiline-tailwindcss",
+    "packages/multiline-tailwindcss",
     "packages/vite-plugin-multiline-tailwindcss"
   ],
   "devDependencies": {

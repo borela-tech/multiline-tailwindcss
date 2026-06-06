@@ -1,7 +1,7 @@
 import {compile} from '@tailwindcss/node'
 import {Scanner} from '@tailwindcss/oxide'
 import {toSourceMap} from '@tailwindcss/node'
-import {writeCandidatesFile} from '@lib/writeCandidatesFile'
+import {writeCandidatesFile} from '@borela-tech/multiline-tailwindcss'
 import type {Plugin} from 'vite'
 import type {SharedState} from './SharedState'
 

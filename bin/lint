@@ -6,7 +6,6 @@ pushd "$SCRIPT_DIR/.." > /dev/null
 npx eslint \
   --max-warnings 0 \
   --report-unused-disable-directives \
-  lib \
   packages/**/src \
   $@
 

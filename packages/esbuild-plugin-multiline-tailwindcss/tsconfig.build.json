@@ -5,6 +5,7 @@
     "declarationDir": "dist/types",
     "declarationMap": true,
     "emitDeclarationOnly": true,
+    "rootDir": ".",
     "skipLibCheck": true,
   },
   "include": ["./src/index.ts"]
