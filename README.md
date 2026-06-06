@@ -26,47 +26,88 @@
 
 <p align="center">
   <em>
-    If you like this plugin, give it a star on GitHub and tell about it to your
-    friends!
+    If you like this plugin, give it a star on GitHub and tell your friends about
+    it!
   </em>
 </p>
 
 <p align="center">
-  Plugins that allow <a href="https://tailwindcss.com/">tailwindcss</a> 
-  classes to be broken into multiple lines.
+  Write TailwindCSS classes across multiple lines. They get compiled down to a
+  single line at build time with no runtime overhead.
 </p>
 
 ## Table of Contents
 
-- [Vite](#vite)
-- [ESBuild](#esbuild)
+- [Packages](#packages)
+- [Quick Start](#quick-start)
+  - [esbuild / tsdown / tsup](#esbuild--tsdown--tsup)
+  - [Vite](#vite)
 - [Usage](#usage)
+  - [JSX](#jsx) 
+    - [className](#classname)
+  - [Tagged Strings](#tagged-strings)
+    - [tailwindcss](#tailwindcss)
+    - [base64Asset](#base64asset)
 - [Features](#features)
   - [Spaces](#spaces)
   - [Comments](#comments)
 - [Contributing](#contributing)
 - [License](#license)
 
-## Vite
+## Packages
 
-[Vite Plugin][vite-plugin] for [Vite][vite] that allows you to break [tailwindcss][tailwindcss]
-classes into multiple lines. 
+This monorepo contains two plugins:
 
-## ESBuild
+- [`@borela-tech/esbuild-plugin-multiline-tailwindcss`][esbuild-plugin]: esbuild
+  / tsdown / tsup plugin
+- [`@borela-tech/vite-plugin-multiline-tailwindcss`][vite-plugin]: Vite plugin 
+  for transforming multiline TailwindCSS classes
 
-[This plugin][esbuild-plugin] is useful for creating packages, like UI libraries,
- that depend on [tailwindcss][tailwindcss]. It generates a `tailwindcss.candidates.json`
-file, which lists all Tailwind classes used in the package. Other projects can
-then import this file to ensure those classes are included when generating the
-final CSS.
+## Quick Start
 
-Like the Vite plugin, it allows [tailwindcss][tailwindcss] classes to be broken
-into multiple lines. Works with [Tsup][tsup] or any project that uses [esbuild][esbuild].
+Pick the plugin that matches your build tool:
+
+### esbuild / tsdown / tsup
+
+```bash
+npm install -D @borela-tech/esbuild-plugin-multiline-tailwindcss
+```
+
+```typescript
+import {defineConfig} from 'tsdown'
+import {multilineTailwindCssPlugin} from '@borela-tech/esbuild-plugin-multiline-tailwindcss'
+
+export default defineConfig({
+  esbuildPlugins: [multilineTailwindCssPlugin],
+})
+```
+
+The plugin also works with tsup (`tsup.config.ts`) and any other
+esbuild-based bundler.
+
+### Vite
+
+```bash
+npm install -D @borela-tech/vite-plugin-multiline-tailwindcss
+```
+
+```typescript
+import {defineConfig} from 'vite'
+import {multilineTailwindCss} from '@borela-tech/vite-plugin-multiline-tailwindcss'
+
+export default defineConfig({
+  plugins: [multilineTailwindCss()],
+})
+```
 
 ## Usage
 
-The plugin will search for the className attribute in your JSX/TSX files and
-transform the classes into a single line.
+Both plugins transform multiline TailwindCSS classes into single-line strings.
+This works in `className` attributes and in tagged strings.
+
+### JSX
+
+#### className
 
 ```jsx
 <div className="
@@ -107,14 +148,18 @@ transform the classes into a single line.
 </div>
 ```
 
-Alternatively, you can use the `tailwindcss` tag to transform string literals:
+### Tagged Strings
+
+Tags are transformed at build time; the runtime function is never called in
+production. If a tag isn't processed (the plugin isn't configured for that
+file), it returns a descriptive error string as a fallback.
+
+#### tailwindcss
 
 ```js
-// It is not necessary to import the tailwind tag, it is declared globally and
-// the plugin only uses it to know which string literals to transform. This
-// function is never called at runtime.
+import {tailwindcss} from '@borela-tech/multiline-tailwindcss'
 
-const BODY_CSS = tailwindcss`
+const STYLES = tailwindcss`
   bg-[
     linear-gradient(
       to right,
@@ -122,36 +167,41 @@ const BODY_CSS = tailwindcss`
       theme(colors.purple.900),
     ),
   ]
+  p-4
 `
 
 // Becomes:
+const STYLES = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))] p-4`
+```
 
-const BODY_CSS = `bg-[linear-gradient(to_right,theme(colors.purple.600),theme(colors.purple.900))]`
+#### base64Asset
+
+```js
+import {base64Asset} from '@borela-tech/multiline-tailwindcss'
+
+const NOISE = base64Asset`../assets/noise.png`
+// Becomes:
+const NOISE = `data:image/png;base64,iVBORw0KGgo...`
 ```
 
 ## Features
 
 ### Spaces
 
-Tailwind requires underscores (`_`) in place of spaces within arbitrary values.
-With this plugin, you can write spaces directly, and they will be automatically
-converted to underscores:
+Tailwind requires underscores (`_`) in place of spaces within arbitrary values;
+however, with these plugins you use spaces directly:
 
 ```jsx
 <div className="bg-[size:4px 4px]">
-  Content
-</div>
 
 // Becomes:
 
 <div className="bg-[size:4px_4px]">
-  Content
-</div>
 ```
 
 ### Comments
 
-The plugin supports `/* */` and `//` comments within multiline class strings:
+`/* */` and `//` comments are supported within multiline class strings:
 
 ```jsx
 <div className="
@@ -163,14 +213,10 @@ The plugin supports `/* */` and `//` comments within multiline class strings:
    */
   p-4
 ">
-  Content
-</div>
 
 // Becomes:
 
 <div className="bg-red-500 text-white p-4">
-  Content
-</div>
 ```
 
 ## Contributing
@@ -180,13 +226,8 @@ improvements or bug fixes.
 
 ## License
 
-This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE.md)
-file for details.
+This project is licensed under the Apache 2.0 License. See the
+[LICENSE](LICENSE.md) file for details.
 
-[esbuild]: https://esbuild.github.io
-[esbuild-plugin]: ./packages/esbuild-plugin-multiline-tailwindcss
-[tailwindcss]: https://tailwindcss.com
-[tsup]: https://tsup.egoist.dev
-[vite]: https://vite.dev
 [vite-plugin]: ./packages/vite-plugin-multiline-tailwindcss
-
+[esbuild-plugin]: ./packages/esbuild-plugin-multiline-tailwindcss
