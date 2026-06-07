@@ -1,8 +1,8 @@
 import * as t from '@babel/types'
 import {getBase64DataString} from './getBase64DataString'
 import {getQuasiText} from './getQuasiText'
-import {traverse} from './babel/traverse'
 import {logErrorUnresolvedBase64AssetTag} from './logErrorUnresolvedBase64AssetTag'
+import {traverse} from './babel/traverse'
 import type {NodePath} from '@babel/traverse'
 
 export function processBase64AssetTag(filePath: string, fileNode: t.File) {

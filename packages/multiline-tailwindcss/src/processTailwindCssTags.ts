@@ -1,9 +1,9 @@
 import * as t from '@babel/types'
 import {collectResolvableValues} from './collectResolvableValues'
+import {logErrorUnresolvedTailwindcssTag} from './logErrorUnresolvedTailwindcssTag'
 import {resolveTemplateExpressions} from './resolveTemplateExpressions'
 import {transformTailwindClasses} from './transformTailwindClasses'
 import {traverse} from './babel/traverse'
-import {logErrorUnresolvedTailwindcssTag} from './logErrorUnresolvedTailwindcssTag'
 
 export function processTailwindCssTags(filePath: string, fileNode: t.File) {
   const candidatesFound: string[] = []
