@@ -425,6 +425,85 @@ describe('parseTailwindCssClasses()', () => {
     }])
   })
 
+  it('parses hex color in arbitrary value', () => {
+    const INPUT = 'bg-[#00ff00]'
+    const ast = parseTailwindCssClasses(INPUT)
+    expect(ast).toEqual([{
+      prefix: {
+        type: 'Identifier',
+        value: 'bg-',
+      },
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          type: 'Identifier',
+          value: '#00ff00',
+        }],
+        type: 'Expression',
+      }],
+    }])
+  })
+
+  it('parses shorthand hex color in arbitrary value', () => {
+    const INPUT = 'text-[#abc]'
+    const ast = parseTailwindCssClasses(INPUT)
+    expect(ast).toEqual([{
+      prefix: {
+        type: 'Identifier',
+        value: 'text-',
+      },
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          type: 'Identifier',
+          value: '#abc',
+        }],
+        type: 'Expression',
+      }],
+    }])
+  })
+
+  it('parses uppercase hex color in arbitrary value', () => {
+    const INPUT = 'bg-[#ABCDEF]'
+    const ast = parseTailwindCssClasses(INPUT)
+    expect(ast).toEqual([{
+      prefix: {
+        type: 'Identifier',
+        value: 'bg-',
+      },
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          type: 'Identifier',
+          value: '#ABCDEF',
+        }],
+        type: 'Expression',
+      }],
+    }])
+  })
+
+  it('parses hex color as CSS property value', () => {
+    const INPUT = '[color:#336699]'
+    const ast = parseTailwindCssClasses(INPUT)
+    expect(ast).toEqual([{
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          name: 'color',
+          type: 'CssProperty',
+          value: {
+            items: [{
+              type: 'Identifier',
+              value: '#336699',
+            }],
+            type: 'Expression',
+          },
+        }],
+        type: 'Expression',
+      }],
+    }])
+  })
+
   it('parses chained prefixes with identifier-bracketed prefix', () => {
     const INPUT = 'group-hover:group-aria-[disabled=false]:opacity-100'
     const ast = parseTailwindCssClasses(INPUT)

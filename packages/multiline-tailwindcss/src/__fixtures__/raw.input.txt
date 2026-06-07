@@ -102,3 +102,15 @@ lg:[&:nth-child(3)]:hover:underline
 some_bogus_class
 
 some\_bogus\_class
+
+bg-[#00ff00]
+
+bg-[#abc]
+
+bg-[#aabbccdd]
+
+bg-[#ABCDEF]
+
+[color:#336699]
+
+[background-color: #00FF00]

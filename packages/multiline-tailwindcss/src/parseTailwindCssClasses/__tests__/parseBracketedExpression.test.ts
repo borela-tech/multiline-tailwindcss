@@ -205,6 +205,82 @@ describe('parseBracketedExpression()', () => {
     expect(state.pos).toBe(10)
   })
 
+  it('parses hex color in bracketed expression', () => {
+    const state: State = {
+      input: '[#00ff00]',
+      pos: 0,
+    }
+    const result = parseBracketedExpression(state)
+    expect(result).toEqual({
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          type: 'Identifier',
+          value: '#00ff00',
+        }],
+        type: 'Expression',
+      }],
+    })
+    expect(state.pos).toBe(9)
+  })
+
+  it('parses shorthand hex color in bracketed expression', () => {
+    const state: State = {
+      input: '[#abc]',
+      pos: 0,
+    }
+    const result = parseBracketedExpression(state)
+    expect(result).toEqual({
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          type: 'Identifier',
+          value: '#abc',
+        }],
+        type: 'Expression',
+      }],
+    })
+    expect(state.pos).toBe(6)
+  })
+
+  it('parses uppercase hex color in bracketed expression', () => {
+    const state: State = {
+      input: '[#ABCDEF]',
+      pos: 0,
+    }
+    const result = parseBracketedExpression(state)
+    expect(result).toEqual({
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          type: 'Identifier',
+          value: '#ABCDEF',
+        }],
+        type: 'Expression',
+      }],
+    })
+    expect(state.pos).toBe(9)
+  })
+
+  it('parses hex color with alpha in bracketed expression', () => {
+    const state: State = {
+      input: '[#aabbccdd]',
+      pos: 0,
+    }
+    const result = parseBracketedExpression(state)
+    expect(result).toEqual({
+      type: 'BracketedExpression',
+      value: [{
+        items: [{
+          type: 'Identifier',
+          value: '#aabbccdd',
+        }],
+        type: 'Expression',
+      }],
+    })
+    expect(state.pos).toBe(11)
+  })
+
   it('parses animation with spaces', () => {
     const state: State = {
       input: '[wiggle 1s ease-in-out infinite]',
