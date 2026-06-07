@@ -33,21 +33,9 @@ function skipBlockComment(state: State) {
     throwError(state, 'Unclosed comment')
 }
 
-function skipHashComment(state: State) {
-  next(state) // Skip #
-
-  while (state.pos < state.input.length && peek(state) !== '\n')
-    next(state)
-
-  if (peek(state) == '\n')
-    next(state)
-}
-
 export function skipComments(state: State) {
   if (peek(state, 2) === '//')
     skipLineComment(state)
   else if (peek(state, 2) === '/*')
     skipBlockComment(state)
-  else if (peek(state) === '#')
-    skipHashComment(state)
 }
