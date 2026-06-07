@@ -86,7 +86,7 @@ describe('transformTaggedStrings()', () => {
     })
 
     it('leaves template unchanged, warns if var not string literal', () => {
-      const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+      const warnSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
       const code = [
         'const a = 42',
         'const b = tailwindcss`${a}`',
@@ -102,7 +102,7 @@ describe('transformTaggedStrings()', () => {
     })
 
     it('leaves template unchanged, warns for non-ident expr', () => {
-      const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+      const warnSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
       const code = [
         'const b = tailwindcss`${someFn()}`',
       ].join('\n')
@@ -116,7 +116,7 @@ describe('transformTaggedStrings()', () => {
     })
 
     it('leaves template unchanged and warns for undefined variables', () => {
-      const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {})
+      const warnSpy = jest.spyOn(console, 'error').mockImplementation(() => {})
       const code = [
         'const b = tailwindcss`${unknownVar}`',
       ].join('\n')
