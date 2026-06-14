@@ -1,5 +1,10 @@
+import {collectCandidates} from './collectCandidates'
 import {compile} from '@tailwindcss/node'
+import {dirname} from 'node:path'
+import {ensureExternalPathIsWatched} from './ensureExternalPathIsWatched'
+import {isNodeError} from './isNodeError'
 import {Scanner} from '@tailwindcss/oxide'
+import {setupFileWatcher} from './setupFileWatcher'
 import {toSourceMap} from '@tailwindcss/node'
 import {writeCandidatesFile} from '@borela-tech/multiline-tailwindcss'
 import type {Plugin} from 'vite'
@@ -10,6 +15,9 @@ export function compileCssPlugin(state: SharedState) {
     configResolved(config) {
       state.outDir = config.build.outDir
     },
+    configureServer(server) {
+      setupFileWatcher(server, state)
+    },
     enforce: 'pre',
     name: '@borela-tech/vite-plugin-multiline-tailwindcss:compile-css',
     async transform(code, id) {
@@ -18,6 +26,7 @@ export function compileCssPlugin(state: SharedState) {
           className: classNameCandidatesPerId,
           tagged: taggedCandidatesPerId,
         },
+        devServer,
         rootCssDirPath,
         rootCssPath,
       } = state
@@ -25,14 +34,28 @@ export function compileCssPlugin(state: SharedState) {
       if (id !== rootCssPath)
         return code
 
-      const compiler = await compile(code, {
-        base: rootCssDirPath!,
-        from: id,
-        onDependency: (path: string) => {
-          this.addWatchFile(path)
-        },
-        shouldRewriteUrls: true,
-      })
+      let compiler
+      const cssDependencies = new Set<string>()
+
+      try {
+        compiler = await compile(code, {
+          base: rootCssDirPath!,
+          from: id,
+          onDependency: (dependencyPath: string) => {
+            this.addWatchFile(dependencyPath)
+            cssDependencies.add(dependencyPath)
+            ensureExternalPathIsWatched(
+              dirname(dependencyPath),
+              devServer,
+            )
+          },
+          shouldRewriteUrls: true,
+        })
+      } catch (error) {
+        if (isNodeError(error) && error.code === 'ENOENT')
+          return code
+        throw error
+      }
 
       const scanner = new Scanner({
         sources: [{
@@ -42,16 +65,21 @@ export function compileCssPlugin(state: SharedState) {
         }, ...compiler.sources],
       })
 
-      for (const path of scanner.files)
-        this.addWatchFile(path)
+      for (const filePath of scanner.files) {
+        if (!cssDependencies.has(filePath)) {
+          this.addWatchFile(filePath)
+          ensureExternalPathIsWatched(filePath, devServer)
+        }
+        cssDependencies.add(filePath)
+      }
 
-      const ALL_CANDIDATES: string[] = scanner.scan()
+      state.cssDependencies = cssDependencies
 
-      for (const [, candidates] of classNameCandidatesPerId)
-        ALL_CANDIDATES.push(...candidates)
-
-      for (const [, candidates] of taggedCandidatesPerId)
-        ALL_CANDIDATES.push(...candidates)
+      const ALL_CANDIDATES = collectCandidates(
+        scanner,
+        classNameCandidatesPerId,
+        taggedCandidatesPerId,
+      )
 
       const MAP = compiler.buildSourceMap()
       const GENERATED_CODE = compiler.build(ALL_CANDIDATES)
