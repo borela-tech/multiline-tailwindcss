@@ -15,7 +15,6 @@ export function transformJsxCssClassesPlugin(state: SharedState) {
         candidatesFromTransforms: {
           className: candidatesPerId,
         },
-        devServer,
         rootCssPath,
       } = state
 
@@ -29,10 +28,8 @@ export function transformJsxCssClassesPlugin(state: SharedState) {
 
       candidatesPerId.set(id, candidatesFound)
 
-      if (candidatesFound.length > 0) {
-        if (devServer)
-          updateModule(devServer, rootCssPath!)
-      }
+      if (candidatesFound.length > 0)
+        updateModule(state, rootCssPath!)
 
       return {
         code: transformedCode,
