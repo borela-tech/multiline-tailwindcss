@@ -1,14 +1,18 @@
 import {collectCandidates} from './collectCandidates'
 import {compile} from '@tailwindcss/node'
-import {dirname} from 'node:path'
-import {ensureExternalPathIsWatched} from './ensureExternalPathIsWatched'
-import {isNodeError} from './isNodeError'
+import {debounce} from '@borela-tech/ts-toolbox'
+import {invalidateCss} from './invalidateCss'
 import {Scanner} from '@tailwindcss/oxide'
 import {setupFileWatcher} from './setupFileWatcher'
 import {toSourceMap} from '@tailwindcss/node'
 import {writeCandidatesFile} from '@borela-tech/multiline-tailwindcss'
 import type {Plugin} from 'vite'
 import type {SharedState} from './SharedState'
+
+const RETRY_DELAY = 100
+const retryCompilation = debounce(
+  (state: SharedState) => invalidateCss(state),
+)
 
 export function compileCssPlugin(state: SharedState) {
   return {
@@ -26,7 +30,6 @@ export function compileCssPlugin(state: SharedState) {
           className: classNameCandidatesPerId,
           tagged: taggedCandidatesPerId,
         },
-        devServer,
         rootCssDirPath,
         rootCssPath,
       } = state
@@ -44,16 +47,20 @@ export function compileCssPlugin(state: SharedState) {
           onDependency: (dependencyPath: string) => {
             this.addWatchFile(dependencyPath)
             cssDependencies.add(dependencyPath)
-            ensureExternalPathIsWatched(
-              dirname(dependencyPath),
-              devServer,
-            )
           },
           shouldRewriteUrls: true,
         })
       } catch (error) {
-        if (isNodeError(error) && error.code === 'ENOENT')
-          return code
+        const {
+          compilationResult: previousCompilationResult,
+          devServer,
+        } = state
+
+        if (devServer) {
+          void retryCompilation(RETRY_DELAY, state)
+          return previousCompilationResult
+        }
+
         throw error
       }
 
@@ -66,10 +73,8 @@ export function compileCssPlugin(state: SharedState) {
       })
 
       for (const filePath of scanner.files) {
-        if (!cssDependencies.has(filePath)) {
+        if (!cssDependencies.has(filePath))
           this.addWatchFile(filePath)
-          ensureExternalPathIsWatched(filePath, devServer)
-        }
         cssDependencies.add(filePath)
       }
 
@@ -85,7 +90,7 @@ export function compileCssPlugin(state: SharedState) {
       const GENERATED_CODE = compiler.build(ALL_CANDIDATES)
       const GENERATED_MAP = toSourceMap(MAP).raw
 
-      return {
+      return state.compilationResult = {
         code: GENERATED_CODE,
         map: GENERATED_MAP,
       }

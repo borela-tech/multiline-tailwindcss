@@ -1,5 +1,5 @@
+import {invalidateCss} from './invalidateCss'
 import {transformJsxCssClasses} from '@borela-tech/multiline-tailwindcss'
-import {updateModule} from './updateModule'
 import type {Plugin} from 'vite'
 import type {SharedState} from './SharedState'
 
@@ -15,7 +15,6 @@ export function transformJsxCssClassesPlugin(state: SharedState) {
         candidatesFromTransforms: {
           className: candidatesPerId,
         },
-        rootCssPath,
       } = state
 
       const {
@@ -29,7 +28,7 @@ export function transformJsxCssClassesPlugin(state: SharedState) {
       candidatesPerId.set(id, candidatesFound)
 
       if (candidatesFound.length > 0)
-        updateModule(state, rootCssPath!)
+        invalidateCss(state)
 
       return {
         code: transformedCode,

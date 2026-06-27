@@ -6,6 +6,10 @@ export interface SharedState {
     className: ModuleCandidates
     tagged: ModuleCandidates
   }
+  compilationResult?: {
+    code: string
+    map: string
+  }
   cssDependencies?: Set<string>
   devServer?: ViteDevServer
   outDir?: string

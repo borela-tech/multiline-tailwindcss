@@ -1,8 +1,15 @@
 import type {SharedState} from './SharedState'
-import type {ViteDevServer} from 'vite'
 
-export function invalidateCss(server: ViteDevServer, state: SharedState) {
-  const module = server.moduleGraph.getModuleById(state.rootCssPath!)
+export function invalidateCss(state: SharedState) {
+  const {
+    devServer,
+    rootCssPath,
+  } = state
+
+  if (!devServer)
+    return
+
+  const module = devServer.moduleGraph.getModuleById(rootCssPath!)
   if (module)
-    server.moduleGraph.invalidateModule(module)
+    devServer.moduleGraph.invalidateModule(module)
 }
