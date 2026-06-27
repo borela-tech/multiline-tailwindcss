@@ -7,7 +7,7 @@
     "typecheck": "../../bin/typecheck_multiline_tailwindcss"
   },
   "name": "@borela-tech/multiline-tailwindcss",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Runtime exports for multiline-tailwindcss package suite.",
   "exports": {
     "import": {
@@ -40,6 +40,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
+    "@borela-tech/ts-toolbox": "^1.0.2",
     "@babel/core": "^7.27.1",
     "@babel/generator": "^7.27.1",
     "@babel/plugin-syntax-decorators": "^7.27.1",
